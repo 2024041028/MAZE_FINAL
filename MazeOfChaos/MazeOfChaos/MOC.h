@@ -23,5 +23,6 @@ void FinishGame();
 // ******* screen_YHU.c¿¡ Á¸Àç *********** //
 void ExplainGame();
 void StartScreen();
+void Gamestart();
 // ************************************** //
 

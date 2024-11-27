@@ -103,7 +103,7 @@ void StartScreen() {
 			else if (flag == 1)
 				ExplainGame();
 			else
-				Finish();
+				FinishGame();
 			break;
 		}
 
@@ -142,4 +142,8 @@ void StartScreen() {
 		}
 		Sleep(110);
 	}
+}
+
+void Gamestart() {
+	FinishGame();
 }

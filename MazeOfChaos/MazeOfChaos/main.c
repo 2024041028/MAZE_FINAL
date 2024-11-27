@@ -1,5 +1,6 @@
-#include <stdio.h>
+#include "MOC.h"
 
 int main() {
-	printf("Hello Git");
+	RemoveCursor();
+	StartScreen();
 }

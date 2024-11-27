@@ -28,7 +28,7 @@ void CreateOutFrame() {
 
 void ScreenReset() {
 	system("cls");
-	OutFrame();
+	CreateOutFrame();
 }
 
 
