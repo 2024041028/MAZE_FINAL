@@ -67,6 +67,19 @@ void Level(int level) {
 		printf("       11 ");
 		MoveConsole(41, 15);
 		printf(" 1111111111111");
+
+		if (user_record[2] != 0) {
+			MoveConsole(61, 9);
+			printf("     ¢Æ¢Æ");
+			MoveConsole(61, 10);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 11);
+			printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+			MoveConsole(61, 12);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 13);
+			printf("     ¢Æ¢Æ");
+		}
 	}
 	else if (level == 2) {
 		MoveConsole(41, 6);
@@ -89,6 +102,30 @@ void Level(int level) {
 		printf("22  ");
 		MoveConsole(41, 15);
 		printf("222222222222");
+
+		MoveConsole(22, 9);
+		printf("    ¢Æ¢Æ");
+		MoveConsole(22, 10);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 11);
+		printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+		MoveConsole(22, 12);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 13);
+		printf("    ¢Æ¢Æ");
+
+		if (user_record[3] != 0) {
+			MoveConsole(61, 9);
+			printf("     ¢Æ¢Æ");
+			MoveConsole(61, 10);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 11);
+			printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+			MoveConsole(61, 12);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 13);
+			printf("     ¢Æ¢Æ");
+		}
 	}
 	else if (level == 3) {
 		MoveConsole(41, 7);
@@ -109,6 +146,30 @@ void Level(int level) {
 		printf(" 33       33");
 		MoveConsole(41, 15);
 		printf("  333333333  ");
+
+		MoveConsole(22, 9);
+		printf("    ¢Æ¢Æ");
+		MoveConsole(22, 10);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 11);
+		printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+		MoveConsole(22, 12);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 13);
+		printf("    ¢Æ¢Æ");
+
+		if (user_record[4] != 0) {
+			MoveConsole(61, 9);
+			printf("     ¢Æ¢Æ");
+			MoveConsole(61, 10);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 11);
+			printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+			MoveConsole(61, 12);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 13);
+			printf("     ¢Æ¢Æ");
+		}
 	}
 	else if (level == 4) {
 		MoveConsole(41, 6);
@@ -131,6 +192,30 @@ void Level(int level) {
 		printf("       44 ");
 		MoveConsole(41, 15);
 		printf("       44");
+		MoveConsole(22, 9);
+
+		printf("    ¢Æ¢Æ");
+		MoveConsole(22, 10);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 11);
+		printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+		MoveConsole(22, 12);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 13);
+		printf("    ¢Æ¢Æ");
+
+		if (user_record[5] != 0) {
+			MoveConsole(61, 9);
+			printf("     ¢Æ¢Æ");
+			MoveConsole(61, 10);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 11);
+			printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+			MoveConsole(61, 12);
+			printf("       ¢Æ¢Æ");
+			MoveConsole(61, 13);
+			printf("     ¢Æ¢Æ");
+		}
 	}
 	else if (level == 5) {
 		MoveConsole(41, 6);
@@ -153,6 +238,17 @@ void Level(int level) {
 		printf("55      55");
 		MoveConsole(41, 15);
 		printf(" 55555555");
+
+		MoveConsole(22, 9);
+		printf("    ¢Æ¢Æ");
+		MoveConsole(22, 10);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 11);
+		printf("¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ¢Æ");
+		MoveConsole(22, 12);
+		printf("  ¢Æ¢Æ");
+		MoveConsole(22, 13);
+		printf("    ¢Æ¢Æ");
 	}
 }
 
