@@ -1,6 +1,8 @@
 #include "MOC.h"
 
 char user_name[20];
+int user_record[6];
+int user_info[12];
 
 void MenuScreenFrame() {
 	CreateOutFrame();
@@ -160,21 +162,31 @@ int ShopScreen() {
 
 void MenuScreen() {
 	int flag = 1;
+	int max_level = 1;
+	for (int i = 1; i <= 5; i++) {
+		if (user_record[i] == 0) {
+			max_level = i - 1;
+			break;
+		}
+		else if (i == 5) {
+			max_level = 5;
+		}
+	}
 	ScreenReset();
 	MenuScreenFrame();
 	Sleep(100);
 	while (1) {
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && flag != 5) {
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && flag != 5 && flag < max_level) {
 			ScreenReset();
 			MenuScreenFrame();
 			flag++;
-			Sleep(110);
+			Sleep(150);
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && flag != 1) {
 			ScreenReset();
 			MenuScreenFrame();
 			flag--;
-			Sleep(110);
+			Sleep(150);
 		}
 		else if (GetAsyncKeyState(0x50) & 0x8000) {
 			ShopScreen();
@@ -182,6 +194,7 @@ void MenuScreen() {
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			return 0;
 		}
+
 		Level(flag);
 	}
 }
