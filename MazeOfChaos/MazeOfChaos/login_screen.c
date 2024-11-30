@@ -165,6 +165,7 @@ int CheckUserStatus() {
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			fgets(new, 20, stdin);
+			Sleep(100);
 			return flag;
 		}
 
