@@ -68,17 +68,21 @@ void Level(int level) {
 		MoveConsole(41, 15);
 		printf(" 1111111111111");
 
-		if (user_record[2] != 0) {
-			MoveConsole(61, 9);
-			printf("     ▒▒");
-			MoveConsole(61, 10);
-			printf("       ▒▒");
-			MoveConsole(61, 11);
-			printf("▒▒▒▒▒▒▒▒▒▒▒");
-			MoveConsole(61, 12);
-			printf("       ▒▒");
-			MoveConsole(61, 13);
-			printf("     ▒▒");
+		MoveConsole(61, 9);
+		printf("     ▒▒");
+		MoveConsole(61, 10);
+		printf("       ▒▒");
+		MoveConsole(61, 11);
+		printf("▒▒▒▒▒▒▒▒▒▒▒");
+		MoveConsole(61, 12);
+		printf("       ▒▒");
+		MoveConsole(61, 13);
+		printf("     ▒▒");
+
+		if (user_record[2] == 0) {
+			SetColor(12);
+			MoveConsole(61, 15);
+			printf(" ※ 잠금 ※");
 		}
 	}
 	else if (level == 2) {
@@ -114,17 +118,21 @@ void Level(int level) {
 		MoveConsole(22, 13);
 		printf("    ▒▒");
 
-		if (user_record[3] != 0) {
-			MoveConsole(61, 9);
-			printf("     ▒▒");
-			MoveConsole(61, 10);
-			printf("       ▒▒");
-			MoveConsole(61, 11);
-			printf("▒▒▒▒▒▒▒▒▒▒▒");
-			MoveConsole(61, 12);
-			printf("       ▒▒");
-			MoveConsole(61, 13);
-			printf("     ▒▒");
+		MoveConsole(61, 9);
+		printf("     ▒▒");
+		MoveConsole(61, 10);
+		printf("       ▒▒");
+		MoveConsole(61, 11);
+		printf("▒▒▒▒▒▒▒▒▒▒▒");
+		MoveConsole(61, 12);
+		printf("       ▒▒");
+		MoveConsole(61, 13);
+		printf("     ▒▒");
+
+		if (user_record[3] == 0) {
+			SetColor(12);
+			MoveConsole(61, 15);
+			printf(" ※ 잠금 ※");
 		}
 	}
 	else if (level == 3) {
@@ -158,17 +166,21 @@ void Level(int level) {
 		MoveConsole(22, 13);
 		printf("    ▒▒");
 
-		if (user_record[4] != 0) {
-			MoveConsole(61, 9);
-			printf("     ▒▒");
-			MoveConsole(61, 10);
-			printf("       ▒▒");
-			MoveConsole(61, 11);
-			printf("▒▒▒▒▒▒▒▒▒▒▒");
-			MoveConsole(61, 12);
-			printf("       ▒▒");
-			MoveConsole(61, 13);
-			printf("     ▒▒");
+		MoveConsole(61, 9);
+		printf("     ▒▒");
+		MoveConsole(61, 10);
+		printf("       ▒▒");
+		MoveConsole(61, 11);
+		printf("▒▒▒▒▒▒▒▒▒▒▒");
+		MoveConsole(61, 12);
+		printf("       ▒▒");
+		MoveConsole(61, 13);
+		printf("     ▒▒");
+
+		if (user_record[4] == 0) {
+			SetColor(12);
+			MoveConsole(61, 15);
+			printf(" ※ 잠금 ※");
 		}
 	}
 	else if (level == 4) {
@@ -204,17 +216,21 @@ void Level(int level) {
 		MoveConsole(22, 13);
 		printf("    ▒▒");
 
-		if (user_record[5] != 0) {
-			MoveConsole(61, 9);
-			printf("     ▒▒");
-			MoveConsole(61, 10);
-			printf("       ▒▒");
-			MoveConsole(61, 11);
-			printf("▒▒▒▒▒▒▒▒▒▒▒");
-			MoveConsole(61, 12);
-			printf("       ▒▒");
-			MoveConsole(61, 13);
-			printf("     ▒▒");
+		MoveConsole(61, 9);
+		printf("     ▒▒");
+		MoveConsole(61, 10);
+		printf("       ▒▒");
+		MoveConsole(61, 11);
+		printf("▒▒▒▒▒▒▒▒▒▒▒");
+		MoveConsole(61, 12);
+		printf("       ▒▒");
+		MoveConsole(61, 13);
+		printf("     ▒▒");
+
+		if (user_record[5] == 0) {
+			SetColor(12);
+			MoveConsole(61, 15);
+			printf(" ※ 잠금 ※");
 		}
 	}
 	else if (level == 5) {
@@ -288,7 +304,7 @@ void MenuScreen() {
 			ShopScreen();
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-			return 0;
+			return flag; // 미로게임이 들어가야함
 		}
 
 		Level(flag);
