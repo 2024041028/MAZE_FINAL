@@ -70,6 +70,7 @@ void ExplainGame() {
 		printf("%c", arr[i]);
 		Sleep(10);
 	}
+	
 	MoveConsole(59, 2);
 	printf("┃뒤로가기 ☜ ┃");
 	MoveConsole(59, 1);
@@ -144,7 +145,22 @@ void StartScreen() {
 			MoveConsole(41, 12);
 			printf("▶ 나가기");
 		}
-		Sleep(110);
+		SetColor(7);
+		MoveConsole(75, 1);
+		printf("<<기본조작>>");
+		MoveConsole(75, 2);
+		printf("  ↑");
+		MoveConsole(75, 3);
+		printf(" ← →  와 Enter를 눌러 조작하십시오");
+		MoveConsole(75, 4);
+		printf("  ↓");
+		MoveConsole(75, 6);
+		printf("뒤로가기 : Backspace");
+		MoveConsole(75, 7);
+		printf("상점가기 : p키 ");
+		MoveConsole(75, 8);
+		printf("게임입장 : 원하는 단계에서 Enter");
+		Sleep(100);
 	}
 }
 
@@ -165,7 +181,6 @@ int CheckUserStatus() {
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			fgets(new, 20, stdin);
-			Sleep(100);
 			return flag;
 		}
 
