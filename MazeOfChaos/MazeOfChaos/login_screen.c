@@ -157,9 +157,11 @@ void StartScreen() {
 		MoveConsole(75, 6);
 		printf("뒤로가기 : Backspace");
 		MoveConsole(75, 7);
-		printf("상점가기 : p키 ");
+		printf("상점가기 : p키");
 		MoveConsole(75, 8);
 		printf("게임입장 : 원하는 단계에서 Enter");
+		MoveConsole(75, 9);
+		printf("게임종료 : ESC");
 		Sleep(100);
 	}
 }
