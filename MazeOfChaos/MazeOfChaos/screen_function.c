@@ -35,6 +35,97 @@ void ScreenReset() {
 void FinishGame() {
 	ScreenReset();
 	SetColor(7);
-	MoveConsole(0, 35);
+
+	MoveConsole(23, 6);
+	printf("бсбсбсбсбс");
+	MoveConsole(23, 7);
+	printf("  бс");
+	MoveConsole(23, 8);
+	printf("  бс");
+	MoveConsole(23, 9);
+	printf("  бс");
+	MoveConsole(23, 10);
+	printf("  бс");
+
+	MoveConsole(30, 6);
+	printf("бс   бс");
+	MoveConsole(30, 7);
+	printf("бс   бс");
+	MoveConsole(30, 8);
+	printf("бсбсбсбсбс");
+	MoveConsole(30, 9);
+	printf("бс   бс");
+	MoveConsole(30, 10);
+	printf("бс   бс");
+
+	MoveConsole(37, 6);
+	printf(" бсбсбс");
+	MoveConsole(37, 7);
+	printf("бс   бс");
+	MoveConsole(37, 8);
+	printf("бсбсбсбсбс");
+	MoveConsole(37, 9);
+	printf("бс   бс");
+	MoveConsole(37, 10);
+	printf("бс   бс");
+
+	MoveConsole(44, 6);
+	printf("бс   бс");
+	MoveConsole(44, 7);
+	printf("бсбс  бс");
+	MoveConsole(44, 8);
+	printf("бс бс бс");
+	MoveConsole(44, 9);
+	printf("бс  бсбс");
+	MoveConsole(44, 10);
+	printf("бс   бс");
+
+	MoveConsole(51, 6);
+	printf("бс   бс");
+	MoveConsole(51, 7);
+	printf("бс  бс");
+	MoveConsole(51, 8);
+	printf("бсбсбс");
+	MoveConsole(51, 9);
+	printf("бс  бс");
+	MoveConsole(51, 10);
+	printf("бс   бс");
+
+	MoveConsole(43, 13);
+	printf("бс   бс");
+	MoveConsole(43, 14);
+	printf(" бс бс");
+	MoveConsole(43, 15);
+	printf("  бс");
+	MoveConsole(43, 16);
+	printf("  бс");
+	MoveConsole(43, 17);
+	printf("  бс");
+
+	MoveConsole(49, 13);
+	printf("  бсбсбс");
+	MoveConsole(49, 14);
+	printf(" бс   бс");
+	MoveConsole(49, 15);
+	printf("бс     бс");
+	MoveConsole(49, 16);
+	printf(" бс   бс");
+	MoveConsole(49, 17);
+	printf("  бсбсбс");
+
+	MoveConsole(58, 13);
+	printf("бс    бс");
+	MoveConsole(58, 14);
+	printf("бс    бс");
+	MoveConsole(58, 15);
+	printf("бс    бс");
+	MoveConsole(58, 16);
+	printf("бс    бс");
+	MoveConsole(58, 17);
+	printf("  бсбс");
+
+
+	MoveConsole(0, 26);
+	printf(" ");
 	exit(0);
 }
