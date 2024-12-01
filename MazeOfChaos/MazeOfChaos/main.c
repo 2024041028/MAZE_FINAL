@@ -7,7 +7,10 @@ int user_record[6];
 int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
-	StartScreen();
+	CreateOutFrame();
+	random_number();
+
+	/*StartScreen();
 	MenuScreen();
-	FinishGame();
+	FinishGame();*/
 }

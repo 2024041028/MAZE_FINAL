@@ -3,6 +3,7 @@
 char user_name[20];
 int user_record[6];
 int user_info[12];
+int now_level;
 
 void MenuScreenFrame() {
 	CreateOutFrame();
@@ -304,6 +305,7 @@ void MenuScreen() {
 			ShopScreen();
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			now_level = flag;
 			return flag; // 미로게임이 들어가야함
 		}
 		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {

@@ -28,6 +28,7 @@ extern int user_record[6]; // 1 2 3 4 5 단계 기록
 extern int user_skin[12]; // 1 2 3... 11 스킨
 extern int user_coin;
 extern char user_name[20];
+extern int now_level;
 
 void ExplainGame();
 void StartScreen();
@@ -43,6 +44,11 @@ int EnterNickname();
 void MenuScreenFrame();
 void MenuScreen();
 void Level();
+// ************************************** //
+
+// ******* Minigame1SYB.c에 존재 ********* //
+void random_number();
+// ************************************** //
 
 
 

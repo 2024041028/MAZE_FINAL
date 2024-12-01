@@ -1,8 +1,4 @@
 #include "MOC.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <windows.h> // 콘솔 커서 조작에 필요
 
 
 // 게임 실행 함수
@@ -42,19 +38,19 @@ void random_number() {
     }
 }
 
-int main() {
-    // 테두리 생성
-    system("cls");
-    CreateOutFrame();
-
-    // 게임 시작
-    random_number();
-
-    // 종료 메시지
-    MoveConsole(25, 16);
-    SetColor(7); // 기본 색상
-    printf("나가려면 아무키나 눌러주세요.");
-    getchar(); // 프로그램 종료 대기
-    getchar(); // 추가 대기
-    return 0;
-}
+//int main() {
+//    // 테두리 생성
+//    system("cls");
+//    CreateOutFrame();
+//
+//    // 게임 시작
+//    random_number();
+//
+//    // 종료 메시지
+//    MoveConsole(25, 16);
+//    SetColor(7); // 기본 색상
+//    printf("나가려면 아무키나 눌러주세요.");
+//    getchar(); // 프로그램 종료 대기
+//    getchar(); // 추가 대기
+//    return 0;
+//}
