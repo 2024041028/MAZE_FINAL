@@ -1,46 +1,68 @@
 #include "MOC.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <windows.h> // 콘솔 커서 조작에 필요
 
+#define MAX_ATTEMPTS 5
+void PrintAttempts(int attempts[], char results[][10], int attemptCount) {
+    MoveConsole(22, 3);
+    SetColor(13);
+    printf("남은 기회:");
+    for (int i = 0; i < attemptCount; i++) {
+        MoveConsole(22, 4 + i);
+        printf("%d -> %s", attempts[i], results[i]);
+    }
+}
 
-// 게임 실행 함수
 void random_number() {
-    int target, guess;
-    char result[20];
+    int target, guess, attemptCount = 0;
+    int attempts[MAX_ATTEMPTS] = { 0 }; 
+    char results[MAX_ATTEMPTS][10]; 
 
-    // 랜덤 숫자 생성
     srand(time(NULL));
     target = rand() % 100 + 1;
 
-    while (1) {
+    while (attemptCount < MAX_ATTEMPTS) {
         MoveConsole(30, 12);
-        SetColor(12);
-        printf("숫자를 추측하시오 (1-100): ");
+        SetColor(7);
+        printf("<1부터 10까지 중 숫자를 맞춰보세요>");
+        MoveConsole(45, 13); // 이전 입력 위치
+        printf("       ");       // 빈 칸 출력으로 덮어쓰기
+        MoveConsole(45, 13); // 커서를 다시 입력 위치로 이동
         scanf("%d", &guess);
+
+        // 입력값 기록
+        attempts[attemptCount] = guess;
 
         // 결과 처리
         if (guess < target) {
-            sprintf(result, "UP!");
+            sprintf(results[attemptCount], "UP!");
         }
         else if (guess > target) {
-            sprintf(result, "DOWN!");
+            sprintf(results[attemptCount], "DOWN!");
         }
         else {
-            sprintf(result, "정답!");
             MoveConsole(25, 14);
             SetColor(10); // 초록색
-            printf("축하드립니다! 정답은 %d입니다.          ", target);
-            break;
+            printf("Congratulations! The number was %d.          ", target);
+            return; // 게임 성공
         }
 
-        // 결과 메시지 출력
-        MoveConsole(25, 14);
-        SetColor(12); 
-        printf("%s                      ", result); // 이전 메시지 지우기
+        attemptCount++;
+
+        // 이전 시도 출력
+        PrintAttempts(attempts, results, attemptCount);
+
+        // 남은 기회 표시
+        MoveConsole(25, 20);
+        SetColor(12); // 빨간색
+        printf("Remaining Attempts: %d", MAX_ATTEMPTS - attemptCount);
     }
+
+    // 실패 메시지
+    MoveConsole(25, 22);
+    SetColor(4); // 빨간색
+    printf("Failed! The number was %d.                        ", target);
 }
+
+
 
 int main() {
     // 테두리 생성
