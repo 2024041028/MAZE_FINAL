@@ -332,12 +332,10 @@ int EnterNickname() {
 						int cnt = 1;
 						if (result == EOF)
 							break;
-						else if (strcmp(temp, name) == 0) {
-							break;
-						}
+
 						for (int i = 0; i < 17; i++) {
 							if (i == 0)
-								fscanf(record,"%d", &user_coin);
+								fscanf(record, "%d", &user_coin);
 							else if (i > 0 && i < 6) {
 								fscanf(record, "%d", &user_record[i]);
 							}
@@ -346,6 +344,11 @@ int EnterNickname() {
 								cnt++;
 							}
 						}
+						
+						if (strcmp(temp, name) == 0) {
+							break;
+						}
+						
 					}
 					fclose(record);
 
