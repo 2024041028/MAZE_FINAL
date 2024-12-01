@@ -1,7 +1,8 @@
 #include "MOC.h"
 
 int user_record[6] = { 0, };
-int user_info[12] = { 0, };
+int user_skin[12] = { 0, };
+int user_coin = 0;
 char user_name[20];
 
 void ExplainGame() {
@@ -281,16 +282,20 @@ int EnterNickname() {
 			fclose(userinfo_w);
 
 			FILE* record = fopen("Record.txt", "w");
-			fprintf(record,"%s %d %d %d %d %d\n", name, 0, 0, 0, 0, 0);
+			fprintf(record, "%s ", name);
+			for (int i = 0; i < 17; i++) {
+				fprintf(record,"%d ",0);
+			}
+			fprintf(record, "\n");
 			fclose(record);
 
-			char filename[30];
+			/*char filename[30];
 			snprintf(filename, 30, "%s.txt", name);
 			FILE* in = fopen(filename, "w");
 			for (int i = 0; i < 12; i++) {
 				fprintf(in, "%d ", 0);
 			}
-			fclose(in);
+			fclose(in);*/
 			
 			
 			return 0;
@@ -314,17 +319,32 @@ int EnterNickname() {
 				
 					strcpy(user_name, name);
 				
-					snprintf(filename, 30, "%s.txt", name);
+					/*snprintf(filename, 30, "%s.txt", name);
 					FILE* in = fopen(filename, "r");
 					for (int i = 0; i < 12; i++) {
 						fscanf(in, "%d", &user_info[i]);
 					}
-					fclose(in);
+					fclose(in);*/
 
 					FILE* record = fopen("Record.txt", "r");
-					while (fscanf(record,"%s %d %d %d %d %d", temp, &user_record[1], &user_record[2], &user_record[3], &user_record[4], &user_record[5]) != EOF) {
-						if (strcmp(temp, name) == 0) {
+					while (1) {
+						int result = fscanf(record, "%s", temp);
+						int cnt = 1;
+						if (result == EOF)
 							break;
+						else if (strcmp(temp, name) == 0) {
+							break;
+						}
+						for (int i = 0; i < 17; i++) {
+							if (i == 0)
+								fscanf(record,"%d", &user_coin);
+							else if (i > 0 && i < 6) {
+								fscanf(record, "%d", &user_record[i]);
+							}
+							else {
+								fscanf(record, "%d", &user_skin[cnt]);
+								cnt++;
+							}
 						}
 					}
 					fclose(record);
@@ -340,16 +360,19 @@ int EnterNickname() {
 				fprintf(userinfo_a, "%s\n", name);
 				fclose(userinfo_a);
 
-				snprintf(filename, 30, "%s.txt", name);
+				/*snprintf(filename, 30, "%s.txt", name);
 				FILE* in = fopen(filename, "w");
 				for (int i = 0; i < 12; i++) {
 					fprintf(in,"%d ", 0);
 				}
-				fclose(in);
-
+				fclose(in);*/
 
 				FILE* record = fopen("Record.txt", "a");
-				fprintf(record,"%s %d %d %d %d %d\n", name, 0, 0, 0, 0, 0);
+				fprintf(record, "%s ", name);
+				for (int i = 0; i < 17; i++) {
+					fprintf(record, "%d ", 0);
+				}
+				fprintf(record, "\n");
 				fclose(record);
 
 				return 0;
