@@ -104,7 +104,7 @@ void StartScreen() {
 				flag = 0;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-			if (flag == 0)
+			if (flag == 0) 
 				EnterNickname();
 			else if (flag == 1)
 				ExplainGame();
@@ -172,8 +172,9 @@ int CheckUserStatus() {
 	MoveConsole(38, 10);
 	SetColor(15);
 	printf("처음 접속하시나요?");
+	Sleep(100);
 	int flag = 0;
-	char new[20]; // 추가
+	char new[40]; // 추가
 	while (1) {
 		Sleep(110);
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
@@ -183,7 +184,7 @@ int CheckUserStatus() {
 			flag = 1;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-			fgets(new, 20, stdin);
+			fgets(new, 40, stdin);
 			return flag;
 		}
 
