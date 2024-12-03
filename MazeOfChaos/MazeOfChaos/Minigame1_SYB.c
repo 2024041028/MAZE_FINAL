@@ -1,6 +1,8 @@
 #include "MOC.h"
 
-#define MAX_ATTEMPTS 3
+#define MAX_ATTEMPTS 5
+
+int now_level=1;
 void PrintAttempts(int attempts[], char results[][10], int attemptCount) {
     MoveConsole(22, 3);
     SetColor(7);
@@ -16,12 +18,16 @@ void random_number() {
     char results[MAX_ATTEMPTS][10]; 
 
     srand(time(NULL));
-    target = rand() % 10 + 1;
+    if (now_level==1) target = rand() % 20 + 1;
+    else if (now_level == 2) target = rand() % 50 + 1;
+    else if (now_level == 3) target = rand() % 70 + 1;
 
     while (attemptCount < MAX_ATTEMPTS) {
         MoveConsole(30, 12);
         SetColor(7);
-        printf("<1부터 10까지 중 숫자를 맞춰보세요>");
+        if (now_level == 1) printf("<1부터 20까지 중 숫자를 맞춰보세요>");
+        else if (now_level == 2) printf("<1부터 50까지 중 숫자를 맞춰보세요>");
+        else if (now_level == 3) printf("<1부터 70까지 중 숫자를 맞춰보세요>");
         MoveConsole(45, 13); // 이전 입력 위치
         printf("       ");       // 빈 칸 출력으로 덮어쓰기
         MoveConsole(45, 13); // 커서를 다시 입력 위치로 이동
