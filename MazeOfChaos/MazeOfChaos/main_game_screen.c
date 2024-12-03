@@ -5,6 +5,35 @@ int user_record[6];
 int user_info[12];
 int now_level;
 
+void temp_maze() {
+	if (now_level == 1) {
+		CreateOutFrame();
+		SetColor(7);
+
+		MoveConsole(22, 2);
+		printf("Name : %s", user_name);
+
+		MoveConsole(61, 2);
+		printf("┃ level 1 ┃");
+		MoveConsole(61, 1);
+		printf("┏━━━━━━━━━┓");
+		MoveConsole(61, 3);
+		printf("┗━━━━━━━━━┛");
+	}
+	else if (now_level == 2) {
+		return 0;
+	}
+	else if (now_level == 3) {
+		return 0;
+	}
+	else if (now_level == 4) {
+		return 0;
+	}
+	else if (now_level == 5) {
+		return 0;
+	}
+}
+
 void MenuScreenFrame() {
 	CreateOutFrame();
 	SetColor(7);
@@ -306,7 +335,7 @@ void MenuScreen() {
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			now_level = flag;
-			return flag; // 미로게임이 들어가야함
+			temp_maze(); // 미로게임이 들어가야함
 		}
 		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
 			FinishGame();

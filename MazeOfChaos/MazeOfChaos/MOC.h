@@ -1,3 +1,7 @@
+#ifndef MOC_H
+#define MOC_H
+
+
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
@@ -7,6 +11,10 @@
 #include <conio.h>
 #include <time.h>
 #include <ctype.h> 
+
+// ******** main_maze.c에 존재 ********* //
+void main_maze_game();
+
 
 
 // ******* cursor_function.c에 존재 ******* //
@@ -52,3 +60,5 @@ void random_number();
 
 
 
+
+#endif

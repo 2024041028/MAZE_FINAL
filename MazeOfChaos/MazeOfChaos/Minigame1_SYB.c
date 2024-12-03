@@ -62,7 +62,7 @@ void random_number() {
 }
 
 
-
+/*
 int main() {
     // 테두리 생성
     system("cls");
@@ -78,4 +78,4 @@ int main() {
     getchar(); // 프로그램 종료 대기
     getchar(); // 추가 대기
     return 0;
-}
+}*/
