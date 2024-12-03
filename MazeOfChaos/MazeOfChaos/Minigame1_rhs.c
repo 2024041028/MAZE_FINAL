@@ -104,7 +104,7 @@ void PlayGreenFrogRPS() {
         printf("틀렸습니다. 실패!");
     }
 }
-
+/*
 int main() {
     system("cls"); // 화면 초기화
     PlayGreenFrogRPS(); // 게임 실행
@@ -113,3 +113,4 @@ int main() {
     getchar();
     return 0;
 }
+*/
