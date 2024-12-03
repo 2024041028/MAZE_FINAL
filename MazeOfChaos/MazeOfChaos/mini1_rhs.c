@@ -1,5 +1,4 @@
 #include "MOC.h"
-#include "MOC.h"
 // 사용자 입력 함수 (시간 제한 없이)
 void InputWithoutTimeout(char* input, int max_length) {
     MoveConsole(23, 10); // 사용자 입력 위치
@@ -105,7 +104,7 @@ void PlayGreenFrogRPS() {
         printf("틀렸습니다. 실패!");
     }
 }
-
+/*
 int main() {
     system("cls"); // 화면 초기화
     PlayGreenFrogRPS(); // 게임 실행
@@ -114,3 +113,4 @@ int main() {
     getchar();
     return 0;
 }
+*/
