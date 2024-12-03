@@ -1,3 +1,4 @@
+#include "MOC.h"
 
 // 사용자 입력 함수 (비동기 입력 및 실시간 카운트다운)
 int InputWithCountdown(char* input, int max_length, int timeout) {
