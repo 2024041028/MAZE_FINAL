@@ -131,6 +131,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
     <ClCompile Include="mini1_rhs.c" />
+    <ClCompile Include="mini2_syb.c" />
     <ClCompile Include="mini2_rhs.c" />
     <ClCompile Include="Minigame1_SYB.c" />
     <ClCompile Include="screen_function.c" />

@@ -4,7 +4,7 @@
 #define WORD_LENGTH 3
 // 랜덤 단어 생성 함수
 void ChooseRandomWord(char* word) {
-    const char* words[] = {"cat", "dog", "bat", "hat", "rat", "man"};
+    const char* words[] = { "cat", "dog", "bat", "hat", "rat", "man" };
     int index = rand() % (sizeof(words) / sizeof(words[0]));
     strcpy(word, words[index]);
 }
@@ -13,7 +13,7 @@ void ChooseRandomWord(char* word) {
 void PlayHangman() {
     char word[WORD_LENGTH + 1]; // 단어 저장 (3글자 + null terminator)
     char guessed[WORD_LENGTH + 1]; // 추측한 글자 저장
-    char wrongGuesses[MAX_ATTEMPTS] = {0}; // 틀린 글자 저장
+    char wrongGuesses[MAX_ATTEMPTS] = { 0 }; // 틀린 글자 저장
     int attempts = 0;
 
     // 랜덤 단어 선택
