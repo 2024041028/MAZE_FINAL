@@ -8,6 +8,8 @@ void InputWithoutTimeout(char* input, int max_length) {
     input[strcspn(input, "\n")] = '\0'; // 줄바꿈 제거
 }
 
+// 테스트용 커밋
+
 // 사용자 입력 함수 (시간 제한 포함, 오른쪽 상단 카운트다운 출력)
 int InputWithTimeout(char* input, int max_length, int timeout) {
     int start_time = clock(); // 시작 시간
