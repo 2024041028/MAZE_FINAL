@@ -2,11 +2,26 @@
 
 #define MAX_ATTEMPTS 6
 #define WORD_LENGTH 3
+
 // 랜덤 단어 생성 함수
 void ChooseRandomWord(char* word) {
     const char* words[] = { "cat", "dog", "bat", "hat", "rat", "man" };
     int index = rand() % (sizeof(words) / sizeof(words[0]));
     strcpy(word, words[index]);
+}
+
+// 남은 목숨을 하트로 출력하는 함수
+void PrintHearts(int attemptsLeft) {
+    MoveConsole(25, 3);
+    SetColor(15); // 빨간색
+    printf("Lives: ");
+    for (int i = 0; i < attemptsLeft; i++) {
+        printf("♥ "); // 남은 시도 수만큼 하트 출력
+    }
+    for (int i = 0; i < (MAX_ATTEMPTS - attemptsLeft); i++) {
+        printf("♡ "); // 소진된 시도는 빈 하트로 표시
+    }
+    SetColor(7); // 기본 색상 복원
 }
 
 // 행맨 게임 함수
@@ -27,15 +42,18 @@ void PlayHangman() {
     guessed[WORD_LENGTH] = '\0'; // 문자열 종료
 
     while (attempts < MAX_ATTEMPTS) {
+        system("cls"); // 화면 초기화
+        CreateOutFrame();
+
+        // 남은 목숨을 하트로 출력
+        PrintHearts(MAX_ATTEMPTS - attempts);
+
         MoveConsole(25, 5);
         SetColor(11); // 밝은 파란색
-        printf("Current Word: %s\n", guessed);
+        printf("Current Word: %s", guessed);
         MoveConsole(25, 7);
-        printf("Wrong guesses: %s\n", wrongGuesses);
+        printf("Wrong guesses: %s", wrongGuesses);
         MoveConsole(25, 9);
-        printf("Attempts left: %d\n", MAX_ATTEMPTS - attempts);
-        MoveConsole(25, 11);
-        SetColor(11); // 밝은 파란색
         printf("Guess a letter: ");
 
         char guess;
@@ -43,8 +61,9 @@ void PlayHangman() {
 
         // 이미 틀린 글자인지 확인
         if (strchr(wrongGuesses, guess) != NULL || strchr(guessed, guess) != NULL) {
-            MoveConsole(25, 13);
-            printf("You already guessed '%c'. Try again.\n", guess);
+            MoveConsole(25, 11);
+            printf("You already guessed '%c'. Try again.", guess);
+            getchar(); // 잠깐 대기
             continue; // 반복
         }
 
@@ -65,51 +84,26 @@ void PlayHangman() {
 
         // 단어를 모두 맞춘 경우
         if (strcmp(word, guessed) == 0) {
-            MoveConsole(25, 15);
+            MoveConsole(25, 13);
             SetColor(10); // 초록색
             printf("Congratulations! You guessed the word: %s\n", word);
+            MoveConsole(25, 15);
+            SetColor(7);
+            printf("Press any key to return to the main menu...");
+            getchar(); getchar();
             return; // 게임 성공
         }
     }
 
     // 실패 메시지
-    MoveConsole(25, 17);
-    SetColor(4); // 빨간색
-    printf("You've run out of attempts! The word was: %s\n", word);
-}
-
-<<<<<<< HEAD
-//int main() {
-//    // 테두리 생성
-//    system("cls");
-//    CreateOutFrame();
-//    SetColor(7); // 기본 색상
-//
-//    // 행맨 게임 시작
-//    PlayHangman();
-//
-//    // 종료 메시지
-//    MoveConsole(25, 20);
-//    printf("Press any key to exit...");
-//    getchar(); // 프로그램 종료 대기
-//    getchar(); // 추가 대기
-//    return 0;
-//}
-=======
-/*int main() {
-    // 테두리 생성
     system("cls");
     CreateOutFrame();
-    SetColor(7); // 기본 색상
-
-    // 행맨 게임 시작
-    PlayHangman();
-
-    // 종료 메시지
-    MoveConsole(25, 20);
-    printf("Press any key to exit...");
-    getchar(); // 프로그램 종료 대기
-    getchar(); // 추가 대기
-    return 0;
-}*/
->>>>>>> a0ac98eb12ed14d26f8cd8f307c98955fbc695d2
+    PrintHearts(0); // 실패 시 모든 목숨 소진
+    MoveConsole(25, 13);
+    SetColor(4); // 빨간색
+    printf("You've run out of attempts! The word was: %s\n", word);
+    MoveConsole(25, 15);
+    SetColor(7);
+    printf("Press any key to return to the main menu...");
+    getchar(); getchar();
+}
