@@ -39,7 +39,11 @@
     <ClCompile Include="mini2_syb.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="minigame_syb.c">
+=======
+    <ClCompile Include="main_maze_game.c">
+>>>>>>> a0ac98eb12ed14d26f8cd8f307c98955fbc695d2
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
