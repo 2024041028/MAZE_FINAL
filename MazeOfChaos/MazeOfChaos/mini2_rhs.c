@@ -99,12 +99,3 @@ void PlayAscendingGame() {
     MoveConsole(23, 14);
     printf("성공! 올바르게 오름차순으로 정렬했습니다.");
 }
-
-/*int main() {
-    system("cls"); // 화면 초기화
-    PlayAscendingGame(); // 오름차순 게임 실행
-    MoveConsole(23, 15);
-    printf("Press any key to exit…");
-    getchar();
-    return 0;
-}*/

@@ -77,15 +77,3 @@ void random_number() {
     SetColor(4); // 빨간색
     printf("실패하셨습니다! 숫자는 %d입니다.", target);
 }
-
-//int main() {
-//    system("cls");
-//    CreateOutFrame();
-//    random_number();
-//    MoveConsole(32, 19);
-//    SetColor(7); // 기본 색상
-//    printf("나가려면 아무 키나 눌러주세요.");
-//    getchar(); // 프로그램 종료 대기
-//    getchar(); // 추가 대기
-//    return 0;
-//}

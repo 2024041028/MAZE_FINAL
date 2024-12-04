@@ -48,9 +48,21 @@ void MenuScreen();
 void Level();
 // ************************************** //
 
-// ******* Minigame1SYB.c에 존재 ********* //
+// *******minigame_syb.c에 존재 ********* //
+void PrintAttempts();
 void random_number();
 // ************************************** //
+
+// // ********mini2_syb.c에 존재*********** //
+void ChooseRandomWord();
+void PrintHearts();
+void PlayHangman();
+// ************************************ //
+
+// ********mini1_rhs.c에 존재*********** //
+void InputWithoutTimeout();
+// ************************************ //
+
 
 
 

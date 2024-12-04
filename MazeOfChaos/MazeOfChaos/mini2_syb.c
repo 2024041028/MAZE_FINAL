@@ -94,16 +94,4 @@ void PlayHangman() {
             return; // 게임 성공
         }
     }
-
-    // 실패 메시지
-    system("cls");
-    CreateOutFrame();
-    PrintHearts(0); // 실패 시 모든 목숨 소진
-    MoveConsole(25, 13);
-    SetColor(4); // 빨간색
-    printf("You've run out of attempts! The word was: %s\n", word);
-    MoveConsole(25, 15);
-    SetColor(7);
-    printf("Press any key to return to the main menu...");
-    getchar();
-    getchar();}
+}
