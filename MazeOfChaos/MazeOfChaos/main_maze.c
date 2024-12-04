@@ -6,6 +6,6 @@ int user_coin;
 char user_name[20];
 int now_level;
 
-int main_maze_game() {
-	printf("qqq");
+void main_maze_game() {
+	printf("1");
 }

@@ -78,7 +78,7 @@ void PlayHangman() {
     printf("You've run out of attempts! The word was: %s\n", word);
 }
 
-int main() {
+/*int main() {
     // 테두리 생성
     system("cls");
     CreateOutFrame();
@@ -93,4 +93,4 @@ int main() {
     getchar(); // 프로그램 종료 대기
     getchar(); // 추가 대기
     return 0;
-}
+}*/
