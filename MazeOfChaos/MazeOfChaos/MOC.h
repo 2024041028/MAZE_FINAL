@@ -9,6 +9,7 @@
 #include <ctype.h> 
 
 //******** main_maze_game.c에 존재 ********//
+void maze1();
 void maze_game();
 
 // ******* cursor_function.c에 존재 ******* //

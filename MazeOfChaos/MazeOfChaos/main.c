@@ -10,8 +10,9 @@ int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
-	StartScreen();
+	maze_game();
+	/*StartScreen();
 	MenuScreen();
-	FinishGame();
+	FinishGame();*/
 }
 // dde508484033dd8c9782ab2ca68a1125b0770e16
