@@ -105,12 +105,3 @@ void PlayGreenFrogRPS() {
     }
 }
 
-//int main() {
-//    system("cls"); // 화면 초기화
-//    PlayGreenFrogRPS(); // 게임 실행
-//    MoveConsole(23, 15);
-//    printf("Press any key to exit…");
-//    getchar();
-//    return 0;
-//}
-

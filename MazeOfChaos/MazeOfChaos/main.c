@@ -10,7 +10,8 @@ int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
-	PlayHangman();
+	PlayTriviaQuizGame();
+	//PlayHangman();
 	/*StartScreen();
 	MenuScreen();
 	FinishGame();*/

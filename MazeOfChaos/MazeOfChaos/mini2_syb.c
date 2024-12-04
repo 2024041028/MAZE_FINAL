@@ -13,7 +13,7 @@ void ChooseRandomWord(char* word) {
 // 남은 목숨을 하트로 출력하는 함수
 void PrintHearts(int attemptsLeft) {
     MoveConsole(25, 3);
-    SetColor(15); // 빨간색
+    SetColor(12); // 빨간색
     printf("Lives: ");
     for (int i = 0; i < attemptsLeft; i++) {
         printf("♥ "); // 남은 시도 수만큼 하트 출력
@@ -105,5 +105,5 @@ void PlayHangman() {
     MoveConsole(25, 15);
     SetColor(7);
     printf("Press any key to return to the main menu...");
-    getchar(); getchar();
-}
+    getchar();
+    getchar();}
