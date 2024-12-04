@@ -133,7 +133,7 @@
     <ClCompile Include="mini1_rhs.c" />
     <ClCompile Include="mini2_syb.c" />
     <ClCompile Include="mini2_rhs.c" />
-    <ClCompile Include="Minigame1_SYB.c" />
+    <ClCompile Include="minigame_syb.c" />
     <ClCompile Include="screen_function.c" />
     <ClCompile Include="login_screen.c" />
   </ItemGroup>

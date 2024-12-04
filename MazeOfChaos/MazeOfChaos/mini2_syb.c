@@ -78,19 +78,19 @@ void PlayHangman() {
     printf("You've run out of attempts! The word was: %s\n", word);
 }
 
-int main() {
-    // 테두리 생성
-    system("cls");
-    CreateOutFrame();
-    SetColor(7); // 기본 색상
-
-    // 행맨 게임 시작
-    PlayHangman();
-
-    // 종료 메시지
-    MoveConsole(25, 20);
-    printf("Press any key to exit...");
-    getchar(); // 프로그램 종료 대기
-    getchar(); // 추가 대기
-    return 0;
-}
+//int main() {
+//    // 테두리 생성
+//    system("cls");
+//    CreateOutFrame();
+//    SetColor(7); // 기본 색상
+//
+//    // 행맨 게임 시작
+//    PlayHangman();
+//
+//    // 종료 메시지
+//    MoveConsole(25, 20);
+//    printf("Press any key to exit...");
+//    getchar(); // 프로그램 종료 대기
+//    getchar(); // 추가 대기
+//    return 0;
+//}

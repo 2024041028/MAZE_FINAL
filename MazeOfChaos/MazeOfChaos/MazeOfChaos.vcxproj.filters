@@ -30,9 +30,6 @@
     <ClCompile Include="main_game_screen.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Minigame1_SYB.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="mini1_rhs.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -40,6 +37,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="mini2_syb.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="minigame_syb.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
