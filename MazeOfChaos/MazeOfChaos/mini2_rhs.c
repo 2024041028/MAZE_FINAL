@@ -1,7 +1,7 @@
 #include "MOC.h"
 
 // 사용자 입력 함수 (비동기 입력 및 실시간 카운트다운)
-int InputWithCountdown(char* input, int max_length, int timeout) {
+int InputWithCount(char* input, int max_length, int timeout) {
     int start_time = clock(); // 시작 시간
     int elapsed_time = 0;
     int index = 0;
@@ -73,7 +73,7 @@ void PlayAscendingGame() {
     printf("60초 안에 숫자를 입력하세요 (공백으로 구분):");
     MoveConsole(23, 12); // 출력 문장과 동일한 x값에서 입력 시작
 
-    if (!InputWithCountdown(user_input, sizeof(user_input), 60)) {
+    if (!InputWithCount(user_input, sizeof(user_input), 60)) {
         MoveConsole(23, 14);
         printf("시간 초과! 게임 실패!");
         return;
@@ -99,12 +99,3 @@ void PlayAscendingGame() {
     MoveConsole(23, 14);
     printf("성공! 올바르게 오름차순으로 정렬했습니다.");
 }
-
-/*int main() {
-    system("cls"); // 화면 초기화
-    PlayAscendingGame(); // 오름차순 게임 실행
-    MoveConsole(23, 15);
-    printf("Press any key to exit…");
-    getchar();
-    return 0;
-}*/
