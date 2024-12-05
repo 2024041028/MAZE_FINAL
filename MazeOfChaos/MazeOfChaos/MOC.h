@@ -28,10 +28,11 @@ void FinishGame();
 // ******* login_screen.c에 존재 ********* //
 
 extern int user_record[6]; // 1 2 3 4 5 단계 기록
-extern int user_skin[18]; // 1 2 3... 11 스킨 ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω // 17개      <♬ ℡ ★>
+extern int user_skin[21]; // 1 2 3... 11 스킨 X ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω // 19개      <♬ ℡ ★>
 extern char now_skin;
 extern int user_coin;
 extern char user_name[20];
+extern char skin_list[20][10];
 extern int now_level;
 
 void ExplainGame();
@@ -44,6 +45,12 @@ int EnterNickname();
 
 // ************************************** //
 
+// ******* shop_screen.c에 존재 ********* //
+int ShopScreen();
+int BuySkin();
+// ******* login_screen.c에 존재 ********* //
+// 
+// 
 // ******* main_screen_screen.c에 존재 ********* //
 void MenuScreenFrame();
 void MenuScreen();

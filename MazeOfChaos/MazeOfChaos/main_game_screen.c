@@ -3,9 +3,10 @@
 char user_name[20];
 int user_record[6];
 char now_skin = 'X';
-int user_skin[18]; // 1 2 3... 11 스킨
+int user_skin[21]; // 1 2 3... 11 스킨
 int user_coin;
-char skin_list[11] = {'ㅁ','s',}; //
+ // ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω
+
 
 void MenuScreenFrame() {
 	CreateOutFrame();
@@ -271,29 +272,6 @@ void Level(int level) {
 	}
 }
 
-int ShopScreen() {
-	ScreenReset();
-	SetColor(7);
-	MoveConsole(59, 2);
-	printf("┃뒤로가기 ☜ ┃");
-	MoveConsole(59, 1);
-	printf("┏━━━━━━━━━━━┓");
-	MoveConsole(59, 3);
-	printf("┗━━━━━━━━━━━┛");
-
-	MoveConsole(22, 2);
-	printf("Name : %s", user_name);
-	MoveConsole(22, 3);
-	printf("현재 스킨 : %c", now_skin);
-	MoveConsole(22, 4);
-	printf("코인 : %d", user_coin);
-
-	MoveConsole(22, 6);
-	printf("하나당 5코인");
-
-	MoveConsole(22, 8);
-	printf("Skin List");
-}
 
 void MenuScreen() {
 	int flag = 1;

@@ -139,6 +139,7 @@
     <ClCompile Include="minigame_syb.c" />
     <ClCompile Include="screen_function.c" />
     <ClCompile Include="login_screen.c" />
+    <ClCompile Include="shop_screen.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MOC.h" />
