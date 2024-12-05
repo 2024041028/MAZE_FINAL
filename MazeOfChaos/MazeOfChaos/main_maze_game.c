@@ -1,7 +1,7 @@
 #include "MOC.h"
 
 int user_record[6]; // 1 2 3 4 5 단계 기록
-int user_skin[12]; // 1 2 3... 11 스킨
+int user_skin[21]; // 1 2 3... 11 스킨
 int user_coin;
 char user_name[20];
 int now_level;
@@ -99,7 +99,7 @@ void movement() {
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			printf("%s", user_skin);
+			printf("%s", now_skin);
 		}
 		else if (state[now_level - 1][player_x + x][player_y + y] == 1 || state[now_level - 1][player_x + x][player_y + y] == 3) { //벽
 			MoveConsole(x_0 + player_x * 2 + x * 2 , y_0 + player_y + y);
@@ -120,7 +120,7 @@ void movement() {
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			printf("%s", user_skin);
+			printf("%s", now_skin);
 			MoveConsole(75, line);
 			printf("미로 탈출 성공!");
 			line++;
@@ -133,7 +133,7 @@ void movement() {
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			printf("%s", user_skin);
+			printf("%s", now_skin);
 			MoveConsole(9, 2);
 			printf("하트 개수:%d",h);
 			MoveConsole(75, line);
@@ -147,7 +147,7 @@ void movement() {
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			printf("%s", user_skin);
+			printf("%s", now_skin);
 			MoveConsole(7, 3);
 			printf("스킵권 개수:%d", skip);
 			MoveConsole(75, line);
@@ -161,7 +161,7 @@ void movement() {
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			printf("%s", user_skin);
+			printf("%s", now_skin);
 			MoveConsole(9, 4);
 			printf("코인 개수:%d", coin);
 			MoveConsole(75, line);
@@ -185,7 +185,7 @@ void movement() {
 				printf(" ");
 				player_x += x; player_y += y; x = 0; y = 0;
 				MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-				printf("%s", user_skin);
+				printf("%s", now_skin);
 				MoveConsole(75, line);
 				printf("door open");
 				line++;
@@ -198,7 +198,7 @@ void movement() {
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			printf("%s", user_skin);
+			printf("%s", now_skin);
 			MoveConsole(75, line);
 			printf("you find a key");
 			line++;

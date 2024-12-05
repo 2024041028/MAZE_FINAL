@@ -1,9 +1,6 @@
 #include "MOC.h"
 
-int user_record[6] = { 0, };
-int user_skin[12] = { 0, };
-int user_coin = 0;
-char user_name[20];
+
 
 void ExplainGame() {
 	ScreenReset();
@@ -163,7 +160,7 @@ void StartScreen() {
 		printf("게임입장 : 원하는 단계에서 Enter");
 		MoveConsole(75, 9);
 		printf("게임종료 : ESC");
-		Sleep(100);
+		Sleep(80);
 	}
 }
 
@@ -176,7 +173,7 @@ int CheckUserStatus() {
 	int flag = 0;
 	char new[40]; // 추가
 	while (1) {
-		Sleep(110);
+
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
 			flag = 0;
 		}
@@ -284,7 +281,11 @@ int EnterNickname() {
 
 			FILE* record = fopen("Record.txt", "w");
 			fprintf(record, "%s ", name);
-			for (int i = 0; i < 17; i++) {
+			for (int i = 0; i < 26; i++) {
+				if (i == 6) {
+					fprintf(record, "%d ", 1);
+					continue;
+				}
 				fprintf(record,"%d ",0);
 			}
 			fprintf(record, "\n");
@@ -334,7 +335,7 @@ int EnterNickname() {
 						if (result == EOF)
 							break;
 
-						for (int i = 0; i < 17; i++) {
+						for (int i = 0; i < 26; i++) {
 							if (i == 0)
 								fscanf(record, "%d", &user_coin);
 							else if (i > 0 && i < 6) {
@@ -373,7 +374,12 @@ int EnterNickname() {
 
 				FILE* record = fopen("Record.txt", "a");
 				fprintf(record, "%s ", name);
-				for (int i = 0; i < 17; i++) {
+				for (int i = 0; i < 26; i++) {
+					if (i == 6) {
+						fprintf(record, "%d ", 1);
+						user_skin[1] = 1;
+						continue;
+					}
 					fprintf(record, "%d ", 0);
 				}
 				fprintf(record, "\n");
