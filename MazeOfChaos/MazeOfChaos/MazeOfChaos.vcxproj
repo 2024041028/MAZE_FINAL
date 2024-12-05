@@ -130,6 +130,11 @@
     <ClCompile Include="cursor_function.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="main_maze.c" />
+>>>>>>> 8416a52e98f5f2df8701185d4e00bc0631b783fb
+    <ClCompile Include="main_maze_game.c" />
     <ClCompile Include="mini1_rhs.c" />
     <ClCompile Include="mini2_syb.c" />
     <ClCompile Include="mini2_rhs.c" />
@@ -137,6 +142,7 @@
     <ClCompile Include="minigame_syb.c" />
     <ClCompile Include="screen_function.c" />
     <ClCompile Include="login_screen.c" />
+    <ClCompile Include="shop_screen.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MOC.h" />

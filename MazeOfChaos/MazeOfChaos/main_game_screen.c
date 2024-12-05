@@ -1,15 +1,16 @@
 #include "MOC.h"
 
-char user_name[20];
-int user_record[6];
-int user_info[12];
-int now_level;
+char now_skin[10] = "X";
+ // ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω
+
 
 void MenuScreenFrame() {
 	CreateOutFrame();
 	SetColor(7);
 	MoveConsole(22, 2);
 	printf("Name : %s", user_name);
+	MoveConsole(22, 3);
+	printf("현재 스킨 : %s", now_skin);
 
 	MoveConsole(61, 2);
 	printf("┃ 상점 P  ┃");
@@ -269,9 +270,6 @@ void Level(int level) {
 	}
 }
 
-int ShopScreen() {
-
-}
 
 void MenuScreen() {
 	int flag = 1;
@@ -302,11 +300,12 @@ void MenuScreen() {
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(0x50) & 0x8000) {
+			ScreenReset();
 			ShopScreen();
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			now_level = flag;
-			return 0; // 미로게임이 들어가야함
+			maze_game(); // 미로게임이 들어가야함
 		}
 		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
 			FinishGame();
