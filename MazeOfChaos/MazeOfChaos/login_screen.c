@@ -1,9 +1,6 @@
 #include "MOC.h"
 
-int user_record[6] = { 0, };
-int user_skin[21] = { 0, };
-int user_coin = 0;
-char user_name[20];
+
 
 void ExplainGame() {
 	ScreenReset();

@@ -1,10 +1,6 @@
 #include "MOC.h"
 
-char user_name[20];
-int user_record[6];
-char now_skin = 'X';
-int user_skin[21]; // 1 2 3... 11 스킨
-int user_coin;
+char now_skin[10] = "X";
  // ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω
 
 
@@ -13,6 +9,8 @@ void MenuScreenFrame() {
 	SetColor(7);
 	MoveConsole(22, 2);
 	printf("Name : %s", user_name);
+	MoveConsole(22, 3);
+	printf("현재 스킨 : %s", now_skin);
 
 	MoveConsole(61, 2);
 	printf("┃ 상점 P  ┃");

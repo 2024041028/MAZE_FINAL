@@ -1,8 +1,6 @@
 #include "MOC.h"
 
-char user_name[20];
-int user_info[12];
-int user_record[6];
+
 
 
 
