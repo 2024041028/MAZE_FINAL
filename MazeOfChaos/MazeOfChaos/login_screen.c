@@ -1,7 +1,7 @@
 #include "MOC.h"
 
 int user_record[6] = { 0, };
-int user_skin[12] = { 0, };
+int user_skin[18] = { 0, };
 int user_coin = 0;
 char user_name[20];
 
@@ -284,7 +284,7 @@ int EnterNickname() {
 
 			FILE* record = fopen("Record.txt", "w");
 			fprintf(record, "%s ", name);
-			for (int i = 0; i < 17; i++) {
+			for (int i = 0; i < 23; i++) {
 				fprintf(record,"%d ",0);
 			}
 			fprintf(record, "\n");
@@ -334,7 +334,7 @@ int EnterNickname() {
 						if (result == EOF)
 							break;
 
-						for (int i = 0; i < 17; i++) {
+						for (int i = 0; i < 23; i++) {
 							if (i == 0)
 								fscanf(record, "%d", &user_coin);
 							else if (i > 0 && i < 6) {
@@ -373,7 +373,7 @@ int EnterNickname() {
 
 				FILE* record = fopen("Record.txt", "a");
 				fprintf(record, "%s ", name);
-				for (int i = 0; i < 17; i++) {
+				for (int i = 0; i < 23; i++) {
 					fprintf(record, "%d ", 0);
 				}
 				fprintf(record, "\n");

@@ -28,7 +28,8 @@ void FinishGame();
 // ******* login_screen.c에 존재 ********* //
 
 extern int user_record[6]; // 1 2 3 4 5 단계 기록
-extern int user_skin[12]; // 1 2 3... 11 스킨
+extern int user_skin[18]; // 1 2 3... 11 스킨 ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω // 17개      <♬ ℡ ★>
+extern char now_skin;
 extern int user_coin;
 extern char user_name[20];
 extern int now_level;

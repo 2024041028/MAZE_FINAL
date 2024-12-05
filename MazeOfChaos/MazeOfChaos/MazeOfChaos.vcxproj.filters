@@ -45,6 +45,12 @@
     <ClCompile Include="mini3_rhs.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="main_maze.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main_maze_game.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MOC.h">
