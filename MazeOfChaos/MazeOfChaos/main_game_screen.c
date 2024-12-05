@@ -306,7 +306,7 @@ void MenuScreen() {
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			now_level = flag;
-			return 0; // 미로게임이 들어가야함
+			maze_game(); // 미로게임이 들어가야함
 		}
 		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
 			FinishGame();
