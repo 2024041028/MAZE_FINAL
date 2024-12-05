@@ -48,13 +48,13 @@ void PlayHangman() {
         // 남은 목숨을 하트로 출력
         PrintHearts(MAX_ATTEMPTS - attempts);
 
-        MoveConsole(25, 5);
+        MoveConsole(38, 9);
         SetColor(11); // 밝은 파란색
-        printf("Current Word: %s", guessed);
-        MoveConsole(25, 7);
-        printf("Wrong guesses: %s", wrongGuesses);
-        MoveConsole(25, 9);
-        printf("Guess a letter: ");
+        printf("정답 단어 : %s", guessed);
+        MoveConsole(38, 12);
+        printf("틀린 글자 : %s", wrongGuesses);
+        MoveConsole(36, 14);
+        printf("글자를 맞혀보세요: ");
 
         char guess;
         scanf(" %c", &guess); // 문자 입력
