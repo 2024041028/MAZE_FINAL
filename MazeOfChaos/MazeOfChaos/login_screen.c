@@ -160,7 +160,7 @@ void StartScreen() {
 		printf("게임입장 : 원하는 단계에서 Enter");
 		MoveConsole(75, 9);
 		printf("게임종료 : ESC");
-		Sleep(100);
+		Sleep(80);
 	}
 }
 

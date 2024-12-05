@@ -3,7 +3,11 @@
 char skin_list[20][10] = { "X","※", "★", "♥", "♣", "♠", "◆", "▲", "♪", "♬", "◈", "▣", "⊙", "?", "℡", "φ", "Ψ", "Ø", "Ω","@" };
 
 int ShopScreen() {
+
 	ScreenReset();
+
+	Donate();
+
 	SetColor(7);
 	MoveConsole(59, 2);
 	printf("┃뒤로가기 ☜ ┃");
@@ -20,7 +24,7 @@ int ShopScreen() {
 	printf("코인 : %d", user_coin);
 
 	SetColor(11);
-	MoveConsole(22, 7);
+	MoveConsole(22, 6);
 	printf("<Skin List>");
 	SkinPage1();
 
@@ -130,6 +134,9 @@ void SkinPage1() {
 		}
 		cnt++;
 	}
+	MoveConsole(26, 19);
+	SetColor(7);
+	printf("↓");
 	return 0;
 }
 
@@ -146,12 +153,15 @@ void SkinPage2() {
 		}
 		cnt++;
 	}
+	MoveConsole(26, 8);
+	SetColor(7);
+	printf("↑");
 	return 0;
 }
 
 void ResetSkinPage() {
-	for (int i = 0; i < 10; i++) {
-		MoveConsole(23, 9 + i);
+	for (int i = 0; i < 12; i++) {
+		MoveConsole(23, 8 + i);
 		printf("                  ");
 	}
 	return 0;
@@ -219,6 +229,27 @@ int BuySkin(int skin_num) {
 	}
 }
 
+void Donate() {
+	
+	SetColor(7);
+	MoveConsole(42, 10);
+	printf("[상점 안내]");
+	MoveConsole(42, 11);
+	printf("스킨은 순수한 장식용입니다.");
+	MoveConsole(42, 12);
+	printf("마음에 드는 스킨을 선택하세요!");
+
+	SetColor(7);
+	MoveConsole(42, 14);
+	printf("후원은 게임 개발에 큰 도움을");
+	MoveConsole(42, 15);
+	printf("줍니다.");
+	SetColor(8);
+	printf(" 그리고 가끔 야식..");
+	SetColor(7);
+	MoveConsole(42, 17);
+	printf("토스뱅크 1000-9085-0365");
+}
 /*  color_num 색깔
 0: Black
 1 : Blue

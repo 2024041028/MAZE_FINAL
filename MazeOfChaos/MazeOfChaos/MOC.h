@@ -51,6 +51,7 @@ int BuySkin();
 void SkinPage1();
 void SkinPage2();
 void ResetSkinPage();
+void Donate();
 
 // ******* login_screen.c¿¡ Á¸Àç ********* //
 // 
