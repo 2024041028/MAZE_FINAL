@@ -2,25 +2,49 @@
 #include <stdlib.h>
 #include <time.h>
 #include <conio.h>
+#include <string.h>
 #include "MOC.h"
 
 #define MAX_QUESTIONS 5    // 문제 수
-#define TIME_LIMIT 10      // 제한 시간 (초)
+#define TIME_LIMIT 30      // 제한 시간 (초)
 
-// 타이머 함수
-int StartTimer(int timeLimit) {
-    clock_t startTime = clock(); // 시작 시간 저장
-    while (1) {
-        clock_t currentTime = clock();
-        double elapsed = (double)(currentTime - startTime) / CLOCKS_PER_SEC;
-        if (elapsed > timeLimit) {
-            return 0; // 시간 초과
+// 사용자 입력을 받는 함수 (카운트다운 포함)
+int Countdown(char* input, int max_length, int timeout) {
+    int start_time = clock(); // 시작 시간
+    int elapsed_time = 0;
+    int index = 0;
+
+    while (elapsed_time < timeout * CLOCKS_PER_SEC) { // 제한 시간 내 반복
+        // 카운트다운 오른쪽 상단에 출력
+        MoveConsole(65, 1);
+        printf("남은 시간: %2d초", timeout - elapsed_time / CLOCKS_PER_SEC);
+
+        if (_kbhit()) { // 키 입력 감지
+            char ch = _getch(); // 키 입력을 읽음
+            if (ch == '\r') { // Enter 키 입력 시 종료
+                input[index] = '\0';
+                return 1; // 성공적으로 입력받음
+            }
+            else if (ch == '\b') { // Backspace 키 처리
+                if (index > 0) {
+                    index--;
+                    MoveConsole(23 + index, 12);
+                    printf(" ");
+                    MoveConsole(23 + index, 12);
+                }
+            }
+            else if (index < max_length - 1) { // 추가 입력 가능 시
+                input[index++] = ch;
+                MoveConsole(23 + index - 1, 12);
+                printf("%c", ch);
+            }
         }
 
-        if (_kbhit()) { // 키 입력이 있으면
-            return 1; // 정상 진행
-        }
+        elapsed_time = clock() - start_time; // 경과 시간 업데이트
     }
+
+    input[index] = '\0'; // 입력 종료
+    return 0; // 시간 초과
 }
 
 // 랜덤 산수 문제 생성 함수
@@ -36,29 +60,6 @@ void GenerateMathProblem(int* a, int* b, char* op, int* answer) {
     else {
         *answer = *a - *b;
     }
-}
-
-// 사용자 입력을 받아 정수로 변환하는 함수
-int GetUserInput() {
-    int number = 0;
-    char ch;
-
-    while (1) {
-        if (_kbhit()) { // 키 입력 확인
-            ch = _getch(); // 키 입력 받기
-
-            if (ch == 13) { // Enter 키가 눌리면 입력 종료
-                break;
-            }
-            else if (ch >= '0' && ch <= '9') { // 숫자 입력일 경우
-                number = number * 10 + (ch - '0'); // 입력된 숫자를 정수로 변환
-                printf("%c", ch); // 입력된 숫자 출력
-            }
-        }
-    }
-
-    printf("\n"); // 입력 종료 후 줄 바꿈
-    return number;
 }
 
 // 산수 게임 함수
@@ -83,16 +84,18 @@ void PlayMathGame() {
         SetColor(11); // 파란색
         printf("문제 %d: %d %c %d = ?", i, a, op, b);
 
-        // 타이머 시작
+        // 사용자 입력 요청 (카운트다운 시작)
         MoveConsole(36, 10);
         SetColor(14); // 노란색
-        printf("제한 시간: %d초", TIME_LIMIT);
-
+        printf("제한 시간: %d초\n", TIME_LIMIT);
         MoveConsole(36, 12);
         SetColor(7); // 기본 색
         printf("답을 입력하세요: ");
 
-        if (!StartTimer(TIME_LIMIT)) { // 시간 초과 확인
+        char user_input[100]; // 사용자 입력을 받을 배열
+
+        // 사용자 입력 받기 (타이머 포함)
+        if (!Countdown(user_input, sizeof(user_input), TIME_LIMIT)) {
             MoveConsole(36, 14);
             SetColor(4); // 빨간색
             printf("시간 초과! 게임 실패!");
@@ -102,8 +105,8 @@ void PlayMathGame() {
             return;
         }
 
-        // 사용자 입력 받기
-        userAnswer = GetUserInput();
+        // 입력값을 정수로 변환
+        userAnswer = atoi(user_input);
 
         // 정답 확인
         if (userAnswer == correctAnswer) {
