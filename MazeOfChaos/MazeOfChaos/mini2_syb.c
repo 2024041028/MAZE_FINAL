@@ -59,12 +59,14 @@ void PlayHangman() {
         char guess;
         scanf(" %c", &guess); // 문자 입력
 
-        // 이미 틀린 글자인지 확인
+        // 이미 틀린 글자 또는 맞춘 글자를 입력한 경우 처리
         if (strchr(wrongGuesses, guess) != NULL || strchr(guessed, guess) != NULL) {
-            MoveConsole(25, 11);
-            printf("You already guessed '%c'. Try again.", guess);
-            getchar(); // 잠깐 대기
-            continue; // 반복
+            MoveConsole(36, 18);
+            SetColor(14); // 노란색
+            printf("'%c' is already guessed. Try another letter.", guess);
+            SetColor(7); // 기본 색상 복원
+            getchar(); getchar(); // 잠시 대기
+            continue; // 다음 반복
         }
 
         // 글자가 맞는지 확인
@@ -84,9 +86,11 @@ void PlayHangman() {
 
         // 단어를 모두 맞춘 경우
         if (strcmp(word, guessed) == 0) {
+            system("cls");
+            CreateOutFrame();
             MoveConsole(25, 13);
             SetColor(10); // 초록색
-            printf("Congratulations! You guessed the word: %s\n", word);
+            printf("Congratulations! You guessed the word: %s", word);
             MoveConsole(25, 15);
             SetColor(7);
             printf("Press any key to return to the main menu...");
@@ -94,4 +98,15 @@ void PlayHangman() {
             return; // 게임 성공
         }
     }
+
+    // 실패 메시지
+    system("cls");
+    CreateOutFrame();
+    MoveConsole(25, 13);
+    SetColor(4); // 빨간색
+    printf("You've run out of attempts! The word was: %s", word);
+    MoveConsole(25, 15);
+    SetColor(7);
+    printf("Press any key to return to the main menu...");
+    getchar(); getchar();
 }
