@@ -1,13 +1,45 @@
+#include <stdlib.h> // srand, rand
+#include <string.h> // strcmp
+#include <time.h>   // time
+#include <stdio.h>  // 기본 I/O 함수
 #include "MOC.h"
 
 #define MAX_ATTEMPTS 6
-#define WORD_LENGTH 3
+#define MAX_WORD_LENGTH 5 // 최대 단어 길이 (5글자)
 
 // 랜덤 단어 생성 함수
-void ChooseRandomWord(char* word) {
-    const char* words[] = { "cat", "dog", "bat", "hat", "rat", "man" };
-    int index = rand() % (sizeof(words) / sizeof(words[0]));
-    strcpy(word, words[index]);
+void ChooseRandomWord(char* word, int wordLength) {
+    const char* words3[] = { "cat", "dog", "bat", "hat", "rat", "man" };
+    const char* words4[] = { "wolf", "deer", "frog", "lion", "bear", "duck" };
+    const char* words5[] = { "tiger", "eagle", "shark", "snake", "horse", "zebra" };
+
+    const char** wordsArray;
+    int arraySize;
+
+    // 레벨에 따라 배열과 크기 설정
+    if (wordLength == 3) {
+        wordsArray = words3;
+        arraySize = sizeof(words3) / sizeof(words3[0]);
+    }
+    else if (wordLength == 4) {
+        wordsArray = words4;
+        arraySize = sizeof(words4) / sizeof(words4[0]);
+    }
+    else if (wordLength == 5) {
+        wordsArray = words5;
+        arraySize = sizeof(words5) / sizeof(words5[0]);
+    }
+    else {
+        return; // 잘못된 길이일 경우 종료
+    }
+
+    int index = rand() % arraySize;
+
+    // strcpy 대신 단어 복사 수행
+    for (int i = 0; i < wordLength; i++) {
+        word[i] = wordsArray[index][i];
+    }
+    word[wordLength] = '\0'; // 문자열 종료
 }
 
 // 남은 목숨을 하트로 출력하는 함수
@@ -26,20 +58,22 @@ void PrintHearts(int attemptsLeft) {
 
 // 행맨 게임 함수
 void PlayHangman() {
-    char word[WORD_LENGTH + 1]; // 단어 저장 (3글자 + null terminator)
-    char guessed[WORD_LENGTH + 1]; // 추측한 글자 저장
+    int now_level = 2;             // 레벨 설정
+    int wordLength = now_level + 2; // 단어 길이 결정 (3, 4, 5글자)
+    char word[MAX_WORD_LENGTH + 1]; // 고정 크기 배열로 단어 저장
+    char guessed[MAX_WORD_LENGTH + 1]; // 고정 크기 배열로 추측한 글자 저장
     char wrongGuesses[MAX_ATTEMPTS] = { 0 }; // 틀린 글자 저장
     int attempts = 0;
 
     // 랜덤 단어 선택
     srand(time(NULL));
-    ChooseRandomWord(word);
+    ChooseRandomWord(word, wordLength);
 
     // 초기화
-    for (int i = 0; i < WORD_LENGTH; i++) {
+    for (int i = 0; i < wordLength; i++) {
         guessed[i] = '_'; // 초기 상태: '_'로 표시
     }
-    guessed[WORD_LENGTH] = '\0'; // 문자열 종료
+    guessed[wordLength] = '\0'; // 문자열 종료
 
     while (attempts < MAX_ATTEMPTS) {
         system("cls"); // 화면 초기화
@@ -56,8 +90,8 @@ void PlayHangman() {
         MoveConsole(36, 14);
         printf("글자를 맞혀보세요: ");
 
-        char guess;
-        scanf(" %c", &guess); // 문자 입력
+        char guess = getchar(); // 문자 입력
+        getchar(); // 줄바꿈 제거
 
         // 이미 틀린 글자 또는 맞춘 글자를 입력한 경우 처리
         if (strchr(wrongGuesses, guess) != NULL || strchr(guessed, guess) != NULL) {
@@ -65,13 +99,13 @@ void PlayHangman() {
             SetColor(14); // 노란색
             printf("'%c' is already guessed. Try another letter.", guess);
             SetColor(7); // 기본 색상 복원
-            getchar(); getchar(); // 잠시 대기
+            getchar(); // 사용자 입력 대기
             continue; // 다음 반복
         }
 
         // 글자가 맞는지 확인
         int found = 0;
-        for (int i = 0; i < WORD_LENGTH; i++) {
+        for (int i = 0; i < wordLength; i++) {
             if (word[i] == guess) {
                 guessed[i] = guess; // 맞춘 글자를 표시
                 found = 1; // 맞춘 글자가 있다
