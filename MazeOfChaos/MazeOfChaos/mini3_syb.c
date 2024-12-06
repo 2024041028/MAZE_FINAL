@@ -71,7 +71,15 @@ void PlayMathGame() {
 
     int score = 0; // 맞춘 문제 수
     int a, b, userAnswer, correctAnswer;
-    char op;
+    char op; // 연산자 변수 선언 추가
+
+    // 시작 안내 메시지
+    MoveConsole(36, 5);
+    SetColor(14); // 노란색
+    printf("산수 게임에 오신 것을 환영합니다!");
+    MoveConsole(36, 6);
+    printf("30초 안에 답을 맞춰보세요!");
+    SetColor(7); // 기본 색상 복원
 
     for (int i = 1; i <= MAX_QUESTIONS; i++) {
         // 문제 생성
@@ -90,7 +98,8 @@ void PlayMathGame() {
         printf("제한 시간: %d초\n", TIME_LIMIT);
         MoveConsole(36, 12);
         SetColor(7); // 기본 색
-        printf("답을 입력하세요: ");
+        printf("답을 입력하세요: "); // 입력 요청 출력
+        MoveConsole(50, 12); // 입력 위치 조정 (오른쪽으로 이동)
 
         char user_input[100]; // 사용자 입력을 받을 배열
 
@@ -120,6 +129,11 @@ void PlayMathGame() {
             SetColor(4); // 빨간색
             printf("오답입니다! 정답은 %d입니다.", correctAnswer);
         }
+
+        // 문제 진행 상태 출력
+        MoveConsole(36, 16);
+        SetColor(7); // 기본 색상 복원
+        printf("현재 점수: %d / %d", score, i);
         getchar(); // 다음 문제로 진행하기 위해 대기
     }
 
