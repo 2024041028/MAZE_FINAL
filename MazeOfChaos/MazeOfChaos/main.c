@@ -4,40 +4,8 @@ int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
-<<<<<<< HEAD
-	maze_game();
-=======
-
->>>>>>> 968b27ac34517d09fd80e29491a723ef5d5de182
-	/*StartScreen();
+	StartScreen();
 	MenuScreen();
-	FinishGame();*/
-
-	//PlayTriviaQuizGame();
-	PlayHangman();
-	/*random_number();
-	PlayAscendingGame();
-	PlayGreenFrogRPS()*/
-	/*StartScreen();
-	MenuScreen();
-	FinishGame();*/
-<<<<<<< HEAD
-=======
-
->>>>>>> 968b27ac34517d09fd80e29491a723ef5d5de182
-	//maze_game();
-
-
-	//PlayTriviaQuizGame();
-	//PlayHangman();
-	//random_number();
-	//PlayAscendingGame();
-	//PlayGreenFrogRPS()
-	//StartScreen();
-	//MenuScreen();
-	//FinishGame();
+	FinishGame();
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 968b27ac34517d09fd80e29491a723ef5d5de182

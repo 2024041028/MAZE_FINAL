@@ -127,8 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\대피2\login_screen.c" />
     <ClCompile Include="cursor_function.c" />
+    <ClCompile Include="login.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
     <ClCompile Include="main_maze.c" />

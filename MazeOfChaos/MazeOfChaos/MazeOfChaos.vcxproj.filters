@@ -51,7 +51,7 @@
     <ClCompile Include="shop_screen.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\대피2\login_screen.c">
+    <ClCompile Include="login.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
