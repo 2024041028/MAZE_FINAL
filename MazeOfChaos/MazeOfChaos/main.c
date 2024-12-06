@@ -4,10 +4,10 @@ int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
-	//StartScreen();
-	//MenuScreen();
-	//FinishGame();
+	StartScreen();
+    MenuScreen();
+	FinishGame();
 	//PlayHangman();
-	PlayMathGame();
+	//PlayMathGame();
 }
 

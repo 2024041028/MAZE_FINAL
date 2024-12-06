@@ -215,6 +215,7 @@ int BuySkin(int skin_num) {
 				user_coin -= 5;
 				MoveConsole(22, 4);
 				printf("ÄÚÀÎ : %d", user_coin);
+				UpdateUserInfo();
 			}
 			else if (flag == 0 && user_coin < 5) {
 				MoveConsole(46, 7);
