@@ -1,7 +1,3 @@
-#include <stdlib.h> // srand, rand
-#include <string.h> // strcmp
-#include <time.h>   // time
-#include <stdio.h>  // 기본 I/O 함수
 #include "MOC.h"
 
 #define MAX_ATTEMPTS 6
@@ -58,7 +54,7 @@ void PrintHearts(int attemptsLeft) {
 
 // 행맨 게임 함수
 void PlayHangman() {
-    int now_level = 2;             // 레벨 설정
+    now_level = 1;
     int wordLength = now_level + 2; // 단어 길이 결정 (3, 4, 5글자)
     char word[MAX_WORD_LENGTH + 1]; // 고정 크기 배열로 단어 저장
     char guessed[MAX_WORD_LENGTH + 1]; // 고정 크기 배열로 추측한 글자 저장
@@ -95,9 +91,9 @@ void PlayHangman() {
 
         // 이미 틀린 글자 또는 맞춘 글자를 입력한 경우 처리
         if (strchr(wrongGuesses, guess) != NULL || strchr(guessed, guess) != NULL) {
-            MoveConsole(36, 18);
+            MoveConsole(23, 18);
             SetColor(14); // 노란색
-            printf("'%c' is already guessed. Try another letter.", guess);
+            printf("'%c'는 이미 입력한 단어입니다. 엔터키를 눌러주세요", guess);
             SetColor(7); // 기본 색상 복원
             getchar(); // 사용자 입력 대기
             continue; // 다음 반복
@@ -122,9 +118,9 @@ void PlayHangman() {
         if (strcmp(word, guessed) == 0) {
             system("cls");
             CreateOutFrame();
-            MoveConsole(25, 13);
+            MoveConsole(31, 13);
             SetColor(10); // 초록색
-            printf("Congratulations! You guessed the word: %s", word);
+            printf("축하드립니다 단어는 %s입니다!", word);
             MoveConsole(25, 15);
             SetColor(7);
             printf("Press any key to return to the main menu...");
@@ -138,7 +134,7 @@ void PlayHangman() {
     CreateOutFrame();
     MoveConsole(25, 13);
     SetColor(4); // 빨간색
-    printf("You've run out of attempts! The word was: %s", word);
+    printf("시도를 모두 사용하셨습니다 단어는 %s입니다!", word);
     MoveConsole(25, 15);
     SetColor(7);
     printf("Press any key to return to the main menu...");
