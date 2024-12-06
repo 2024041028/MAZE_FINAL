@@ -15,19 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="cursor_function.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="screen_function.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="login_screen.c">
+    <ClCompile Include="main.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="main_game_screen.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main_maze.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main_maze_game.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="mini1_rhs.c">
@@ -39,27 +39,21 @@
     <ClCompile Include="mini2_syb.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="minigame_syb.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="mini3_rhs.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="main_maze_game.c">
+    <ClCompile Include="minigame_syb.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-=======
-    <ClCompile Include="main_maze.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="main_maze_game.c">
+    <ClCompile Include="screen_function.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="shop_screen.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
->>>>>>> 8416a52e98f5f2df8701185d4e00bc0631b783fb
+    <ClCompile Include="..\..\..\대피2\login_screen.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MOC.h">

@@ -68,6 +68,7 @@ int ShopScreen() {
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			if (user_skin[skin_num] == 0) {
+				Sleep(150);
 				BuySkin(skin_num);
 			}
 			else if (user_skin[skin_num] == 1) {

@@ -1,18 +1,18 @@
 #include "MOC.h"
 
-
-
-
-
 int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
+<<<<<<< HEAD
 	maze_game();
+=======
+
+>>>>>>> 968b27ac34517d09fd80e29491a723ef5d5de182
 	/*StartScreen();
 	MenuScreen();
 	FinishGame();*/
-}
+
 	//PlayTriviaQuizGame();
 	PlayHangman();
 	/*random_number();
@@ -21,6 +21,10 @@ int main() {
 	/*StartScreen();
 	MenuScreen();
 	FinishGame();*/
+<<<<<<< HEAD
+=======
+
+>>>>>>> 968b27ac34517d09fd80e29491a723ef5d5de182
 	//maze_game();
 
 
@@ -33,4 +37,7 @@ int main() {
 	//MenuScreen();
 	//FinishGame();
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 968b27ac34517d09fd80e29491a723ef5d5de182

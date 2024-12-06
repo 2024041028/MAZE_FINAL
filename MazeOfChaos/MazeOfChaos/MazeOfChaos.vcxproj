@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{30dceac6-0d8b-4873-ac94-4acefca05ae4}</ProjectGuid>
+    <ProjectGuid>{38a0e0c1-1541-45d8-b3dc-d25457957e6d}</ProjectGuid>
     <RootNamespace>MazeOfChaos</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -127,21 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\대피2\login_screen.c" />
     <ClCompile Include="cursor_function.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
-<<<<<<< HEAD
-=======
     <ClCompile Include="main_maze.c" />
->>>>>>> 8416a52e98f5f2df8701185d4e00bc0631b783fb
     <ClCompile Include="main_maze_game.c" />
     <ClCompile Include="mini1_rhs.c" />
-    <ClCompile Include="mini2_syb.c" />
     <ClCompile Include="mini2_rhs.c" />
+    <ClCompile Include="mini2_syb.c" />
     <ClCompile Include="mini3_rhs.c" />
     <ClCompile Include="minigame_syb.c" />
     <ClCompile Include="screen_function.c" />
-    <ClCompile Include="login_screen.c" />
     <ClCompile Include="shop_screen.c" />
   </ItemGroup>
   <ItemGroup>
