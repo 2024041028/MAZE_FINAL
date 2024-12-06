@@ -7,6 +7,7 @@ int main() {
 	//StartScreen();
 	//MenuScreen();
 	//FinishGame();
-	PlayHangman();
+	//PlayHangman();
+	PlayMathGame();
 }
 
