@@ -6,7 +6,7 @@
 #include "MOC.h"
 
 #define MAX_QUESTIONS 5    // 문제 수
-#define TIME_LIMIT 30      // 제한 시간 (초)
+#define TIME_LIMIT 15      // 제한 시간 (초)
 
 // 사용자 입력을 받는 함수 (카운트다운 포함)
 int Countdown(char* input, int max_length, int timeout) {
@@ -16,7 +16,7 @@ int Countdown(char* input, int max_length, int timeout) {
 
     while (elapsed_time < timeout * CLOCKS_PER_SEC) { // 제한 시간 내 반복
         // 카운트다운 오른쪽 상단에 출력
-        MoveConsole(65, 1);
+        MoveConsole(55, 1);
         printf("남은 시간: %2d초", timeout - elapsed_time / CLOCKS_PER_SEC);
 
         if (_kbhit()) { // 키 입력 감지
@@ -28,14 +28,14 @@ int Countdown(char* input, int max_length, int timeout) {
             else if (ch == '\b') { // Backspace 키 처리
                 if (index > 0) {
                     index--;
-                    MoveConsole(23 + index, 12);
-                    printf(" ");
-                    MoveConsole(23 + index, 12);
+                    MoveConsole(54 + index, 12); // 입력 위치 조정
+                    printf(" "); // 지우기
+                    MoveConsole(54 + index, 12); // 다시 입력 위치로 이동
                 }
             }
             else if (index < max_length - 1) { // 추가 입력 가능 시
                 input[index++] = ch;
-                MoveConsole(23 + index - 1, 12);
+                MoveConsole(54 + index - 1, 12); // 입력 위치 조정
                 printf("%c", ch);
             }
         }
@@ -78,7 +78,7 @@ void PlayMathGame() {
     SetColor(14); // 노란색
     printf("산수 게임에 오신 것을 환영합니다!");
     MoveConsole(36, 6);
-    printf("30초 안에 답을 맞춰보세요!");
+    printf("15초 안에 답을 맞춰보세요!");
     SetColor(7); // 기본 색상 복원
 
     for (int i = 1; i <= MAX_QUESTIONS; i++) {
@@ -99,7 +99,7 @@ void PlayMathGame() {
         MoveConsole(36, 12);
         SetColor(7); // 기본 색
         printf("답을 입력하세요: "); // 입력 요청 출력
-        MoveConsole(50, 12); // 입력 위치 조정 (오른쪽으로 이동)
+        MoveConsole(64, 12); // 입력 위치를 4칸 오른쪽으로 조정
 
         char user_input[100]; // 사용자 입력을 받을 배열
 
