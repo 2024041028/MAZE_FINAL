@@ -1,5 +1,4 @@
 #include "MOC.h"
-#include <windows.h> // Sleep 함수를 사용하기 위한 헤더
 
 #define MAX_QUESTIONS 5    // 문제 수
 #define TIME_LIMIT 15      // 제한 시간 (초)
@@ -73,6 +72,7 @@ void PlayMathGame() {
     MoveConsole(36, 5);
     SetColor(14); // 노란색
     printf("산수 게임에 오신 것을 환영합니다!\n");
+    MoveConsole(36, 6);
     printf("3초 뒤 게임이 시작됩니다.\n");
 
     // 3초 카운트다운 표시
