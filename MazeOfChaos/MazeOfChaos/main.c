@@ -1,13 +1,14 @@
 #include "MOC.h"
 
+
 int main() {
+
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
-	maze_game();
-	/*StartScreen();
+	StartScreen();
 	MenuScreen();
-	FinishGame();*/
+	FinishGame();
     //MenuScreen();
 	//FinishGame();
 	//PlayReactionGame();

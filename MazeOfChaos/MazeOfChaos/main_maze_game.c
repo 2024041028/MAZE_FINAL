@@ -46,6 +46,9 @@ void minigame_pop() {
 
 	//	break;
 	}
+	/*if (πÃ¥œ∞‘¿” Ω«∆–) {
+		h--;
+	}*/
 	ScreenReset();
 	maze_frame();
 }
@@ -104,6 +107,8 @@ int state[5][10][10] = {
 }
 };
 
+int now_state[10][10];
+
 void maze_frame() {
 	SetColor(14);
 	MoveConsole(22, 2);
@@ -132,8 +137,41 @@ void maze_frame() {
 		MoveConsole(47 - maze_size - 2, i);
 		printf("¢∆¢∆");
 		SetColor(8);
-		printf(" ");
-		for (int j = 0; j < maze_size; j++) printf("°· ");
+		for (int j = 0; j < maze_size; j++) {
+			if (now_state[j][i - 12 + maze_size / 2] == 3) {
+				if (j == 0) {
+					SetColor(7);
+					printf("¢∆¢∆");
+				}
+				if (now_state[j + 1][i - 12 + maze_size / 2] == 3 || j == maze_size - 1) {
+					SetColor(7);
+					MoveConsole(x_0 + j * 2, y_0 + i - 12 + maze_size / 2);
+					printf("¢∆¢∆");
+				}
+				else if (now_state[j - 1][i - 12 + maze_size / 2] == 3) {
+					SetColor(7);
+					MoveConsole(x_0 + j * 2 - 1, y_0 + i - 12 + maze_size / 2);
+					printf("¢∆¢∆ ");
+				}
+				else {
+					SetColor(7);
+					MoveConsole(x_0 + j * 2, y_0 + i - 12 + maze_size / 2);
+					printf("¢∆ ");
+				}
+			}
+			else if (now_state[j][i - 12 + maze_size / 2] == 10) {
+				MoveConsole(x_0 + j * 2, y_0 + i - 12 + maze_size / 2);
+				printf("  ");
+			}
+			else if (j == 0) {
+				printf(" °· ");
+			}
+			else {
+				SetColor(8);
+				printf("°· ");
+			}
+
+		}
 		SetColor(4);
 		printf("¢∆¢∆");
 	}
@@ -144,71 +182,83 @@ void maze_frame() {
 
 void movement() {
 	while (1) {
+		int random;
 		SetColor(7);
-		MoveConsole(0, 0);
-		printf("%d", minigame_prob);
 		if (GetAsyncKeyState(VK_UP) & 0x8000 && player_y > 0) {
 			y = -1;
+			random = rand() % 100;
+			if (random <= minigame_prob && random != 0) {
+				minigame_pop();
+				minigame_prob = 0;
+			}
 			minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_DOWN) & 0x8000 && player_y < maze_size - 1) {
 			y = 1;
+			random = rand() % 100;
+			if (random <= minigame_prob && random != 0) {
+				minigame_pop();
+				minigame_prob = 0;
+			}
 			minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && player_x > 0) {
 			x = -1;
+			random = rand() % 100;
+			if (random <= minigame_prob && random != 0) {
+				minigame_pop();
+				minigame_prob = 0;
+			}
 			minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && player_x < maze_size - 1) {
 			x = 1;
+			random = rand() % 100;
+			if (random <= minigame_prob && random != 0) {
+				minigame_pop();
+				minigame_prob = 0;
+			}
 			minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_BACK) & 0x8000) return 0;
-		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)FinishGame();
-		int random;
-		random = rand() % 1000;
-		if (random <= minigame_prob) {
-			minigame_pop();
-			minigame_prob = 0;
-		}
-
-		if (state[now_level - 1][player_x + x][player_y + y] == 0) { //≈Î∑Œ
+		if (now_state[player_x + x][player_y + y] == 0 || now_state[player_x + x][player_y + y] == 10) { //≈Î∑Œ
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 0;
+			now_state[player_x][player_y] = 10;
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 9;
+			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 1 || state[now_level - 1][player_x + x][player_y + y] == 3) { //∫Æ
+		else if (now_state[player_x + x][player_y + y] == 1 || now_state[player_x + x][player_y + y] == 3) { //∫Æ
 			MoveConsole(x_0 + player_x * 2 + x * 2 , y_0 + player_y + y);
 			printf("¢∆");
-			state[now_level - 1][player_x + x][player_y + y] = 3;
-			if (state[now_level - 1][player_x + x + 1][player_y + y] == 3 || player_x + x== maze_size - 1) {
+			now_state[player_x + x][player_y + y] = 3;
+			if (now_state[player_x + x + 1][player_y + y] == 3 || player_x + x== maze_size - 1) {
 				MoveConsole(x_0 + player_x * 2 + x * 2 + 1, y_0 + player_y + y);
 				printf("¢∆");
 			}
-			if (state[now_level - 1][player_x + x - 1][player_y + y] == 3 || player_x + x== 0) {
+			if (now_state[player_x + x - 1][player_y + y] == 3 || player_x + x== 0) {
 				MoveConsole(x_0 + player_x * 2 + x * 2 - 1, y_0 + player_y + y);
 				printf("¢∆");
 			}
 			x = 0; y = 0;
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 2) { //√‚±∏
+		else if (now_state[player_x + x][player_y + y] == 2) { //√‚±∏
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 0;
+			now_state[player_x][player_y] = 10;
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 9;
+			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
 			MoveConsole(75, line);
 			printf("πÃ∑Œ ≈ª√‚ º∫∞¯!");
 			line++;
+			user_record[now_level] = 1;
 			break;
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 4) { //«œ∆Æ »πµÊ
+		else if (now_state[player_x + x][player_y + y] == 4) { //«œ∆Æ »πµÊ
 			if (h < 3) {
 				h++;
 				MoveConsole(75, line);
@@ -221,24 +271,25 @@ void movement() {
 				line++;
 			}
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 0;
+			now_state[player_x][player_y] = 10;
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 9;
+			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
+			SetColor(4);
 			MoveConsole(22, 3);
 			for (int i = 0; i < h; i++)printf("¢æ ");
 			for (int i = 0; i < 3 - h; i++)printf("¢Ω ");
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 5) { //Ω∫≈µ±« »πµÊ
+		else if (now_state[player_x + x][player_y + y] == 5) { //Ω∫≈µ±« »πµÊ
 			skip++;
-			state[now_level - 1][player_x][player_y] = 0;
+			now_state[player_x][player_y] = 10;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 9;
+			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
 			MoveConsole(22, 4);
 			printf("Ω∫≈µ±« ∞≥ºˆ:%d", skip);
@@ -246,14 +297,14 @@ void movement() {
 			printf("you find a skip ticket");
 			line++;
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 6) { //ƒ⁄¿Œ »πµÊ
+		else if (now_state[player_x + x][player_y + y] == 6) { //ƒ⁄¿Œ »πµÊ
 			coin++;
-			state[now_level - 1][player_x][player_y] = 0;
+			now_state[player_x][player_y] = 10;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 9;
+			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
 			MoveConsole(22, 5);
 			printf("ƒ⁄¿Œ ∞≥ºˆ:%d", user_coin);
@@ -261,7 +312,7 @@ void movement() {
 			printf("you find a coin");
 			line++;
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 7) { //πÆ
+		else if (now_state[player_x + x][player_y + y] == 7) { //πÆ
 			if (key == 0) {
 			MoveConsole(x_0 + player_x * 2 + x * 2, y_0 + player_y + y);
 			SetColor(4);
@@ -273,32 +324,32 @@ void movement() {
 				line++;
 			}
 			else if (key == 1) {
-				state[now_level - 1][player_x][player_y] = 0;
+				now_state[player_x][player_y] = 10;
 				MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 				printf(" ");
 				player_x += x; player_y += y; x = 0; y = 0;
 				MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-				state[now_level - 1][player_x][player_y] = 9;
+				now_state[player_x][player_y] = 9;
 				printf("%s", now_skin);
 				MoveConsole(75, line);
 				printf("door open");
 				line++;
 			}
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 8) { //ø≠ºË »πµÊ
+		else if (now_state[player_x + x][player_y + y] == 8) { //ø≠ºË »πµÊ
 			key++;
-			state[now_level - 1][player_x][player_y] = 0;
+			now_state[player_x][player_y] = 10;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 			printf(" ");
 			player_x += x; player_y += y; x = 0; y = 0;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
-			state[now_level - 1][player_x][player_y] = 9;
+			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
 			MoveConsole(75, line);
 			printf("you find a key");
 			line++;
 		}
-		else if (state[now_level - 1][player_x + x][player_y + y] == 9) { //«√∑π¿ÃæÓ ¿ßƒ°
+		else if (now_state[player_x + x][player_y + y] == 9) { //«√∑π¿ÃæÓ ¿ßƒ°
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 			printf("%s", now_skin);
 			}
@@ -307,6 +358,11 @@ void movement() {
 }
 
 void maze() {
+	for (int i = 0; i < maze_size; i++) {
+		for (int j = 0; j < maze_size; j++) {
+			now_state[i][j] = state[now_level - 1][i][j];
+		}
+	}
 	maze_frame();
 	SetColor(7);
 	player_x = 0; player_y = 0; x = 0; y = 0; //«√∑π¿ÃæÓ √ ±‚ ¿ßƒ°
@@ -314,9 +370,9 @@ void maze() {
 }
 
 void maze_game() {
+	time_t start = time(NULL);
 	srand(time(NULL));
 	minigame_prob = 0;
-	now_level = 1;
 	ScreenReset();
 	MoveConsole(75, 0);
 	SetColor(7);
@@ -330,5 +386,7 @@ void maze_game() {
 	else if (now_level == 5) maze_size = 10;
 	x_0 = 49 - maze_size - 1; y_0 = 12 - maze_size / 2; //(0,0)¿« ƒ‹º÷ ¿ßƒ°
 	maze();
-	MenuScreen();
+	time_t end = time(NULL);
+	//±‚∑œ = end - start;
+	ScreenReset();
 }

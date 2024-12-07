@@ -203,6 +203,7 @@ int BuySkin(int skin_num) {
 			flag = 1;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			RemoveGarbageChar();
 			MoveConsole(49, 6);
 			printf("               ");
 			MoveConsole(47, 7);
