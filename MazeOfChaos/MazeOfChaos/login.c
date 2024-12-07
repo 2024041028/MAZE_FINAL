@@ -107,6 +107,7 @@ void StartScreen() {
 				flag = 0;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			RemoveGarbageChar();
 			if (flag == 0)
 				EnterNickname();
 			else if (flag == 1)
@@ -177,7 +178,6 @@ int CheckUserStatus() {
 	printf("처음 접속하시나요?");
 	Sleep(100);
 	int flag = 0;
-	char new[40]; // 추가
 	while (1) {
 		Sleep(110);
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
@@ -187,7 +187,7 @@ int CheckUserStatus() {
 			flag = 1;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-			fgets(new, 40, stdin);
+			RemoveGarbageChar();
 			return flag;
 		}
 
@@ -231,7 +231,6 @@ int EnterNickname() {
 	while (1) {
 		int size = 20;
 		int flag = 0;
-		char newline[20] = { 0, };
 
 		int visit = CheckUserStatus();
 		ScreenReset();
@@ -243,21 +242,12 @@ int EnterNickname() {
 
 		SetColor(7);
 		char name[20];
+		MoveConsole(41, 11);
+		fgets(name, size, stdin);
+		int len = strlen(name);
+		name[len - 1] = '\0';
 
-		while (1) {
-			MoveConsole(41, 11);
-			fgets(newline, size, stdin);
-			if (newline[0] != '\n') {
-				int len = strlen(newline);
-				newline[len - 1] = '\0';
-				strcpy(name, newline);
-				break;
-			}
-		}
-
-		int len = strlen(name); // 여기까지 1단계
 		SetColor(4);
-
 
 		if (len > 12) {
 			MoveConsole(26, 13);

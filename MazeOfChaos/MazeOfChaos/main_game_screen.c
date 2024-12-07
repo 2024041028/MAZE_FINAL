@@ -304,6 +304,7 @@ void MenuScreen() {
 			ShopScreen();
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			RemoveGarbageChar();
 			now_level = flag;
 			maze_game(); // 미로게임이 들어가야함
 		}

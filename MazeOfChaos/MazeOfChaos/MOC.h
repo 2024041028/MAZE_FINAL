@@ -83,3 +83,7 @@ void InputWithoutTimeout();
 // ******* manage_info.c에 존재 ********* //
 void UpdateUserInfo();
 // ************************************ //
+
+// // ********manage_newline.c에 존재*********** //
+
+void RemoveGarbageChar();
