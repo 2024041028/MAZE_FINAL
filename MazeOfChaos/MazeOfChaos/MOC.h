@@ -25,6 +25,7 @@ void SetColor();
 void CreateOutFrame();
 void ScreenReset();
 void FinishGame();
+void FillEntireFrameRandomly();
 // *************************************** //
 
 // ******* login_screen.c에 존재 ********* //
@@ -55,9 +56,9 @@ void SkinPage2();
 void ResetSkinPage();
 void Donate();
 
-// ******* login_screen.c에 존재 ********* //
-// 
-// 
+// *************************************** //
+
+
 // ******* main_screen_screen.c에 존재 ********* //
 void MenuScreenFrame();
 void MenuScreen();
@@ -85,5 +86,5 @@ void UpdateUserInfo();
 // ************************************ //
 
 // // ********manage_newline.c에 존재*********** //
-
 void RemoveGarbageChar();
+// ************************************ //
