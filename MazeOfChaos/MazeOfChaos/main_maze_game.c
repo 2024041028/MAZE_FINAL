@@ -13,10 +13,8 @@ int line = 0;
 int minigame_prob;
 char inform[100][100];
 
-void minigame_pop() {
-	int random = 0;
-	random = rand() % 6;
-	FillEntireFrameRandomly(random);
+void minigame_pop(int random,int x,int y) {
+	FillEntireFrameRandomly(random, x, y);
 	switch (random) {
 	case 0:
 		random_number();
@@ -186,6 +184,7 @@ void maze_frame() {
 }
 
 void movement() {
+	int random_color = 0;
 	while (1) {
 		int random;
 		SetColor(7);
@@ -193,7 +192,8 @@ void movement() {
 			y = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				minigame_pop();
+				random_color = rand() % 6;
+				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
 			minigame_prob++;
@@ -202,7 +202,8 @@ void movement() {
 			y = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				minigame_pop();
+				random_color = rand() % 6;
+				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
 			minigame_prob++;
@@ -211,7 +212,8 @@ void movement() {
 			x = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				minigame_pop();
+				random_color = rand() % 6;
+				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
 			minigame_prob++;
@@ -220,7 +222,8 @@ void movement() {
 			x = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				minigame_pop();
+				random_color = rand() % 6;
+				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
 			minigame_prob++;
