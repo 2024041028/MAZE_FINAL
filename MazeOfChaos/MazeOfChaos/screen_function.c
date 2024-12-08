@@ -136,8 +136,8 @@ void FillEntireFrameRandomly(int x) {
 	int count = 0;
 
 	for (int y = 0; y < 25; y++) {
-		for (int x = 0; x < 27; x++) {
-			positions[count][0] = 20 + x * 2;
+		for (int x = 0; x < 14; x++) {
+			positions[count][0] = 19 + x * 4;
 			positions[count][1] = y;
 			count++;
 		}
@@ -151,21 +151,19 @@ void FillEntireFrameRandomly(int x) {
 		int index = rand() % count;
 		if (positions[index][0] != -1) {
 			MoveConsole(positions[index][0], positions[index][1]);
-			printf("¢Æ¢Æ");
+			printf("¢Æ¢Æ¢Æ¢Æ");
 			positions[index][0] = -1;
 			filled++;
 			if (filled == 10) {
 				t = 50;
 			}
 			else if (filled == 25) {
-				t = 10.0;
-			}
-			else if (filled == 50) {
 				t = 1.0;
 			}
 			Sleep(t);
 		}
 	}
+	Sleep(600);
 	ScreenReset();
 	SetColor(x);
 	CreateOutFrame();
