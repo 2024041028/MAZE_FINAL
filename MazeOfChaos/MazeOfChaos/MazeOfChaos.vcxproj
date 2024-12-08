@@ -131,9 +131,9 @@
     <ClCompile Include="login.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
-    <ClCompile Include="main_maze.c" />
     <ClCompile Include="main_maze_game.c" />
     <ClCompile Include="manage_info.c" />
+    <ClCompile Include="manage_newline.c" />
     <ClCompile Include="mini1_rhs.c" />
     <ClCompile Include="mini2_rhs.c" />
     <ClCompile Include="mini2_syb.c" />

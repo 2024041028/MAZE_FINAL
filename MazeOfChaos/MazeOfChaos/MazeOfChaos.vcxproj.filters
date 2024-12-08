@@ -5,7 +5,14 @@
     <ClCompile Include="login.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
+<<<<<<< HEAD
     <ClCompile Include="main_maze.c" />
+=======
+<<<<<<< HEAD
+=======
+    <ClCompile Include="main_maze.c" />
+>>>>>>> d7090ceb994d803aea223e8423a1653036539f61
+>>>>>>> fbabea0ce6b91a08c6220063b925bac3e5c5ff67
     <ClCompile Include="main_maze_game.c" />
     <ClCompile Include="manage_info.c" />
     <ClCompile Include="mini1_rhs.c" />
@@ -17,7 +24,14 @@
     <ClCompile Include="minigame_syb.c" />
     <ClCompile Include="screen_function.c" />
     <ClCompile Include="shop_screen.c" />
+<<<<<<< HEAD
     <ClCompile Include="mini5_syb.c" />
+=======
+<<<<<<< HEAD
+=======
+    <ClCompile Include="manage_newline.c" />
+>>>>>>> d7090ceb994d803aea223e8423a1653036539f61
+>>>>>>> fbabea0ce6b91a08c6220063b925bac3e5c5ff67
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MOC.h" />

@@ -13,6 +13,7 @@ void maze_frame();
 void movement();
 void maze();
 void maze_game();
+void minigame_pop();
 
 // ******* cursor_function.c에 존재 ******* //
 void MoveConsole();
@@ -25,6 +26,7 @@ void SetColor();
 void CreateOutFrame();
 void ScreenReset();
 void FinishGame();
+void FillEntireFrameRandomly();
 // *************************************** //
 
 // ******* login_screen.c에 존재 ********* //
@@ -55,9 +57,9 @@ void SkinPage2();
 void ResetSkinPage();
 void Donate();
 
-// ******* login_screen.c에 존재 ********* //
-// 
-// 
+// *************************************** //
+
+
 // ******* main_screen_screen.c에 존재 ********* //
 void MenuScreenFrame();
 void MenuScreen();
@@ -69,17 +71,44 @@ void PrintAttempts();
 void random_number();
 // ************************************** //
 
-// // ********mini2_syb.c에 존재*********** //
+// ********mini2_syb.c에 존재*********** //
 void ChooseRandomWord();
 void PrintHearts();
 void PlayHangman();
 // ************************************ //
 
-// ********mini1_rhs.c에 존재*********** //
-void InputWithoutTimeout();
+// ********mini3_syb.c에 존재*********** //
+int Countdown();
+void GenerateMathProblem();
+void PlayMathGame();
 // ************************************ //
 
+// ********mini4_syb.c에 존재*********** //
+int GetAlphabetCount();
+void GenerateRandomAlphabets();
+void GetUserInput();
+void PlayMemoryGame();
+// ************************************ //
+
+// ********mini1_rhs.c에 존재*********** //
+void InputWithoutTimeout();
+void PlayGreenFrogRPS();
+// ************************************ //
+
+// ********mini2_rhs.c에 존재*********** //
+int InputWithCount();
+void PlayAscendingGame();
+// ************************************ //
+
+// ********mini3_rhs.c에 존재*********** //
+int InputWithCountdown();
+void PlayTriviaQuizGame();
+// ************************************ //
 
 // ******* manage_info.c에 존재 ********* //
 void UpdateUserInfo();
+// ************************************ //
+
+// // ********manage_newline.c에 존재*********** //
+void RemoveGarbageChar();
 // ************************************ //
