@@ -131,8 +131,28 @@ void FinishGame() {
 }
 
 
-void FillEntireFrameRandomly(int x) {
+void FillEntireFrameRandomly(int x,int xx,int y) {
 
+	int c = 1;
+	int cnt = 0;
+	while (1) {
+		MoveConsole(xx, y);
+		SetColor(c);
+		printf("%s", now_skin);
+		Sleep(10);
+		c++;
+		if (c == 10)
+			c = 0;
+		cnt++;
+
+		if (cnt == 45) {
+			MoveConsole(xx, y);
+			SetColor(x);
+			printf("%s", now_skin);
+			Sleep(500);
+			break;
+		}
+	}
 	int positions[27 * 25][2];
 	int count = 0;
 
