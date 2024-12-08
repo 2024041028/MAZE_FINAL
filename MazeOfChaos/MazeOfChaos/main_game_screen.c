@@ -317,6 +317,7 @@ void MenuScreen() {
 					max_level = 5;
 				}
 			}
+
 		}
 		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
 			FinishGame();

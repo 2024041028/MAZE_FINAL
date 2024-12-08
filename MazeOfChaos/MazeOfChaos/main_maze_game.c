@@ -50,6 +50,11 @@ void minigame_pop() {
 		h--;
 	}*/
 	ScreenReset();
+	SetColor(7);
+	for (int i = 0; i < line; i++) {
+		MoveConsole(75, i);
+		printf("%s", inform[i]);
+	}
 	maze_frame();
 }
 
@@ -254,20 +259,24 @@ void movement() {
 			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
 			MoveConsole(75, line);
+			strcpy(inform[line], "미로 탈출 성공!");
 			printf("미로 탈출 성공!");
 			line++;
 			user_record[now_level] = 1;
+			UpdateUserInfo();
 			break;
 		}
 		else if (now_state[player_x + x][player_y + y] == 4) { //하트 획득
 			if (h < 3) {
 				h++;
 				MoveConsole(75, line);
+				strcpy(inform[line], "you find a life");
 				printf("you find a life");
 				line++;
 			}
 			else if(h==3){
 				MoveConsole(75, line);
+				strcpy(inform[line], "you have all life");
 				printf("you have all life");
 				line++;
 			}
@@ -295,6 +304,7 @@ void movement() {
 			MoveConsole(22, 4);
 			printf("스킵권 개수:%d", skip);
 			MoveConsole(75, line);
+			strcpy(inform[line], "you find a skip ticket");
 			printf("you find a skip ticket");
 			line++;
 		}
@@ -310,6 +320,7 @@ void movement() {
 			MoveConsole(22, 5);
 			printf("코인 개수:%d", user_coin);
 			MoveConsole(75, line);
+			strcpy(inform[line], "you find a coin");
 			printf("you find a coin");
 			line++;
 		}
@@ -321,6 +332,7 @@ void movement() {
 			x = 0; y = 0;
 			SetColor(7);
 				MoveConsole(75, line);
+				strcpy(inform[line], "you need a key");
 				printf("you need a key");
 				line++;
 			}
@@ -347,6 +359,7 @@ void movement() {
 			now_state[player_x][player_y] = 9;
 			printf("%s", now_skin);
 			MoveConsole(75, line);
+			strcpy(inform[line], "you find a key");
 			printf("you find a key");
 			line++;
 		}
@@ -377,7 +390,7 @@ void maze_game() {
 	ScreenReset();
 	MoveConsole(75, 0);
 	SetColor(7);
-	strcpy(inform[0], "inform");
+	strcpy(inform[line], "inform");
 	printf("inform");
 	line++;
 	if (now_level == 1)	maze_size = 5;
@@ -387,6 +400,8 @@ void maze_game() {
 	else if (now_level == 5) maze_size = 10;
 	x_0 = 49 - maze_size - 1; y_0 = 12 - maze_size / 2; //(0,0)의 콘솔 위치
 	maze();
+	skip = 0;
+	line = 0;
 	time_t end = time(NULL);
 	//기록 = end - start;
 	ScreenReset();
