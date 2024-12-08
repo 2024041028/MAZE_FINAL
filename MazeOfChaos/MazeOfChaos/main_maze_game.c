@@ -407,10 +407,14 @@ void maze_game() {
 	skip = 0;
 	line = 0;
 	time_t end = time(NULL);
-	int record = end - start;
-	if (user_record[now_level] > record && clear == 1) {
+	int record = end - start;//
+	if (user_record[now_level] == 0) {
+		user_record[now_level] = record;
+	}
+	else if (user_record[now_level] > record && clear == 1) {
 		user_record[now_level] = record;
 	}
 	clear = 0;
+	UpdateUserInfo();
 	ScreenReset();
 }
