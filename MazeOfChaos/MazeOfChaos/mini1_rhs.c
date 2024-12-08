@@ -1,4 +1,5 @@
 #include "MOC.h"
+
 // 사용자 입력 함수 (시간 제한 없이)
 void InputWithoutTimeout(char* input, int max_length) {
     MoveConsole(23, 10); // 사용자 입력 위치

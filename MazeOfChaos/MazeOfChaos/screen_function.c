@@ -132,6 +132,7 @@ void FinishGame() {
 
 
 void FillEntireFrameRandomly(int x) {
+
 	int positions[27 * 25][2];
 	int count = 0;
 
@@ -163,8 +164,29 @@ void FillEntireFrameRandomly(int x) {
 			Sleep(t);
 		}
 	}
-	Sleep(600);
+	Sleep(500);
 	ScreenReset();
 	SetColor(x);
-	CreateOutFrame();
+	MoveConsole(20, 0);
+	for (int i = 0; i < 25; i++) {
+		if (i == 0)
+			printf("旨收");
+		printf("收收");
+		if (i == 24)
+			printf("收旬");
+	}
+	for (int i = 0; i < 24; i++) {
+		MoveConsole(20, i + 1);
+		printf("早 ");
+		MoveConsole(72, i + 1);
+		printf(" 早");
+	}
+	MoveConsole(20, 24);
+	for (int i = 0; i < 25; i++) {
+		if (i == 0)
+			printf("曲收");
+		printf("收收");
+		if (i == 24)
+			printf("收旭");
+	}
 }

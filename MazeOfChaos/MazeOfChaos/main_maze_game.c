@@ -16,7 +16,7 @@ char inform[100][100];
 void minigame_pop() {
 	int random = 0;
 	random = rand() % 6;
-	ScreenReset();
+	FillEntireFrameRandomly(random);
 	switch (random) {
 	case 0:
 		random_number();
@@ -221,6 +221,7 @@ void movement() {
 			minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_BACK) & 0x8000) return 0;
+
 		if (now_state[player_x + x][player_y + y] == 0 || now_state[player_x + x][player_y + y] == 10) { //≈Î∑Œ
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 			now_state[player_x][player_y] = 10;
