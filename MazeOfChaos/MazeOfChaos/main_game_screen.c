@@ -276,7 +276,7 @@ void MenuScreen() {
 	int max_level = 1;
 	for (int i = 1; i <= 5; i++) {
 		if (user_record[i] == 0) {
-			max_level = i - 1;
+			max_level = i;
 			break;
 		}
 		else if (i == 5) {
@@ -306,7 +306,17 @@ void MenuScreen() {
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			RemoveGarbageChar();
 			now_level = flag;
-			maze_game(); // 미로게임이 들어가야함
+			maze_game();
+			MenuScreenFrame();
+			for (int i = 1; i <= 5; i++) {
+				if (user_record[i] == 0) {
+					max_level = i;
+					break;
+				}
+				else if (i == 5) {
+					max_level = 5;
+				}
+			}
 		}
 		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
 			FinishGame();

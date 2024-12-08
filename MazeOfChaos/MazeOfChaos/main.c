@@ -3,12 +3,12 @@
 
 int main() {
 
-	/*system("title Maze of Chaos");
+	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
 	StartScreen();
 	MenuScreen();
-	FinishGame();*/
+	FinishGame();
     //MenuScreen();
 	//FinishGame();
 	//PlayReactionGame();
