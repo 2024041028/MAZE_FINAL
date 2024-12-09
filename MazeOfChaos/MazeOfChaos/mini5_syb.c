@@ -5,20 +5,27 @@
 #include <windows.h>
 
 void PlayReflexGame() {
+    int now_level = 1; // 초기 레벨
     int is_now_displayed = 0; // '지금' 출력 여부
     char input;
     int reaction_time = 0;
     const char* confusing_words[] = { "자금", "ㅈ금", "지국", "자극", "ㅈ긍" }; // 혼동 단어 배열
     int num_confusing_words = sizeof(confusing_words) / sizeof(confusing_words[0]);
 
+    // 레벨별 시간 제한 설정
+    float level_time_limit[] = { 1.0, 0.7, 0.5 };
+    if (now_level < 1 || now_level > 3) now_level = 1; // 레벨 범위 제한
+
     srand(time(NULL));
 
     const int display_x = 40; // 출력 위치 x 좌표
-    const int display_y = 21; // 출력 위치 y 좌표
+    const int display_y = 12; // 출력 위치 y 좌표
 
     // 안내 메시지 출력
     MoveConsole(30, 5);
     printf("'지금'이라는 글자가 나오면 'p'를 누르세요!");
+    MoveConsole(30, 6);
+    printf("현재 레벨: %d  (시간 제한: %.1f초)", now_level, level_time_limit[now_level - 1]);
 
     Sleep(2000); // 사용자에게 준비 시간 제공
 
@@ -68,8 +75,8 @@ void PlayReflexGame() {
             }
         }
 
-        // 반응 시간 제한 (2초)
-        if ((clock() - reaction_time) / CLOCKS_PER_SEC > 2) {
+        // 반응 시간 제한 (레벨에 따른 시간)
+        if ((float)(clock() - reaction_time) / CLOCKS_PER_SEC > level_time_limit[now_level - 1]) {
             MoveConsole(30, 15);
             if (is_now_displayed) {
                 printf("시간 초과! 실패!                          ");
