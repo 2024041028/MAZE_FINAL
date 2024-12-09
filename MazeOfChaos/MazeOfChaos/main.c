@@ -11,7 +11,8 @@ int main() {
 	//FinishGame();
 	//MenuScreen();
 	//FinishGame();
-	PlayReflexGame();
+	//PlayReflexGame();
+	PlayArrowGame();
 	//random_number();
 	//PlayHangman();
 	//PlayMathGame();
