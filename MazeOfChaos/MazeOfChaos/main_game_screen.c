@@ -81,7 +81,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[2] == 0) {
+		if (user_record[1] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");
@@ -131,7 +131,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[3] == 0) {
+		if (user_record[2] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");
@@ -179,7 +179,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[4] == 0) {
+		if (user_record[3] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");
@@ -229,7 +229,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[5] == 0) {
+		if (user_record[4] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");

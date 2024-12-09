@@ -14,7 +14,7 @@ void PlayReflexGame() {
     srand(time(NULL));
 
     const int display_x = 40; // 출력 위치 x 좌표
-    const int display_y = 12; // 출력 위치 y 좌표
+    const int display_y = 21; // 출력 위치 y 좌표
 
     // 안내 메시지 출력
     MoveConsole(30, 5);

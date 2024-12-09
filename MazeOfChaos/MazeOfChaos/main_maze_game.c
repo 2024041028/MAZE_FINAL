@@ -12,6 +12,7 @@ int key = 0;
 int line = 0;
 int minigame_prob;
 char inform[100][100];
+int clear = 0;
 
 void minigame_pop(int random,int x,int y) {
 	FillEntireFrameRandomly(random, x, y);
@@ -265,7 +266,7 @@ void movement() {
 			strcpy(inform[line], "미로 탈출 성공!");
 			printf("미로 탈출 성공!");
 			line++;
-			user_record[now_level] = 1;
+			clear = 1;
 			UpdateUserInfo();
 			break;
 		}
@@ -406,6 +407,14 @@ void maze_game() {
 	skip = 0;
 	line = 0;
 	time_t end = time(NULL);
-	//기록 = end - start;
+	int record = end - start;//
+	if (user_record[now_level] == 0) {
+		user_record[now_level] = record;
+	}
+	else if (user_record[now_level] > record && clear == 1) {
+		user_record[now_level] = record;
+	}
+	clear = 0;
+	UpdateUserInfo();
 	ScreenReset();
 }
