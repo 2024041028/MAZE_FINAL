@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="cursor_function.c" />
     <ClCompile Include="login.c" />
     <ClCompile Include="main.c" />
@@ -19,8 +20,71 @@
     <ClCompile Include="screen_function.c" />
     <ClCompile Include="shop_screen.c" />
     <ClCompile Include="mini4_rhs.c" />
+=======
+    <ClCompile Include="cursor_function.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="login.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main_game_screen.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main_maze_game.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="manage_info.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="manage_newline.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mini1_rhs.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mini2_rhs.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mini2_syb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mini3_rhs.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mini4_syb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mini3_syb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mini5_syb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="minigame_syb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="screen_function.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_screen.c">
+      <Filter>src</Filter>
+    </ClCompile>
+>>>>>>> 42b9f4511cf229185ff850d22281e99524974e45
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MOC.h" />
+    <Filter Include="src">
+      <UniqueIdentifier>{a0e0b13d-56cd-4bc0-a3fa-6fdc50b06b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{63684cb8-4f40-4618-91bf-21cde3d28a63}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MOC.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
