@@ -1,7 +1,7 @@
 #include "MOC.h"
 
 // 사용자 입력 함수 (비동기 입력 및 실시간 카운트다운)
-int InputWithCount(char* input, int max_length, int timeout) {
+int InputWithcnt(char* input, int max_length, int timeout) {
     int start_time = clock(); // 시작 시간
     int elapsed_time = 0;
     int index = 0;
@@ -33,69 +33,71 @@ int InputWithCount(char* input, int max_length, int timeout) {
         }
 
         elapsed_time = clock() - start_time; // 경과 시간 계산
+        Sleep(50); // 짧은 대기 시간으로 CPU 사용률 감소
     }
 
     input[index] = '\0'; // 입력 종료
     return 0; // 시간 초과
 }
 
-// 오름차순 게임
-void PlayAscendingGame() {
-    int numbers[10];
-    char user_input[100];
-    int user_numbers[10];
+// 오름차순 정렬 게임 (난이도 포함)
+void PlayAscendingGame(int level) {
+    int numbers[10], user_input[10];
+    char input[50];
+    int count = 5, timeout = 30;
 
-    // 난수 생성 및 초기화
+    // 난이도 설정
+    if (level == 1) { count = 5; timeout = 30; }
+    else if (level == 2) { count = 6; timeout = 30; }
+    else if (level == 3) { count = 10; timeout = 40; }
+
     srand(time(NULL));
-    for (int i = 0; i < 10; i++) {
-        numbers[i] = rand() % 100 + 1; // 1~100 사이의 난수
-    }
 
-    // 틀 출력
     CreateOutFrame();
 
-    // 게임 안내 출력
+    // 숫자 출력
     MoveConsole(23, 2);
-    printf("오름차순 게임");
+    printf("오름차순 정렬 게임");
     MoveConsole(23, 3);
     printf("================");
-
-    // 난수 배열 출력
     MoveConsole(23, 5);
-    printf("다음 숫자들을 오름차순으로 정렬하세요:");
+    printf("다음 숫자를 오름차순으로 정렬하세요:");
     MoveConsole(23, 6);
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < count; i++) {
+        numbers[i] = rand() % 100;
         printf("%d ", numbers[i]);
     }
 
-    // 사용자 입력 요청 (카운트다운 시작)
+    // 사용자 입력
     MoveConsole(23, 8);
-    printf("60초 안에 숫자를 입력하세요 (공백으로 구분):");
-    MoveConsole(23, 12); // 출력 문장과 동일한 x값에서 입력 시작
+    printf("%d초 안에 정렬된 숫자를 입력하세요:", timeout);
 
-    if (!InputWithCount(user_input, sizeof(user_input), 60)) {
-        MoveConsole(23, 14);
+    if (!InputWithcnt(input, sizeof(input), timeout)) {
+        MoveConsole(23, 10);
         printf("시간 초과! 게임 실패!");
         return;
     }
 
-    // 사용자 입력 숫자 배열로 변환
-    char* token = strtok(user_input, " ");
-    for (int i = 0; token != NULL && i < 10; i++) {
-        user_numbers[i] = atoi(token);
+    // 입력된 숫자 파싱
+    char* token = strtok(input, " ");
+    for (int i = 0; i < count; i++) {
+        if (!token || sscanf(token, "%d", &user_input[i]) != 1) {
+            MoveConsole(23, 12);
+            printf("입력 오류! 실패!");
+            return;
+        }
         token = strtok(NULL, " ");
     }
 
-    // 사용자 입력 검증 (오름차순인지 확인)
-    for (int i = 0; i < 9; i++) {
-        if (user_numbers[i] > user_numbers[i + 1]) {
-            MoveConsole(23, 14);
-            printf("실패! 오름차순이 아닙니다.");
+    // 정답 확인
+    for (int i = 0; i < count - 1; i++) {
+        if (user_input[i] > user_input[i + 1]) {
+            MoveConsole(23, 12);
+            printf("오답! 실패!");
             return;
         }
     }
 
-    // 성공 메시지
-    MoveConsole(23, 14);
-    printf("성공! 올바르게 오름차순으로 정렬했습니다.");
+    MoveConsole(23, 12);
+    printf("정답! 성공했습니다!");
 }
