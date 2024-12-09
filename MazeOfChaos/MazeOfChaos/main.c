@@ -14,5 +14,6 @@ int main() {
 	//PlayReflexGame();
 	//random_number();
 	//PlayHangman();
-	PlayMathGame();
+	//PlayMathGame();
+	PlayMemoryGame();
 }

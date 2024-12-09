@@ -5,6 +5,8 @@
 #include <windows.h>
 
 
+
+
 void PlayReflexGame() {
     int now_level = 1; // 초기 레벨
     int is_now_displayed = 0;       // '지금' 출력 여부
@@ -35,32 +37,32 @@ void PlayReflexGame() {
     Sleep(2000); // 사용자에게 준비 시간 제공
 
     while (1) {
-        // 초기화
-        MoveConsole(display_x, display_y);
+        // 플래그 초기화
         is_now_displayed = 0;
         is_confusing_displayed = 0;
         is_number_displayed = 0;
 
-        if (rand() % 10 == 0) { // 10% 확률로 특정 단어 출력
+        MoveConsole(display_x, display_y);
+        if (rand() % 10 == 0) { // 10% 확률로 "지금" 또는 혼동 단어 출력
             if (rand() % 2 == 0) {
                 printf("지금  ");
-                is_now_displayed = 1; // '지금' 표시됨
+                is_now_displayed = 1;
                 reaction_time = clock(); // 반응 시간 기록 시작
-                break;
+                break; // "지금" 출력 상태에서 루프 종료
             }
             else {
                 int idx = rand() % num_confusing_words;
                 printf("%s  ", confusing_words[idx]);
-                is_confusing_displayed = 1; // 혼동 단어 표시됨
+                is_confusing_displayed = 1;
                 Sleep(300); // 혼동 단어 표시 후 다음 루프로
                 continue;
             }
         }
-        else {
+        else { // 숫자 출력
             int random_number = rand() % 100;
-            printf("%02d  ", random_number); // 숫자 출력
-            is_number_displayed = 1; // 숫자 출력 상태 설정
-            Sleep(300); // 숫자 표시 후 다음 루프
+            printf("%02d  ", random_number);
+            is_number_displayed = 1;
+            Sleep(300);
         }
     }
 
@@ -69,7 +71,7 @@ void PlayReflexGame() {
         if (_kbhit()) { // 키 입력 감지
             input = _getch();
 
-            // 반응 성공 처리
+            // '지금'에 올바른 반응
             if (is_now_displayed && input == 'p') {
                 reaction_time = clock() - reaction_time;
                 MoveConsole(30, 15);
@@ -77,7 +79,7 @@ void PlayReflexGame() {
                 return;
             }
 
-            // 잘못된 반응 처리
+            // '지금'이 아닌 경우 실패 처리
             MoveConsole(30, 15);
             if (input == 'p') {
                 if (is_confusing_displayed) {
@@ -93,14 +95,14 @@ void PlayReflexGame() {
             else {
                 printf("실패! 'p'를 눌러야 합니다.                     ");
             }
-            return;
+            return; // 실패 시 게임 종료
         }
 
-        // 반응 시간 제한 (레벨에 따른 시간)
-        if ((float)(clock() - reaction_time) / CLOCKS_PER_SEC > level_time_limit[now_level - 1]) {
+        // 시간 초과 처리
+        if (is_now_displayed && (float)(clock() - reaction_time) / CLOCKS_PER_SEC > level_time_limit[now_level - 1]) {
             MoveConsole(30, 15);
             printf("시간 초과! 실패!                              ");
-            return;
+            return; // 시간 초과 시 게임 종료
         }
     }
 }
