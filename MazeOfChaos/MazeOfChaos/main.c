@@ -7,8 +7,9 @@ int main() {
 	CreateOutFrame();
 	//StartScreen();
 	//PlayGreenFrogRPS();
-    PlayAscendingGame();
-    //PlayTriviaQuizGame();
+	//PlayAscendingGame();
+	//PlayArrowGame();
+    PlayTriviaQuizGame();
 	//MenuScreen();
 	//FinishGame();
 	//MenuScreen();
@@ -18,7 +19,6 @@ int main() {
 	//PlayHangman();
 	//PlayMathGame();
 	//PlayMemoryGame();
-	//PlayArrowGame();
 	/*StartScreen();
 	MenuScreen();
 	FinishGame();*/
