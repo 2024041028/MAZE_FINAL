@@ -6,10 +6,10 @@ int main() {
 	RemoveCursor();
 	CreateOutFrame();
 	//StartScreen();
-	//PlayGreenFrogRPS();
+	PlayGreenFrogRPS();
 	//PlayAscendingGame();
 	//PlayArrowGame();
-    PlayTriviaQuizGame();
+    //PlayTriviaQuizGame();
 	//MenuScreen();
 	//FinishGame();
 	//MenuScreen();
