@@ -1,53 +1,53 @@
 #include "MOC.h"
 #include <stdbool.h>
+#include <windows.h>
+
 extern int h; // 목숨 (다른 파일에서 선언된 전역 변수)
 extern char user_name[20]; // 사용자 이름 (다른 파일에서 선언된 전역 변수)
 
-// 사용자 입력 함수 (시간 제한 포함, 비동기 처리)
+
+// 콘솔 인코딩 설정
+void SetupConsoleEncoding() {
+    // 출력 인코딩을 CP949로 설정 (한글 지원)
+    SetConsoleOutputCP(CP_ACP);
+    // 입력 인코딩을 CP949로 설정
+    SetConsoleCP(CP_ACP);
+}
+
+// 사용자 입력 함수 (시간 제한 포함, 입력값 노란색 표시, 한글 지원)
 bool InputWithTimeoutTrivia(char* input, int max_length, int timeout) {
     int start_time = clock();
     int elapsed_time = 0;
     int index = 0;
 
-    // 입력 초기화
-    input[0] = '\0';
+    HANDLE hConsoleInput = GetStdHandle(STD_INPUT_HANDLE);
+    WCHAR wide_input[256]; // 유니코드 입력 처리용
+    DWORD chars_read;
 
     while (elapsed_time < timeout * CLOCKS_PER_SEC) {
         // 카운트다운 오른쪽 상단에 출력
-        MoveConsole(55, 2);
+        MoveConsole(65, 2);
         printf("남은 시간: %2d초", timeout - elapsed_time / CLOCKS_PER_SEC);
 
-        if (_kbhit()) { // 키 입력 감지
-            char ch = _getch();
-            if (ch == '\r') { // Enter 키 입력 시 종료
-                input[index] = '\0';
+        // 입력 감지
+        if (WaitForSingleObject(hConsoleInput, 50) == WAIT_OBJECT_0) {
+            if (ReadConsoleW(hConsoleInput, wide_input, max_length - 1, &chars_read, NULL)) {
+                wide_input[chars_read - 2] = L'\0'; // 엔터 제거
+                WideCharToMultiByte(CP_ACP, 0, wide_input, -1, input, max_length, NULL, NULL); // 유니코드 -> CP949 변환
                 return true; // 입력 성공
-            }
-            else if (ch == '\b' && index > 0) { // Backspace 처리
-                index--;
-                MoveConsole(23 + index, 14);
-                printf(" ");
-                MoveConsole(23 + index, 14);
-            }
-            else if (index < max_length - 1) { // 추가 입력 가능
-                input[index++] = ch;
-                SetColor(14);
-                MoveConsole(23 + index - 1, 14);
-                printf("%c", ch);
-                SetColor(7);
             }
         }
 
-        // 경과 시간 갱신
         elapsed_time = clock() - start_time;
     }
 
-    input[index] = '\0'; // 입력 종료
     return false; // 시간 초과
 }
 
-// 상식 퀴즈 게임 (비동기 입력 및 카운트다운 포함)
+// 상식 퀴즈 게임 (수정된 틀 적용, 한글 지원)
 void PlayTriviaQuizGame(int level) {
+    SetupConsoleEncoding(); // 콘솔 인코딩 설정
+
     char* questions[] = {
         "대한민국의 수도는 어디인가요?",
         "지구에서 가장 높은 산은 무엇인가요?",
