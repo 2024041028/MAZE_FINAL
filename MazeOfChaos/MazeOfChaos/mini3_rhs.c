@@ -33,12 +33,12 @@ int InputWithCountdown(char* input, int max_length, int timeout) {
         }
 
         elapsed_time = clock() - start_time;
+        Sleep(50); // CPU 사용률 절감
     }
 
     input[index] = '\0'; // 입력 종료
     return 0; // 시간 초과
 }
-#include "MOC.h"
 
 // 상식 퀴즈 게임 (난이도 포함)
 void PlayTriviaQuizGame(int level) {
@@ -81,7 +81,7 @@ void PlayTriviaQuizGame(int level) {
     MoveConsole(23, 8);
     printf("%d초 안에 정답을 입력하세요:", timeout);
 
-    if (!InputWithTimeout(user_input, sizeof(user_input), timeout)) {
+    if (!InputWithCountdown(user_input, sizeof(user_input), timeout)) {
         MoveConsole(23, 10);
         printf("시간 초과! 게임 실패!");
         return;
@@ -96,5 +96,3 @@ void PlayTriviaQuizGame(int level) {
         printf("오답! 정답은 '%s'입니다.", answers[random_index]);
     }
 }
-
-   
