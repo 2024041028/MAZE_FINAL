@@ -4,18 +4,19 @@
 extern int h; // 목숨 (다른 파일에서 선언된 전역 변수)
 extern char user_name[20]; // 사용자 이름 (다른 파일에서 선언된 전역 변수)
 
+
 // 사용자 입력 함수 (시간 제한 포함)
 int InputWithCnt3(char* input, int max_length, int timeout) {
     int start_time = clock(); // 시작 시간
     int elapsed_time = 0;
     int index = 0;
 
-    MoveConsole(23, 12);
+    MoveConsole(23, 15);
 
-    while (elapsed_time < timeout * CLOCKS_PER_SEC) {
-        // 카운트다운 오른쪽 상단에 출력
-        MoveConsole(65, 1);
-        printf("남은 시간: %2d초   ", timeout - elapsed_time / CLOCKS_PER_SEC); // 공백으로 지우기 방지
+    while (elapsed_time < timeout * CLOCKS_PER_SEC) { // 제한 시간 내 반복
+        // 카운트다운 출력 (사각형 틀 오른쪽 상단)
+        MoveConsole(55, 2);
+        printf("남은 시간: %2d초   ", timeout - elapsed_time / CLOCKS_PER_SEC);
 
         if (_kbhit()) { // 키 입력 감지
             char ch = _getch(); // 입력된 키 읽기
@@ -25,13 +26,13 @@ int InputWithCnt3(char* input, int max_length, int timeout) {
             }
             else if (ch == '\b' && index > 0) { // Backspace 처리
                 index--;
-                MoveConsole(23 + index, 12); // 출력 문장과 동일한 x값에서 입력
+                MoveConsole(23 + index, 15); // 출력 위치 조정
                 printf(" ");
-                MoveConsole(23 + index, 12);
+                MoveConsole(23 + index, 15);
             }
             else if (index < max_length - 1) { // 추가 입력 가능 시
                 input[index++] = ch; // 입력 버퍼에 문자 추가
-                MoveConsole(23 + index - 1, 12); // 출력 문장과 동일한 x값에서 입력
+                MoveConsole(23 + index - 1, 15); // 출력 위치 조정
                 printf("%c", ch);
             }
         }
@@ -62,20 +63,20 @@ void PlayArrowGame(int level) {
 
     CreateOutFrame();
 
-    // 현재 사용자 정보 출력
-    MoveConsole(2, 1);
+    // 사용자 정보 출력 (x 좌표 동일하게 설정)
+    MoveConsole(23, 1);
     printf("사용자 아이디: %s", user_name);
-    MoveConsole(2, 2);
+    MoveConsole(23, 2);
     printf("목숨: %d", h);
 
     // 화살표 출력
-    MoveConsole(23, 2);
-    printf("화살표 게임");
-    MoveConsole(23, 3);
-    printf("================");
     MoveConsole(23, 5);
-    printf("다음 화살표를 보고 최종 좌표를 추측하세요:");
+    printf("화살표 게임");
     MoveConsole(23, 6);
+    printf("================");
+    MoveConsole(23, 8);
+    printf("다음 화살표를 보고 최종 좌표를 추측하세요:");
+    MoveConsole(23, 9);
 
     for (int i = 0; i < arrow_count; i++) {
         int arrow_index = rand() % 4;
@@ -84,27 +85,27 @@ void PlayArrowGame(int level) {
         y += dy[arrow_index];
     }
 
-    MoveConsole(23, 8);
-    printf("%d초 안에 최종 좌표를 입력하세요 (예: (x, y)):", timeout);
+    MoveConsole(23, 11);
+    printf("최종 좌표를 입력하세요 (예: (x, y)):");
 
     if (!InputWithCnt3(user_input, sizeof(user_input), timeout)) {
-        MoveConsole(23, 10);
+        MoveConsole(23, 13);
         printf("시간 초과! 게임 실패!");
         return;
     }
 
     if (sscanf(user_input, "(%d, %d)", &user_x, &user_y) != 2) {
-        MoveConsole(23, 10);
+        MoveConsole(23, 13);
         printf("입력 형식이 잘못되었습니다. (예: (2, 3))");
         return;
     }
 
     if (user_x == x && user_y == y) {
-        MoveConsole(23, 10);
+        MoveConsole(23, 13);
         printf("정답! 성공했습니다!");
     }
     else {
-        MoveConsole(23, 10);
+        MoveConsole(23, 13);
         printf("오답! 정답은 (%d, %d)입니다.", x, y);
     }
 }
