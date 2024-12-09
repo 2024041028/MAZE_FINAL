@@ -3,6 +3,7 @@
 #include <windows.h>
 
 extern int h; // 목숨 (다른 파일에서 선언된 전역 변수)
+extern int skip;
 extern char user_name[20]; // 사용자 이름 (다른 파일에서 선언된 전역 변수)
 
 // 콘솔 인코딩 설정
@@ -88,6 +89,7 @@ void InputWithoutTimeout(char* input, int max_length) {
 
 // 청개구리 가위바위보 게임 (수정된 카운트다운 및 입력 처리)
 void PlayGreenFrogRPS(int level) {
+
     SetupConsoleEncoding2();
 
     const char* options[] = { "가위", "바위", "보" };

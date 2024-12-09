@@ -143,6 +143,7 @@
     <ClCompile Include="mini4_syb.c" />
     <ClCompile Include="mini5_syb.c" />
     <ClCompile Include="minigame_syb.c" />
+    <ClCompile Include="mini_rule.c" />
     <ClCompile Include="screen_function.c" />
     <ClCompile Include="shop_screen.c" />
   </ItemGroup>
