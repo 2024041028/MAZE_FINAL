@@ -22,9 +22,9 @@ bool InputWithTimeout(char* input, int max_length, int timeout) {
     while (elapsed_time < timeout * CLOCKS_PER_SEC) {
         // 카운트다운 오른쪽 상단에 출력
         MoveConsole(55, 2);
-        printf("            ");
+        printf("              ");
         MoveConsole(55, 2);
-        printf("남은 시간: %d초", timeout - elapsed_time / CLOCKS_PER_SEC);
+        printf("남은 시간: %2d초", timeout - elapsed_time / CLOCKS_PER_SEC);
 
         if (_kbhit()) { // 키 입력 확인
             char ch = _getch();
@@ -55,7 +55,38 @@ bool InputWithTimeout(char* input, int max_length, int timeout) {
     return false; // 시간 초과
 }
 
-// 청개구리 가위바위보 게임
+// 첫 번째 입력 함수 (시간 제한 없음)
+void InputWithoutTimeout(char* input, int max_length) {
+    int index = 0;
+    HANDLE hConsoleInput = GetStdHandle(STD_INPUT_HANDLE);
+
+    while (true) {
+        if (_kbhit()) { // 키 입력 확인
+            char ch = _getch();
+            if (ch == '\r') { // Enter 키
+                input[index] = '\0';
+                return; // 입력 완료
+            }
+            else if (ch == '\b' && index > 0) { // Backspace 처리
+                index--;
+                MoveConsole(23 + index, 14);
+                printf(" ");
+                MoveConsole(23 + index, 14);
+            }
+            else if (index < max_length - 1) { // 입력 가능한 경우
+                input[index++] = ch;
+                SetColor(14);
+                MoveConsole(23 + index - 1, 14);
+                printf("%c", ch);
+                SetColor(7);
+            }
+        }
+
+        Sleep(50); // 화면 업데이트를 위한 지연
+    }
+}
+
+// 청개구리 가위바위보 게임 (수정된 카운트다운 및 입력 처리)
 void PlayGreenFrogRPS(int level) {
     SetupConsoleEncoding2();
 
@@ -93,12 +124,7 @@ void PlayGreenFrogRPS(int level) {
     MoveConsole(23, 8);
     printf("가위, 바위, 보 중 하나를 입력하세요:");
     MoveConsole(23, 10);
-
-    if (!InputWithTimeout(user_input, sizeof(user_input), 20)) { // 첫 번째 입력
-        MoveConsole(23, 12);
-        printf("시간 초과! 게임 종료.");
-        return;
-    }
+    InputWithoutTimeout(user_input, sizeof(user_input)); // 첫 번째 입력 (시간 제한 없음)
 
     // 입력값 출력
     MoveConsole(23, 12);
@@ -127,10 +153,10 @@ void PlayGreenFrogRPS(int level) {
 
     // 두 번째 입력 요청 (반응 입력)
     MoveConsole(23, 16);
-    printf("결과에 따라 반응을 입력하세요 (이겼다, 졌다, 개굴):");
+    printf("결과에 따라 반응을 입력하세요(이겼다, 졌다, 개굴):");
     MoveConsole(23, 18);
 
-    if (!InputWithTimeout(reaction, sizeof(reaction), timeout)) { // 두 번째 입력
+    if (!InputWithTimeout(reaction, sizeof(reaction), timeout)) { // 두 번째 입력 (시간 제한 있음)
         MoveConsole(23, 20);
         SetColor(14);
         printf("시간 초과! 게임 실패!");
