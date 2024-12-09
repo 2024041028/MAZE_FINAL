@@ -1,20 +1,18 @@
 #include "MOC.h"
 
-// 사용자 입력 함수 (시간 제한 포함)
-int InputWithcnt2(char* input, int max_length, int timeout) {
+// 사용자 입력 함수 (비동기 입력 및 실시간 카운트다운)
+int InputWithCnt3(char* input, int max_length, int timeout) {
     int start_time = clock(); // 시작 시간
     int elapsed_time = 0;
     int index = 0;
 
-    MoveConsole(23, 12);
-
-    while (elapsed_time < timeout * CLOCKS_PER_SEC) {
+    while (elapsed_time < timeout * CLOCKS_PER_SEC) { // 제한 시간 내 반복
         // 카운트다운 오른쪽 상단에 출력
         MoveConsole(65, 1);
         printf("남은 시간: %2d초", timeout - elapsed_time / CLOCKS_PER_SEC);
 
-        if (_kbhit()) {
-            char ch = _getch();
+        if (_kbhit()) { // 키 입력 감지
+            char ch = _getch(); // 키 입력을 읽음
             if (ch == '\r') { // Enter 키 입력 시 종료
                 input[index] = '\0';
                 return 1; // 입력 성공
@@ -33,11 +31,13 @@ int InputWithcnt2(char* input, int max_length, int timeout) {
         }
 
         elapsed_time = clock() - start_time;
+        Sleep(50); // CPU 사용률 절감
     }
 
     input[index] = '\0'; // 입력 종료
     return 0; // 시간 초과
 }
+
 // 화살표 게임 (난이도 포함)
 void PlayArrowGame(int level) {
     char* arrows[] = { "↑", "↓", "←", "→" };
@@ -76,18 +76,21 @@ void PlayArrowGame(int level) {
     MoveConsole(23, 8);
     printf("%d초 안에 최종 좌표를 입력하세요 (예: (x, y)):", timeout);
 
-    if (!InputWithTimeout(user_input, sizeof(user_input), timeout)) {
+    // 사용자 입력
+    if (!InputWithCnt3(user_input, sizeof(user_input), timeout)) {
         MoveConsole(23, 10);
         printf("시간 초과! 게임 실패!");
         return;
     }
 
+    // 입력 형식 검증
     if (sscanf(user_input, "(%d, %d)", &user_x, &user_y) != 2) {
         MoveConsole(23, 10);
         printf("입력 형식이 잘못되었습니다. (예: (2, 3))");
         return;
     }
 
+    // 정답 확인
     if (user_x == x && user_y == y) {
         MoveConsole(23, 10);
         printf("정답! 성공했습니다!");
