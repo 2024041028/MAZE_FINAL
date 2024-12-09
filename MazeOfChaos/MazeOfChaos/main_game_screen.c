@@ -43,6 +43,7 @@ void ranking(int level) {
 			}
 		}
 	}
+	fclose(fp_ranking);
 }
 
 void MenuScreenFrame(int level) {
