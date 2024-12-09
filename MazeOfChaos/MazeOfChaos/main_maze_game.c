@@ -7,12 +7,11 @@ int x, y; //플레이어 이동을 감지
 int x_0, y_0; //state의 (0,0)의 콘솔 위치를 나타낼 값
 int h = 3; //하트 개수
 int skip = 0; //스킵권 개수
-int coin = 0; //코인 개수
-int key = 0;
-int line = 0;
-int minigame_prob;
-char inform[100][100];
-int clear = 0;
+int key = 0; //열쇠 획득 여부
+int line = 0; //inform 줄 수 기록
+int minigame_prob; //미니게임 호출 확률
+char inform[100][100]; //안내 문구 기록
+int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
 	FillEntireFrameRandomly(random, x, y);
@@ -45,7 +44,10 @@ void minigame_pop(int random,int x,int y) {
 
 	//	break;
 	}
-	/*if (미니게임 실패) {
+	/*if (미니게임 성공) {
+		user_coin += 2;
+	}
+	else if (미니게임 실패) {
 		h--;
 	}*/
 	ScreenReset();
@@ -313,7 +315,7 @@ void movement() {
 			line++;
 		}
 		else if (now_state[player_x + x][player_y + y] == 6) { //코인 획득
-			coin++;
+			user_coin++;
 			now_state[player_x][player_y] = 10;
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 			printf(" ");
@@ -404,13 +406,33 @@ void maze_game() {
 	else if (now_level == 5) maze_size = 10;
 	x_0 = 49 - maze_size - 1; y_0 = 12 - maze_size / 2; //(0,0)의 콘솔 위치
 	maze();
-	skip = 0;
-	line = 0;
 	time_t end = time(NULL);
 	int record = end - start;
-	if (user_record[now_level] > record && clear == 1) {
-		user_record[now_level] = record;
+	ScreenReset();
+	if (clear == 1) {
+		MoveConsole(40, 10);
+		printf("미로 탈출 성공!");
+		MoveConsole(44, 12);
+		printf("기록:%d", record);
+		if (user_record[now_level] == 0 || user_record[now_level] > record) {
+			MoveConsole(32, 14);
+			printf("신기록! 이 기록으로 기록됩니다.");
+			MoveConsole(38, 16);
+			printf("당신은 %d등입니다!", 1);
+			user_record[now_level] = record;
+			MoveConsole(0, 0);
+			printf("%d", user_record[now_level]);
+			UpdateUserInfo();
+		}
+		MoveConsole(25, 2);
+		printf("메인 화면으로 돌아가려면 BACKSPACE를 누르시오");
+		clear = 0;
+		while (1) {
+			if (GetAsyncKeyState(VK_BACK) & 0x8000) break;
+			Sleep(10);
+		}
 	}
-	clear = 0;
+	skip = 0;
+	line = 0;
 	ScreenReset();
 }

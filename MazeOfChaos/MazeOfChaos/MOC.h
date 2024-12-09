@@ -61,6 +61,7 @@ void Donate();
 
 
 // ******* main_screen_screen.c¿¡ Á¸Àç ********* //
+void ranking();
 void MenuScreenFrame();
 void MenuScreen();
 void Level();

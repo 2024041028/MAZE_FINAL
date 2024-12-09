@@ -3,8 +3,49 @@
 char now_skin[10] = "X";
  // ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω
 
+struct rank {
+	char name[20];
+	int record;
+	struct rank* next;
+}*pre, * cur, * first, * new;
 
-void MenuScreenFrame() {
+void ranking(int level) {
+	char name[20];
+	int record = 0;
+	int i;
+	first = NULL;
+	FILE* fp_ranking = fopen("Record.txt", "r");
+	while (fscanf(fp_ranking, "%s", name) != EOF) {
+		struct rank* new = malloc(sizeof(struct rank));
+		strcpy(new->name, name); //유저 이름 입력
+		for (i = 0; i < 26; i++) { //유저별 기록 입력
+			fscanf(fp_ranking, "%d", &record);
+			if (record == 0)break;
+			if (i == level) {
+				new->record = record;
+				new->next = NULL;
+				if (first == NULL)first = new;
+				else {
+					cur = first;
+					while (cur != NULL && cur->record < record) {
+						pre = cur;
+						cur = cur->next;
+					}
+					if (cur == first) {
+						new->next = cur;
+						first = new;
+					}
+					else {
+						pre->next = new;
+						new->next = cur;
+					}
+				}
+			}
+		}
+	}
+}
+
+void MenuScreenFrame(int level) {
 	CreateOutFrame();
 	SetColor(7);
 	MoveConsole(22, 2);
@@ -32,17 +73,22 @@ void MenuScreenFrame() {
 
 	MoveConsole(36, 16);
 	printf("┗━━━━━━━━━━━━━━━━━━━━┛");
+
+	ranking(level);
 	SetColor(7);
-	MoveConsole(36, 17);
-	printf("1. ");
-	MoveConsole(36, 18);
-	printf("2. ");
-	MoveConsole(36, 19);
-	printf("3. ");
-	MoveConsole(36, 20);
-	printf("4. ");
-	MoveConsole(36, 21);
-	printf("5. ");
+	cur = first;
+	int i;
+	for (i = 0; i < 5; i++) {
+		if (cur == NULL)break;
+		MoveConsole(36, 17 + i);
+		printf("%d. %s %d", i + 1,cur->name, cur->record);
+		cur = cur->next;
+	}
+	for (int j = i; j < 5; j++) {
+		MoveConsole(36, 17 + j);
+		printf("%d.", j + 1);
+	}
+	MoveConsole(0, 0);
 }
 
 
@@ -81,7 +127,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[2] == 0) {
+		if (user_record[1] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");
@@ -131,7 +177,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[3] == 0) {
+		if (user_record[2] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");
@@ -179,7 +225,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[4] == 0) {
+		if (user_record[3] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");
@@ -229,7 +275,7 @@ void Level(int level) {
 		MoveConsole(61, 13);
 		printf("     ▒▒");
 
-		if (user_record[5] == 0) {
+		if (user_record[4] == 0) {
 			SetColor(12);
 			MoveConsole(61, 15);
 			printf(" ※ 잠금 ※");
@@ -284,18 +330,18 @@ void MenuScreen() {
 		}
 	}
 	ScreenReset();
-	MenuScreenFrame();
+	MenuScreenFrame(flag);
 	Sleep(100);
 	while (1) {
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && flag != 5 && flag < max_level) {
 			ScreenReset();
-			MenuScreenFrame();
+			MenuScreenFrame(flag);
 			flag++;
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && flag != 1) {
 			ScreenReset();
-			MenuScreenFrame();
+			MenuScreenFrame(flag);
 			flag--;
 			Sleep(150);
 		}
@@ -307,7 +353,7 @@ void MenuScreen() {
 			RemoveGarbageChar();
 			now_level = flag;
 			maze_game();
-			MenuScreenFrame();
+			MenuScreenFrame(flag);
 			for (int i = 1; i <= 5; i++) {
 				if (user_record[i] == 0) {
 					max_level = i;
