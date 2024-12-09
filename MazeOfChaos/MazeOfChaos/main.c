@@ -9,7 +9,7 @@ int main() {
 	//StartScreen();
 	//PlayGreenFrogRPS();
 	//PlayAscendingGame();
-	PlayTriviaQuizGame();
+//	PlayTriviaQuizGame();
 	//MenuScreen();
 	//FinishGame();
 	//MenuScreen();
@@ -19,7 +19,7 @@ int main() {
 	//PlayHangman();
 	//PlayMathGame();
 	//PlayMemoryGame();
-	//PlayArrowGame();
+	PlayArrowGame();
 	StartScreen();
 	MenuScreen();
 	FinishGame();
