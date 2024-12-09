@@ -3,7 +3,6 @@
 #include <windows.h>
 
 extern int h; // 목숨 (다른 파일에서 선언된 전역 변수)
-extern int skip;
 extern char user_name[20]; // 사용자 이름 (다른 파일에서 선언된 전역 변수)
 
 // 콘솔 인코딩 설정

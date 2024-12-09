@@ -44,6 +44,7 @@ int InputWithTimeoutAscending(char* input, int max_length, int timeout) {
 
 // 오름차순 정렬 게임 (수정된 틀 적용)
 void PlayAscendingGame(int level) {
+
     int numbers[10], user_input[10];
     char input[50];
     int count = 5, timeout = 30;
