@@ -2,14 +2,13 @@
 
 
 int main() {
-
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
 	//StartScreen();
 	//PlayGreenFrogRPS();
 	//PlayAscendingGame();
-//	PlayTriviaQuizGame();
+    //PlayTriviaQuizGame();
 	//MenuScreen();
 	//FinishGame();
 	//MenuScreen();
@@ -20,9 +19,9 @@ int main() {
 	//PlayMathGame();
 	//PlayMemoryGame();
 	PlayArrowGame();
-	StartScreen();
+	/*StartScreen();
 	MenuScreen();
-	FinishGame();
+	FinishGame();*/
 	//PlayReactionGame();
 	//PlayReactionGame();
 }
