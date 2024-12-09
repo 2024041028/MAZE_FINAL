@@ -2,51 +2,80 @@
 #include <stdbool.h>
 #include <windows.h>
 
-extern int h; // 목숨 (다른 파일에서 선언된 전역 변수)
-extern char user_name[20]; // 사용자 이름 (다른 파일에서 선언된 전역 변수)
-
+extern int h; // 목숨
+extern char user_name[20]; // 사용자 이름
 
 // 콘솔 인코딩 설정
 void SetupConsoleEncoding() {
-    // 출력 인코딩을 CP949로 설정 (한글 지원)
     SetConsoleOutputCP(CP_ACP);
-    // 입력 인코딩을 CP949로 설정
     SetConsoleCP(CP_ACP);
 }
 
-// 사용자 입력 함수 (시간 제한 포함, 입력값 노란색 표시, 한글 지원)
+// 텍스트 줄넘김 처리 함수
+void PrintWrappedText(const char* text, int x, int y, int width) {
+    int len = strlen(text);
+    int line_start = 0;
+
+    while (line_start < len) {
+        MoveConsole(x, y++);
+        for (int i = 0; i < width && (line_start + i) < len; i++) {
+            printf("%c", text[line_start + i]);
+        }
+        line_start += width;
+    }
+}
+
+// 사용자 입력 함수 (카운트다운 포함, 입력값 노란색 표시, 줄넘김 처리)
 bool InputWithTimeoutTrivia(char* input, int max_length, int timeout) {
     int start_time = clock();
     int elapsed_time = 0;
     int index = 0;
 
     HANDLE hConsoleInput = GetStdHandle(STD_INPUT_HANDLE);
-    WCHAR wide_input[256]; // 유니코드 입력 처리용
-    DWORD chars_read;
 
     while (elapsed_time < timeout * CLOCKS_PER_SEC) {
-        // 카운트다운 오른쪽 상단에 출력
-        MoveConsole(65, 2);
+        // 카운트다운 오른쪽 상단에 출력 (사각형 틀 안에서 유지)
+        MoveConsole(55, 2);
+        printf("          "); // 잔여 값 지우기
+        MoveConsole(55, 2);
         printf("남은 시간: %2d초", timeout - elapsed_time / CLOCKS_PER_SEC);
 
-        // 입력 감지
-        if (WaitForSingleObject(hConsoleInput, 50) == WAIT_OBJECT_0) {
-            if (ReadConsoleW(hConsoleInput, wide_input, max_length - 1, &chars_read, NULL)) {
-                wide_input[chars_read - 2] = L'\0'; // 엔터 제거
-                WideCharToMultiByte(CP_ACP, 0, wide_input, -1, input, max_length, NULL, NULL); // 유니코드 -> CP949 변환
-                return true; // 입력 성공
+        // 키 입력 확인
+        if (_kbhit()) {
+            char ch = _getch();
+            if (ch == '\r') { // Enter 키
+                input[index] = '\0';
+                return true; // 입력 완료
+            }
+            else if (ch == '\b' && index > 0) { // Backspace
+                index--;
+                MoveConsole(23 + index, 14);
+                printf(" ");
+                MoveConsole(23 + index, 14);
+            }
+            else if (index < max_length - 1) { // 입력 가능한 경우
+                input[index++] = ch;
+                SetColor(14);
+                MoveConsole(23 + index - 1, 14);
+                printf("%c", ch);
+                SetColor(7);
             }
         }
 
+        // 경과 시간 계산
         elapsed_time = clock() - start_time;
+
+        // 화면 업데이트를 위한 지연
+        Sleep(50);
     }
 
+    input[index] = '\0';
     return false; // 시간 초과
 }
 
-// 상식 퀴즈 게임 (수정된 틀 적용, 한글 지원)
+// 상식 퀴즈 게임
 void PlayTriviaQuizGame(int level) {
-    SetupConsoleEncoding(); // 콘솔 인코딩 설정
+    SetupConsoleEncoding();
 
     char* questions[] = {
         "대한민국의 수도는 어디인가요?",
@@ -91,14 +120,11 @@ void PlayTriviaQuizGame(int level) {
     printf("상식 퀴즈 게임");
     MoveConsole(23, 6);
     printf("================");
-    MoveConsole(23, 8);
-    printf("문제: %s", questions[random_index]);
+    PrintWrappedText(questions[random_index], 23, 8, 40); // 줄넘김 처리된 질문 출력
 
-    MoveConsole(23, 11);
+    MoveConsole(23, 12);
     printf("%d초 안에 정답을 입력하세요:", timeout);
     MoveConsole(23, 14);
-
-    // 비동기 입력 처리
     if (!InputWithTimeoutTrivia(user_input, sizeof(user_input), timeout)) {
         MoveConsole(23, 16);
         SetColor(14);
@@ -107,22 +133,19 @@ void PlayTriviaQuizGame(int level) {
         return;
     }
 
-    // 입력값 출력
-    MoveConsole(23, 15);
-    printf("입력한 값: ");
+    MoveConsole(23, 14);
     SetColor(14);
-    printf("%s", user_input);
+    printf("입력값: %s", user_input); // 입력한 값 출력
     SetColor(7);
 
-    // 정답 확인
     if (strcmp(user_input, answers[random_index]) == 0) {
-        MoveConsole(23, 17);
+        MoveConsole(23, 16);
         SetColor(14);
         printf("정답! 성공했습니다!");
         SetColor(7);
     }
     else {
-        MoveConsole(23, 17);
+        MoveConsole(23, 16);
         SetColor(14);
         printf("오답! 정답은 '%s'입니다.", answers[random_index]);
         SetColor(7);
