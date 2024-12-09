@@ -8,7 +8,8 @@ int main() {
 	CreateOutFrame();
 	//StartScreen();
 	//PlayGreenFrogRPS();
-	PlayAscendingGame();
+	//PlayAscendingGame();
+	PlayTriviaQuizGame();
 	//MenuScreen();
 	//FinishGame();
 	//MenuScreen();

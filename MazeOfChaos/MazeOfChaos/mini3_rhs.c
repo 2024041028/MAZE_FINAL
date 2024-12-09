@@ -38,10 +38,10 @@ int InputWithCountdown(char* input, int max_length, int timeout) {
     input[index] = '\0'; // 입력 종료
     return 0; // 시간 초과
 }
+#include "MOC.h"
 
-// 상식 퀴즈 게임
-void PlayTriviaQuizGame() {
-    // 퀴즈 질문과 정답 데이터
+// 상식 퀴즈 게임 (난이도 포함)
+void PlayTriviaQuizGame(int level) {
     char* questions[] = {
         "대한민국의 수도는 어디인가요?",
         "지구에서 가장 높은 산은 무엇인가요?",
@@ -55,57 +55,44 @@ void PlayTriviaQuizGame() {
         "세계에서 가장 많이 사용되는 언어는 무엇인가요?"
     };
 
-    char* answers[] = {
-        "서울",
-        "에베레스트",
-        "목성",
-        "빗변",
-        "비트",
-        "0도",
-        "전구",
-        "한강",
-        "1969년",
-        "중국어"
-    };
-
-    char user_input[100];
+    char* answers[] = { "서울", "에베레스트", "목성", "빗변", "비트", "0도", "전구", "한강", "1969년", "중국어" };
+    char user_input[50];
     int num_questions = 10;
+    int timeout = 10;
 
-    // 난수 생성
+    // 난이도 설정
+    if (level == 1) timeout = 10;
+    else if (level == 2) timeout = 7;
+    else if (level == 3) timeout = 5;
+
     srand(time(NULL));
     int random_index = rand() % num_questions;
 
-    // 틀 출력
     CreateOutFrame();
 
-    // 게임 안내 출력
+    // 질문 출력
     MoveConsole(23, 2);
     printf("상식 퀴즈 게임");
     MoveConsole(23, 3);
     printf("================");
-
-    // 랜덤 질문 출력
     MoveConsole(23, 5);
     printf("문제: %s", questions[random_index]);
 
-    // 사용자 입력 요청 (카운트다운 시작)
     MoveConsole(23, 8);
-    printf("30초 안에 정답을 입력하세요:");
-    MoveConsole(23, 12);
+    printf("%d초 안에 정답을 입력하세요:", timeout);
 
-    if (!InputWithCountdown(user_input, sizeof(user_input), 30)) {
-        MoveConsole(23, 14);
+    if (!InputWithTimeout(user_input, sizeof(user_input), timeout)) {
+        MoveConsole(23, 10);
         printf("시간 초과! 게임 실패!");
         return;
     }
 
-    // 정답 확인
     if (strcmp(user_input, answers[random_index]) == 0) {
-        MoveConsole(23, 14);
-        printf("정답! 성공했습니다.");
+        MoveConsole(23, 10);
+        printf("정답! 성공했습니다!");
     }
     else {
-        MoveConsole(23, 14);
+        MoveConsole(23, 10);
         printf("오답! 정답은 '%s'입니다.", answers[random_index]);
     }
 }
