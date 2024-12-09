@@ -2,7 +2,7 @@
 
 #define MAX_ATTEMPTS 5
 
-int now_level = 1;
+
 
 void PrintAttempts(int attempts[], char results[][10], int attemptCount) {
     MoveConsole(22, 3);
@@ -14,6 +14,7 @@ void PrintAttempts(int attempts[], char results[][10], int attemptCount) {
 }
 
 void random_number() {
+    now_level = 1;
     int target, guess, attemptCount = 0;
     int attempts[MAX_ATTEMPTS] = { 0 };
     char results[MAX_ATTEMPTS][10];

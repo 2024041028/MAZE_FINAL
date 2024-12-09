@@ -9,10 +9,6 @@ int main() {
 	StartScreen();
 	MenuScreen();
 	FinishGame();
-    //MenuScreen();
-	//FinishGame();
 	//PlayReactionGame();
 	//PlayReactionGame();
-	
 }
-

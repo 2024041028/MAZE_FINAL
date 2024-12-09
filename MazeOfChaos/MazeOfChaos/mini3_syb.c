@@ -2,6 +2,7 @@
 
 #define MAX_QUESTIONS 5    // 문제 수
 #define TIME_LIMIT 15      // 제한 시간 (초)
+#define PASS_SCORE 3       // 통과 점수
 
 // 사용자 입력을 받는 함수 (카운트다운 포함)
 int Countdown(char* input, int max_length, int timeout) {
@@ -43,9 +44,20 @@ int Countdown(char* input, int max_length, int timeout) {
 }
 
 // 랜덤 산수 문제 생성 함수
-void GenerateMathProblem(int* a, int* b, char* op, int* answer) {
-    *a = rand() % 50 + 1; // 1부터 50 사이의 숫자
-    *b = rand() % 50 + 1;
+void GenerateMathProblem(int* a, int* b, char* op, int* answer, int now_level) {
+    int max_range;
+    if (now_level == 1) {
+        max_range = 50; // 1단계: 1부터 50
+    }
+    else if (now_level == 2) {
+        max_range = 100; // 2단계: 1부터 100
+    }
+    else {
+        max_range = 200; // 3단계: 1부터 200
+    }
+
+    *a = rand() % max_range + 1; // 1부터 max_range 사이의 숫자
+    *b = rand() % max_range + 1;
     *op = (rand() % 2 == 0) ? '+' : '-'; // 랜덤으로 '+' 또는 '-' 선택
 
     // 정답 계산
@@ -67,34 +79,22 @@ void PlayMathGame() {
     int score = 0; // 맞춘 문제 수
     int a, b, userAnswer, correctAnswer;
     char op; // 연산자 변수 선언 추가
+    int now_level = 1; // 초기 레벨 설정
 
-    // 시작 안내 메시지
-    MoveConsole(36, 5);
-    SetColor(14); // 노란색
-    printf("산수 게임에 오신 것을 환영합니다!\n");
-    MoveConsole(36, 6);
-    printf("3초 뒤 게임이 시작됩니다.\n");
-
-    // 3초 카운트다운 표시
-    for (int countdown = 3; countdown > 0; countdown--) {
-        MoveConsole(36, 7);
-        printf("남은 시간: %d초\n", countdown);
-        Sleep(1000); // 1초 대기
-    }
-
+    
     SetColor(7); // 기본 색상 복원
     Sleep(1000); // 마지막 메시지 출력 후 1초 대기
 
     for (int i = 1; i <= MAX_QUESTIONS; i++) {
         // 문제 생성
-        GenerateMathProblem(&a, &b, &op, &correctAnswer);
+        GenerateMathProblem(&a, &b, &op, &correctAnswer, now_level);
 
         // 문제 출력
         system("cls");
         CreateOutFrame();
         MoveConsole(36, 8);
         SetColor(11); // 파란색
-        printf("문제 %d: %d %c %d = ?", i, a, op, b);
+        printf("문제 %d번 %d %c %d = ?", i, a, op, b);
 
         // 사용자 입력 요청 (카운트다운 시작)
         MoveConsole(36, 10);
@@ -144,18 +144,20 @@ void PlayMathGame() {
     // 게임 결과
     system("cls");
     CreateOutFrame();
-    MoveConsole(36, 10);
+    MoveConsole(34, 10);
 
-    if (score == MAX_QUESTIONS) {
+    if (score >= PASS_SCORE) { // 통과 기준에 따라 판단
         SetColor(10); // 초록색
-        printf("축하합니다! 모든 문제를 맞췄습니다!");
+        printf("축하합니다! 통과하셨습니다!");
     }
     else {
         SetColor(4); // 빨간색
-        printf("게임 종료! 맞춘 문제: %d/%d", score, MAX_QUESTIONS);
+        printf("게임 종료! 맞춘 문제: %d/%d\n", score, MAX_QUESTIONS);
+        MoveConsole(36, 11);
+        printf("게임에 실패하셨습니다");
     }
 
-    MoveConsole(36, 12);
+    MoveConsole(26, 12);
     SetColor(7); // 기본 색상 복원
     printf("Press any key to return to the main menu...");
     getchar();

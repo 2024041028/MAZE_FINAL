@@ -4,118 +4,108 @@
 #include <conio.h>
 #include <windows.h>
 
-#define TIME_LIMIT 2.0 // '지금!' 반응 제한 시간 (초)
-#define MAX_LEVEL 5    // 최대 난이도
-#define BASE_SPEED 1000 // 숫자 표시 기본 속도 (밀리초)
-
-// 혼란 문구 배열
-const char* CONFUSING_TEXTS[] = { "지금!", "자금", "ㅈ금", "집음", "ㅣ금" };
-const int NUM_CONFUSING_TEXTS = 5;
-
-// 랜덤 문구 생성 함수
-const char* GenerateRandomText(int is_now) {
-    if (is_now) {
-        return "지금!"; // 올바른 문구
-    }
-    else {
-        return CONFUSING_TEXTS[rand() % NUM_CONFUSING_TEXTS]; // 혼란 문구
-    }
+// 랜덤 색상 생성 함수
+int GetRandomColor() {
+    return rand() % 15 + 1; // 1~15 사이의 색상 코드 반환
 }
 
-// 반응 속도 측정 및 입력 받기
-int GetReactionTime(double* reaction_time) {
-    clock_t start_time = clock();
-    clock_t elapsed_time;
-    int success = 0;
+void PlayReflexGame() {
+    int now_level = 1; // 초기 레벨
+    int is_now_displayed = 0; // '지금' 출력 여부
+    char input;
+    int reaction_start_time = 0;
+    const char* confusing_words[] = { "자금", "ㅈ금", "지국", "자극", "ㅈ긍" }; // 혼동 단어 배열
+    int num_confusing_words = sizeof(confusing_words) / sizeof(confusing_words[0]);
+
+    // 레벨별 시간 제한 설정
+    float level_time_limit[] = { 1.0, 0.7, 0.5 };
+    if (now_level < 1 || now_level > 3) now_level = 1; // 레벨 범위 제한
+
+    srand(time(NULL));
+
+    const int display_x = 45; // 출력 위치 x 좌표
+    const int display_y = 12; // 출력 위치 y 좌표
+
+    // 안내 메시지 출력
+    MoveConsole(27, 5);
+    SetColor(7);
+    printf("'지금'이라는 글자가 나오면 'p'를 누르세요!");
+
+    // 제한시간 안내 메시지
+    MoveConsole(36, 6);
+    SetColor(7);
+    printf("%d단계: 제한 시간 %.1f초", now_level, level_time_limit[now_level - 1]);
+
+    Sleep(2000); // 사용자에게 준비 시간 제공
 
     while (1) {
-        if (_kbhit()) {
-            char ch = _getch();
-            if (ch == 'p' || ch == 'P') {
-                elapsed_time = clock() - start_time;
-                *reaction_time = (double)elapsed_time / CLOCKS_PER_SEC;
-                success = 1;
-                break;
+        // 플래그 초기화
+        is_now_displayed = 0;
+
+        // 화면에 출력
+        MoveConsole(display_x, display_y);
+        if (rand() % 10 == 0) { // 10% 확률로 "지금" 또는 혼동 단어 출력
+            if (rand() % 2 == 0) {
+                SetColor(GetRandomColor()); // 랜덤 색상 설정
+                printf("지금  ");
+                is_now_displayed = 1;
+                reaction_start_time = clock(); // 반응 시간 기록 시작
+            }
+            else {
+                int idx = rand() % num_confusing_words;
+                SetColor(GetRandomColor()); // 랜덤 색상 설정
+                printf("%s  ", confusing_words[idx]);
+                Sleep(300); // 혼동 단어 표시 후 다음 루프로
+                continue;
             }
         }
-
-        elapsed_time = clock() - start_time;
-        if ((double)elapsed_time / CLOCKS_PER_SEC > TIME_LIMIT) {
-            *reaction_time = -1; // 시간 초과
-            break;
-        }
-    }
-    return success;
-}
-
-// 순발력 게임 함수
-void PlayReactionGame() {
-    system("cls");
-    CreateOutFrame(); // 게임 틀 생성
-
-    srand(time(NULL)); // 랜덤 시드 설정
-
-    int level = 1;
-    double reaction_time;
-
-    // 난이도 루프
-    while (level <= MAX_LEVEL) {
-        int display_speed = BASE_SPEED - (level - 1) * 200; // 난이도에 따른 속도 증가
-        int correct_trigger = rand() % 5 + 3; // '지금!' 출력 타이밍
-        int rounds = 0;
-
-        // 숫자와 문구 출력 루프
-        while (rounds++ < correct_trigger) {
-            system("cls");
-            CreateOutFrame();
-
-            // 숫자 출력
-            int random_number = rand() % 1000;
-            MoveConsole(36, 8);
-            SetColor(11); // 파란색
-            printf("%d", random_number);
-
-            // 랜덤 문구 출력
-            const char* random_text = GenerateRandomText(rounds == correct_trigger);
-            MoveConsole(36, 10);
-            SetColor(14); // 노란색
-            printf("%s", random_text);
-
-            if (rounds == correct_trigger) {
-                // '지금!'일 때 반응 확인
-                if (GetReactionTime(&reaction_time)) {
-                    // 성공
-                    MoveConsole(36, 12);
-                    SetColor(10); // 초록색
-                    printf("성공! 반응 시간: %.3f초", reaction_time);
-                    Sleep(2000);
-                    level++;
-                    break;
+        else { // 숫자 출력
+            int random_number = rand() % 100;
+            SetColor(GetRandomColor()); // 랜덤 색상 설정
+            printf("%02d  ", random_number);
+            Sleep(300);
+            // 사용자가 숫자가 출력될 때 'p'를 누르면 즉시 종료
+            if (_kbhit()) { // 키 입력 감지
+                input = _getch();
+                if (input == 'p') {
+                    MoveConsole(30, 15);
+                    SetColor(4);
+                    printf("실패! 잘못된 상황에서 'p'를 눌렀습니다. ");
+                    return; // 실패 시 게임 종료
                 }
-                else {
-                    // 실패
-                    MoveConsole(36, 12);
-                    SetColor(4); // 빨간색
-                    printf("실패! 시간 초과!");
-                    MoveConsole(36, 14);
-                    printf("Press any key to return to the main menu...");
-                    getchar();
+            }
+            continue;
+        }
+
+        // "지금"이 출력된 후 사용자 반응 대기
+        while (1) {
+            if (_kbhit()) { // 키 입력 감지
+                input = _getch();
+
+                if (is_now_displayed && input == 'p') { // '지금'에 올바른 반응
+                    int reaction_time = clock() - reaction_start_time;
+                    MoveConsole(37, 15);
+                    SetColor(10);
+                    printf("성공! 반응 시간: %.2f초  ", (float)reaction_time / CLOCKS_PER_SEC);
                     return;
                 }
+
+                // '지금'이 출력되지 않은 상태에서 'p' 입력 처리
+                if (input == 'p') {
+                    MoveConsole(30, 15);
+                    SetColor(4);
+                    printf("실패! 잘못된 상황에서 'p'를 눌렀습니다.");
+                    return; // 실패 시 게임 종료
+                }
             }
 
-            Sleep(display_speed); // 다음 숫자 출력 전 대기
+            // "지금" 상태에서 시간 초과 처리
+            if (is_now_displayed && (float)(clock() - reaction_start_time) / CLOCKS_PER_SEC > level_time_limit[now_level - 1]) {
+                MoveConsole(39, 15);
+                SetColor(4);
+                printf("시간 초과! 실패!");
+                return; // 시간 초과 시 게임 종료
+            }
         }
     }
-
-    // 게임 클리어
-    system("cls");
-    CreateOutFrame();
-    MoveConsole(36, 10);
-    SetColor(10); // 초록색
-    printf("축하합니다! 모든 레벨을 클리어했습니다!");
-    MoveConsole(36, 12);
-    SetColor(7); // 기본 색상 복원
-    printf("Press any key to return to the main menu...");
-    getchar();
 }

@@ -434,5 +434,7 @@ void maze_game() {
 	}
 	skip = 0;
 	line = 0;
+	clear = 0;
+	UpdateUserInfo();
 	ScreenReset();
 }
