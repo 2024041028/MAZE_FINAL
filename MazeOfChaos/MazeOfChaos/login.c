@@ -95,12 +95,14 @@ void StartScreen() {
 	int flag = 0;
 	while (1) {
 		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+			RemoveGarbageChar();
 			if (flag == 0)
 				flag = 1;
 			else if (flag == 1)
 				flag = 2;
 		}
 		else if (GetAsyncKeyState(VK_UP) & 0x8000) {
+			RemoveGarbageChar();
 			if (flag == 2)
 				flag = 1;
 			else if (flag == 1)
@@ -181,9 +183,11 @@ int CheckUserStatus() {
 	while (1) {
 		Sleep(110);
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+			RemoveGarbageChar();
 			flag = 0;
 		}
 		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+			RemoveGarbageChar();
 			flag = 1;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
@@ -296,15 +300,6 @@ int EnterNickname() {
 			fprintf(record, "\n");
 			fclose(record);
 
-			/*char filename[30];
-			snprintf(filename, 30, "%s.txt", name);
-			FILE* in = fopen(filename, "w");
-			for (int i = 0; i < 12; i++) {
-				fprintf(in, "%d ", 0);
-			}
-			fclose(in);*/
-
-
 			return 0;
 		}
 		else if (FileCheck() == 0) {
@@ -325,14 +320,6 @@ int EnterNickname() {
 				else if (visit == 1 && strcmp(temp, name) == 0) { // 성공
 
 					strcpy(user_name, name);
-
-					/*snprintf(filename, 30, "%s.txt", name);
-					FILE* in = fopen(filename, "r");
-					for (int i = 0; i < 12; i++) {
-						fscanf(in, "%d", &user_info[i]);
-					}
-					fclose(in);*/
-
 					FILE* record = fopen("Record.txt", "r");
 					while (1) {
 						int result = fscanf(record, "%s", temp);
@@ -370,13 +357,6 @@ int EnterNickname() {
 				fprintf(userinfo_a, "%s\n", name);
 				fclose(userinfo_a);
 
-				/*snprintf(filename, 30, "%s.txt", name);
-				FILE* in = fopen(filename, "w");
-				for (int i = 0; i < 12; i++) {
-					fprintf(in,"%d ", 0);
-				}
-				fclose(in);*/
-
 				FILE* record = fopen("Record.txt", "a");
 				fprintf(record, "%s ", name);
 				for (int i = 0; i < 26; i++) {
@@ -399,8 +379,15 @@ int EnterNickname() {
 				printf("다시 입력해주세요");
 			}
 		}
-
-		Sleep(2000);
+		MoveConsole(32, 15);
+		printf("3초후 이전 화면으로 돌아갑니다.");
+		Sleep(1000);
+		MoveConsole(32, 15);
+		printf("2초후 이전 화면으로 돌아갑니다.");
+		Sleep(1000);
+		MoveConsole(32, 15);
+		printf("1초후 이전 화면으로 돌아갑니다.");
+		Sleep(1000);
 	}
 	return 0;
 }

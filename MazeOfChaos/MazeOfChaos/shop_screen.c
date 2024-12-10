@@ -33,6 +33,7 @@ int ShopScreen() {
 	int flag = 1;
 	while (1) {
 		if (GetAsyncKeyState(VK_UP) & 0x8000) {
+			RemoveGarbageChar();
 			if (flag == 1 && y == 0) {
 				continue;
 			}
@@ -47,6 +48,7 @@ int ShopScreen() {
 			}
 		}
 		else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+			RemoveGarbageChar();
 			if (flag == 2 && y == 9) {
 				continue;
 			}
@@ -63,10 +65,12 @@ int ShopScreen() {
 		}
 
 		else if (GetAsyncKeyState(VK_BACK) & 0x8000) {
+			RemoveGarbageChar();
 			MenuScreen();
 			return 0;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			RemoveGarbageChar();
 			if (user_skin[skin_num] == 0) {
 				Sleep(150);
 				BuySkin(skin_num);
@@ -185,6 +189,7 @@ int BuySkin(int skin_num) {
 	Sleep(100);
 	while (1) {
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+			RemoveGarbageChar();
 			SetColor(7);
 			MoveConsole(51, 8);
 			printf("Yes");
@@ -194,6 +199,7 @@ int BuySkin(int skin_num) {
 			flag = 0;
 		}
 		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+			RemoveGarbageChar();
 			SetColor(8);
 			MoveConsole(51, 8);
 			printf("Yes");
@@ -203,6 +209,7 @@ int BuySkin(int skin_num) {
 			flag = 1;
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			RemoveGarbageChar();
 			RemoveGarbageChar();
 			MoveConsole(49, 6);
 			printf("               ");
