@@ -4,7 +4,7 @@ char skin_list[20][10] = { "X","¡Ø", "¡Ú", "¢¾", "¢À", "¢¼", "¡ß", "¡ã", "¢Ü", "
 
 int ShopScreen() {
 
-	ScreenReset();
+	ScreenReset(14);
 
 	Donate();
 

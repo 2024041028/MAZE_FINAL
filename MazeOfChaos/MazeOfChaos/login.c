@@ -9,7 +9,7 @@ char skin_list[20][10];
 int now_level;
 
 void ExplainGame() {
-	ScreenReset();
+	ScreenReset(14);
 	SetColor(7);
 	MoveConsole(23, 5);
 	char arr[100] = "★ Maze Of Chaos에 오신것을 환영합니다!";
@@ -91,7 +91,7 @@ void ExplainGame() {
 
 
 void StartScreen() {
-	ScreenReset();
+	ScreenReset(14);
 	int flag = 0;
 	while (1) {
 		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
@@ -172,7 +172,7 @@ void StartScreen() {
 }
 
 int CheckUserStatus() {
-	ScreenReset();
+	ScreenReset(14);
 	MoveConsole(38, 10);
 	SetColor(15);
 	printf("처음 접속하시나요?");
@@ -233,7 +233,7 @@ int EnterNickname() {
 		int flag = 0;
 
 		int visit = CheckUserStatus();
-		ScreenReset();
+		ScreenReset(14);
 		MoveConsole(34, 10);
 		SetColor(15);
 		printf("당신의 이름을 입력해주세요");

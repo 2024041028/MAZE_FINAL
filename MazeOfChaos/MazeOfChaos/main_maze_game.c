@@ -222,7 +222,7 @@ void movement() {
 		}
 		//else if (GetAsyncKeyState(VK_BACK) & 0x0001) return 0;
 		if (h == 0) {
-			ScreenReset();
+			ScreenReset(now_color_num);
 			MoveConsole(40, 10);
 			printf("미로 탈출 실패!");
 			MoveConsole(25, 2);
@@ -393,7 +393,7 @@ void maze_game() {
 	time_t start = time(NULL);
 	srand(time(NULL));
 	minigame_prob = 0;
-	ScreenReset();
+	ScreenReset(14);
 	MoveConsole(75, 0);
 	SetColor(7);
 	strcpy(inform[line], "inform");
@@ -408,7 +408,7 @@ void maze_game() {
 	maze();
 	time_t end = time(NULL);
 	int record = end - start;
-	ScreenReset();
+	ScreenReset(14);
 	if (clear == 1) {
 		MoveConsole(40, 10);
 		printf("미로 탈출 성공!");
@@ -436,5 +436,5 @@ void maze_game() {
 	line = 0;
 	clear = 0;
 	UpdateUserInfo();
-	ScreenReset();
+	ScreenReset(14);
 }
