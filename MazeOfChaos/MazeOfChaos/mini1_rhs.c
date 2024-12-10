@@ -87,8 +87,9 @@ void InputWithoutTimeout(char* input, int max_length) {
 }
 
 // 청개구리 가위바위보 게임 (수정된 카운트다운 및 입력 처리)
+
 int PlayGreenFrogRPS(int level) {
-    ShowInstructionsAndMenu();
+  
     SetupConsoleEncoding2();
 
     const char* options[] = { "가위", "바위", "보" };
@@ -103,7 +104,6 @@ int PlayGreenFrogRPS(int level) {
     else if (level == 3) timeout = 5;  // 어려움: 5초
 
     srand(time(NULL));
-    CreateOutFrame();
 
     // 사용자 ID 및 목숨 출력
     MoveConsole(23, 2);

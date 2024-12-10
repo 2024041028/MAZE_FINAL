@@ -4,7 +4,7 @@
 int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
-	CreateOutFrame();
+	CreateOutFrame(14);
 	StartScreen();
 	MenuScreen();
 	FinishGame();

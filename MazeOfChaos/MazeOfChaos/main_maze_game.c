@@ -1,6 +1,6 @@
 #include "MOC.h"
 
-
+int now_color_num;
 int maze_size;
 int player_x, player_y; //state에서의 플레이어 위치
 int x, y; //플레이어 이동을 감지
@@ -14,10 +14,15 @@ char inform[100][100]; //안내 문구 기록
 int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
-	FillEntireFrameRandomly(random, x, y);
-	int what_game = random % 10;
+
+	int what_game = random % 9 + 1;
+	FillEntireFrameRandomly(what_game, x, y);
+	ShowInstructionsAndMenu(what_game);
+	now_color_num = what_game;
+
 	int result;
-	if (what_game == 0) result = random_number();
+
+	if (what_game == 9) result = random_number();
 	else if (what_game == 1) result = PlayHangman();
 	else if (what_game == 2) result = PlayMathGame();
 	else if (what_game == 3) result = PlayMemoryGame();
@@ -33,7 +38,7 @@ void minigame_pop(int random,int x,int y) {
 	else {
 		h--;
 	}
-	ScreenReset();
+	ScreenReset(14);
 	SetColor(7);
 	for (int i = 0; i < line; i++) {
 		MoveConsole(75, i);
@@ -215,7 +220,7 @@ void movement() {
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
 		if (h == 0) {
-			ScreenReset();
+			ScreenReset(now_color_num);
 			MoveConsole(40, 10);
 			printf("미로 탈출 실패!");
 			MoveConsole(25, 2);
@@ -386,7 +391,7 @@ void maze_game() {
 	time_t start = time(NULL);
 	srand(time(NULL));
 	minigame_prob = 0;
-	ScreenReset();
+	ScreenReset(14);
 	MoveConsole(75, 0);
 	SetColor(7);
 	strcpy(inform[line], "inform");
@@ -401,7 +406,7 @@ void maze_game() {
 	maze();
 	time_t end = time(NULL);
 	int record = end - start;
-	ScreenReset();
+	ScreenReset(14);
 	if (clear == 1) {
 		MoveConsole(40, 10);
 		printf("미로 탈출 성공!");
@@ -429,5 +434,5 @@ void maze_game() {
 	line = 0;
 	clear = 0;
 	UpdateUserInfo();
-	ScreenReset();
+	ScreenReset(14);
 }

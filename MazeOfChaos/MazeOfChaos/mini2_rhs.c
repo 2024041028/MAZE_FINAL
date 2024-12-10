@@ -56,7 +56,7 @@ int PlayAscendingGame(int level) {
 
     srand(time(NULL));
 
-    CreateOutFrame();
+
 
     // 사용자 ID 및 목숨 출력
     MoveConsole(23, 2);

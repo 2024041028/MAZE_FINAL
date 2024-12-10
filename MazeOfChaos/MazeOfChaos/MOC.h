@@ -30,7 +30,7 @@ void FillEntireFrameRandomly();
 // *************************************** //
 
 // ******* login_screen.c에 존재 ********* //
-
+extern int now_color_num;
 extern int user_record[6]; // 1 2 3 4 5 단계 기록
 extern int user_skin[21]; // 1 2 3... 11 스킨 X ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω // 19개      <♬ ℡ ★>
 extern char now_skin[10];

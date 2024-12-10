@@ -103,7 +103,7 @@ int PlayTriviaQuizGame(int level) {
     srand(time(NULL));
     int random_index = rand() % num_questions;
 
-    CreateOutFrame();
+    CreateOutFrame(now_color_num);
 
     // 사용자 ID 및 목숨 출력
     MoveConsole(23, 2);

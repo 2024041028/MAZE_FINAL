@@ -46,7 +46,7 @@ void ranking(int level) {
 }
 
 void MenuScreenFrame(int level) {
-	CreateOutFrame();
+	CreateOutFrame(14);
 	SetColor(7);
 	MoveConsole(22, 2);
 	printf("Name : %s", user_name);
@@ -329,24 +329,24 @@ void MenuScreen() {
 			max_level = 5;
 		}
 	}
-	ScreenReset();
+	ScreenReset(14);
 	MenuScreenFrame(flag);
 	Sleep(100);
 	while (1) {
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && flag != 5 && flag < max_level) {
-			ScreenReset();
+			ScreenReset(14);
 			MenuScreenFrame(flag);
 			flag++;
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && flag != 1) {
-			ScreenReset();
+			ScreenReset(14);
 			MenuScreenFrame(flag);
 			flag--;
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(0x50) & 0x8000) {
-			ScreenReset();
+			ScreenReset(14);
 			ShopScreen();
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {

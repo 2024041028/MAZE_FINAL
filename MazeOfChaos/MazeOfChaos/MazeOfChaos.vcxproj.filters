@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="cursor_function.c" />
     <ClCompile Include="login.c" />
-    <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
     <ClCompile Include="main_maze_game.c" />
     <ClCompile Include="manage_info.c" />
@@ -20,6 +19,7 @@
     <ClCompile Include="shop_screen.c" />
     <ClCompile Include="mini4_rhs.c" />
     <ClCompile Include="introduce.c" />
+    <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MOC.h" />
