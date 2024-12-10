@@ -16,11 +16,10 @@ void ranking(int level) {
 	first = NULL;
 	FILE* fp_ranking = fopen("Record.txt", "r");
 	while (fscanf(fp_ranking, "%s", name) != EOF) {
-		struct rank* new = malloc(sizeof(struct rank));
+		struct rank* new =(struct rank*) malloc(sizeof(struct rank));
 		strcpy(new->name, name); //유저 이름 입력
 		for (i = 0; i < 26; i++) { //유저별 기록 입력
 			fscanf(fp_ranking, "%d", &record);
-			if (record == 0)break;
 			if (i == level) {
 				new->record = record;
 				new->next = NULL;
@@ -79,12 +78,12 @@ void MenuScreenFrame(int level) {
 	SetColor(7);
 	cur = first;
 	int i = 0;
-	/*for (i = 0; i < 5; i++) {
+	for (i = 0; i < 5; i++) {
 		if (cur == NULL)break;
 		MoveConsole(36, 17 + i);
 		printf("%d. %s %d", i + 1,cur->name, cur->record);
 		cur = cur->next;
-	}*/
+	}
 	for (int j = i; j < 5; j++) {
 		MoveConsole(36, 17 + j);
 		printf("%d.", j + 1);
