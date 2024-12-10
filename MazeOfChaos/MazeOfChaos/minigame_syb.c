@@ -13,7 +13,7 @@ void PrintAttempts(int attempts[], char results[][10], int attemptCount) {
     }
 }
 
-void random_number() {
+int random_number() {
     now_level = 1;
     int target, guess, attemptCount = 0;
     int attempts[MAX_ATTEMPTS] = { 0 };
@@ -59,7 +59,7 @@ void random_number() {
             MoveConsole(32, 18);
             SetColor(10); // 초록색
             printf("축하드립니다! 숫자는 %d입니다.", target);
-            return; // 게임 성공
+            return 1; // 게임 성공
         }
 
         attemptCount++;
@@ -77,4 +77,5 @@ void random_number() {
     MoveConsole(32, 18);
     SetColor(4); // 빨간색
     printf("실패하셨습니다! 숫자는 %d입니다.", target);
+    return 0;
 }

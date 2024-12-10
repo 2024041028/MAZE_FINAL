@@ -69,7 +69,7 @@ void Level();
 
 // *******minigame_syb.c에 존재 ********* //
 void PrintAttempts();
-void random_number();
+int random_number();
 // ************************************** //
 
 // ********mini2_syb.c에 존재*********** //
@@ -91,6 +91,11 @@ void GetUserInput();
 void PlayMemoryGame();
 // ************************************ //
 
+// ********mini5_syb.c에 존재*********** //
+int GetRandomColor();
+void PlayReflexGame();
+// ************************************ //
+// 
 // ********mini1_rhs.c에 존재*********** //
 void InputWithoutTimeout();
 void PlayGreenFrogRPS();
@@ -104,6 +109,12 @@ void PlayAscendingGame();
 // ********mini3_rhs.c에 존재*********** //
 int InputWithCountdown();
 void PlayTriviaQuizGame();
+// ************************************ //
+
+// ********mini4_rhs.c에 존재*********** //
+void DisplayUserInfo();
+int InputWithcnt3();
+void PlayArrowGame();
 // ************************************ //
 
 // ******* manage_info.c에 존재 ********* //
