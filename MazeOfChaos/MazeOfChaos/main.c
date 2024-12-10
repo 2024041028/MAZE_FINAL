@@ -5,23 +5,15 @@ int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame();
-	//StartScreen();
-	PlayGreenFrogRPS();
-	//PlayAscendingGame();
-	//PlayArrowGame();
-    //PlayTriviaQuizGame();
-	//MenuScreen();
-	//FinishGame();
-	//MenuScreen();
-	//FinishGame();
-	//PlayReflexGame();
-	//random_number();
-	//PlayHangman();
-	//PlayMathGame();
-	//PlayMemoryGame();
-	/*StartScreen();
+<<<<<<< HEAD
+	//PlayTriviaQuizGame(1);
+	StartScreen();
 	MenuScreen();
-	FinishGame();*/
-	//PlayReactionGame();
-	//PlayReactionGame();
+	FinishGame();
+	
+=======
+	StartScreen();
+	MenuScreen();
+	FinishGame();
+>>>>>>> c77b26377df7507c13f0236dabd6c28cfdcaf36f
 }
