@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <conio.h> // For _getch()
-#include <windows.h> // For Sleep()
-
+#include "MOC.h"
 
 
 // Function to show the game instructions and menu options together
