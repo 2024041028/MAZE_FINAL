@@ -78,13 +78,13 @@ void MenuScreenFrame(int level) {
 	ranking(level);
 	SetColor(7);
 	cur = first;
-	int i;
-	for (i = 0; i < 5; i++) {
+	int i = 0;
+	/*for (i = 0; i < 5; i++) {
 		if (cur == NULL)break;
 		MoveConsole(36, 17 + i);
 		printf("%d. %s %d", i + 1,cur->name, cur->record);
 		cur = cur->next;
-	}
+	}*/
 	for (int j = i; j < 5; j++) {
 		MoveConsole(36, 17 + j);
 		printf("%d.", j + 1);

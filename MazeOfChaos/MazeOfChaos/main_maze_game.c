@@ -14,36 +14,25 @@ char inform[100][100]; //안내 문구 기록
 int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
-	if (skip > 0) {
-		skip--;
-		SetColor(7);
-		MoveConsole(75, line);
-		strcpy(inform[line], "you skipped minigame with skip ticket");
-		printf("you skipped minigame with skip ticket");
-		line++;
-		return 0;
-	}
 	FillEntireFrameRandomly(random, x, y);
 	random = 0;
-	if (random == 0) {
-		int result = random_number();
-		if (result == 1) {
-			user_coin += 2;
-		}
-		else{
-			h--;
-		}
+	int result;
+	if (random == 0) result = random_number();
+	else if (random == 1) PlayHangman();
+	else if (random == 2) PlayMathGame();
+	else if (random == 3) PlayMemoryGame();
+	else if (random == 4) PlayReflexGame();
+	else if (random == 5) PlayGreenFrogRPS();
+	else if (random == 6) PlayAscendingGame();
+	else if (random == 7) PlayTriviaQuizGame();
+	else if (random == 8) PlayArrowGame();
+	
+	if (result == 1) {
+		user_coin += 2;
 	}
-	else if (random == 1) {
-		PlayHangman();
+	else {
+		h--;
 	}
-	/*PlayMemoryGame();
-	PlayGreenFrogRPS();
-	PlayAscendingGame();
-	PlayTriviaQuizGame();
-	PlayReflexGame();
-	PlayArrowGame();*/
-
 	ScreenReset();
 	SetColor(7);
 	for (int i = 0; i < line; i++) {
@@ -226,7 +215,7 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_BACK) & 0x0001) return 0;
+		//else if (GetAsyncKeyState(VK_BACK) & 0x0001) return 0;
 		if (h == 0) {
 			ScreenReset();
 			MoveConsole(40, 10);
