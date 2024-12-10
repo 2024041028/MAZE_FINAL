@@ -180,6 +180,7 @@ void movement() {
 		int random;
 		SetColor(7);
 		if (GetAsyncKeyState(VK_UP) & 0x0001 && player_y > 0) {
+			RemoveGarbageChar();
 			y = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -190,6 +191,7 @@ void movement() {
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_DOWN) & 0x8000 && player_y < maze_size - 1) {
+			RemoveGarbageChar();
 			y = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -200,6 +202,7 @@ void movement() {
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && player_x > 0) {
+			RemoveGarbageChar();
 			x = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -210,6 +213,7 @@ void movement() {
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
 		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && player_x < maze_size - 1) {
+			RemoveGarbageChar();
 			x = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -227,6 +231,7 @@ void movement() {
 			printf("메인 화면으로 돌아가려면 BACKSPACE를 누르시오");
 			while (1) {
 				if (GetAsyncKeyState(VK_BACK) & 0x8000) break;
+				RemoveGarbageChar();
 				Sleep(10);
 			}
 		}

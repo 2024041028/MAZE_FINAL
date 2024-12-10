@@ -79,12 +79,7 @@ void MenuScreenFrame(int level) {
 	SetColor(7);
 	cur = first;
 	int i = 0;
-	/*for (i = 0; i < 5; i++) {
-		if (cur == NULL)break;
-		MoveConsole(36, 17 + i);
-		printf("%d. %s %d", i + 1,cur->name, cur->record);
-		cur = cur->next;
-	}*/
+	
 	for (int j = i; j < 5; j++) {
 		MoveConsole(36, 17 + j);
 		printf("%d.", j + 1);
@@ -335,18 +330,21 @@ void MenuScreen() {
 	Sleep(100);
 	while (1) {
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && flag != 5 && flag < max_level) {
+			RemoveGarbageChar();
 			ScreenReset(14);
 			MenuScreenFrame(flag);
 			flag++;
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && flag != 1) {
+			RemoveGarbageChar();
 			ScreenReset(14);
 			MenuScreenFrame(flag);
 			flag--;
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(0x50) & 0x8000) {
+			RemoveGarbageChar();
 			ScreenReset(14);
 			ShopScreen();
 		}
