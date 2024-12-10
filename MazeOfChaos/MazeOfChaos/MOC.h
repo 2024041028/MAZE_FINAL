@@ -75,46 +75,46 @@ int random_number();
 // ********mini2_syb.c에 존재*********** //
 void ChooseRandomWord();
 void PrintHearts();
-void PlayHangman();
+int PlayHangman();
 // ************************************ //
 
 // ********mini3_syb.c에 존재*********** //
 int Countdown();
 void GenerateMathProblem();
-void PlayMathGame();
+int PlayMathGame();
 // ************************************ //
 
 // ********mini4_syb.c에 존재*********** //
 int GetAlphabetCount();
 void GenerateRandomAlphabets();
 void GetUserInput();
-void PlayMemoryGame();
+int PlayMemoryGame();
 // ************************************ //
 
 // ********mini5_syb.c에 존재*********** //
 int GetRandomColor();
-void PlayReflexGame();
+int PlayReflexGame();
 // ************************************ //
 // 
 // ********mini1_rhs.c에 존재*********** //
 void InputWithoutTimeout();
-void PlayGreenFrogRPS();
+int PlayGreenFrogRPS();
 // ************************************ //
 
 // ********mini2_rhs.c에 존재*********** //
 int InputWithCount();
-void PlayAscendingGame();
+int PlayAscendingGame();
 // ************************************ //
 
 // ********mini3_rhs.c에 존재*********** //
 int InputWithCountdown();
-void PlayTriviaQuizGame();
+int PlayTriviaQuizGame();
 // ************************************ //
 
 // ********mini4_rhs.c에 존재*********** //
 void DisplayUserInfo();
 int InputWithcnt3();
-void PlayArrowGame();
+int PlayArrowGame();
 // ************************************ //
 
 // ******* manage_info.c에 존재 ********* //

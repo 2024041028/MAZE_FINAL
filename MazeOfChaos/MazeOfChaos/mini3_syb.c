@@ -70,7 +70,7 @@ void GenerateMathProblem(int* a, int* b, char* op, int* answer, int now_level) {
 }
 
 // 산수 게임 함수
-void PlayMathGame() {
+int PlayMathGame() {
     system("cls");
     CreateOutFrame(now_color_num); // 게임 틀 생성
 
@@ -149,12 +149,14 @@ void PlayMathGame() {
     if (score >= PASS_SCORE) { // 통과 기준에 따라 판단
         SetColor(10); // 초록색
         printf("축하합니다! 통과하셨습니다!");
+        return 1;
     }
     else {
         SetColor(4); // 빨간색
         printf("게임 종료! 맞춘 문제: %d/%d\n", score, MAX_QUESTIONS);
         MoveConsole(36, 11);
         printf("게임에 실패하셨습니다");
+        return 0;
     }
 
     MoveConsole(26, 12);

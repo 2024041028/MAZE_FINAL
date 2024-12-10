@@ -1,15 +1,11 @@
 #include "MOC.h"
-#include <stdlib.h>
-#include <time.h>
-#include <conio.h>
-#include <windows.h>
 
 // 랜덤 색상 생성 함수
 int GetRandomColor() {
     return rand() % 15 + 1; // 1~15 사이의 색상 코드 반환
 }
 
-void PlayReflexGame() {
+int PlayReflexGame() {
     int now_level = 1; // 초기 레벨
     int is_now_displayed = 0; // '지금' 출력 여부
     char input;
@@ -71,7 +67,7 @@ void PlayReflexGame() {
                     MoveConsole(30, 15);
                     SetColor(4);
                     printf("실패! 잘못된 상황에서 'p'를 눌렀습니다. ");
-                    return; // 실패 시 게임 종료
+                    return 0; // 실패 시 게임 종료
                 }
             }
             continue;
@@ -87,7 +83,7 @@ void PlayReflexGame() {
                     MoveConsole(37, 15);
                     SetColor(10);
                     printf("성공! 반응 시간: %.2f초  ", (float)reaction_time / CLOCKS_PER_SEC);
-                    return;
+                    return 1;
                 }
 
                 // '지금'이 출력되지 않은 상태에서 'p' 입력 처리
@@ -95,7 +91,7 @@ void PlayReflexGame() {
                     MoveConsole(30, 15);
                     SetColor(4);
                     printf("실패! 잘못된 상황에서 'p'를 눌렀습니다.");
-                    return; // 실패 시 게임 종료
+                    return 0; // 실패 시 게임 종료
                 }
             }
 
@@ -104,7 +100,7 @@ void PlayReflexGame() {
                 MoveConsole(39, 15);
                 SetColor(4);
                 printf("시간 초과! 실패!");
-                return; // 시간 초과 시 게임 종료
+                return 0; // 시간 초과 시 게임 종료
             }
         }
     }

@@ -53,7 +53,7 @@ void PrintHearts(int attemptsLeft) {
 }
 
 // 행맨 게임 함수
-void PlayHangman() {
+int PlayHangman() {
     now_level = 1;
     int wordLength = now_level + 2; // 단어 길이 결정 (3, 4, 5글자)
     char word[MAX_WORD_LENGTH + 1]; // 고정 크기 배열로 단어 저장
@@ -125,7 +125,7 @@ void PlayHangman() {
             SetColor(7);
             printf("Press any key to return to the main menu...");
             getchar(); getchar();
-            return; // 게임 성공
+            return 1; // 게임 성공
         }
     }
 
@@ -139,4 +139,5 @@ void PlayHangman() {
     SetColor(7);
     printf("Press any key to return to the main menu...");
     getchar(); getchar();
+    return 0;
 }
