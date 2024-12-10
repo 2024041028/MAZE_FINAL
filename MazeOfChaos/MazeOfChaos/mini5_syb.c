@@ -1,8 +1,4 @@
 #include "MOC.h"
-#include <stdlib.h>
-#include <time.h>
-#include <conio.h>
-#include <windows.h>
 
 // 랜덤 색상 생성 함수
 int GetRandomColor() {
