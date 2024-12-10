@@ -214,7 +214,6 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_BACK) & 0x8000) break;
 		if (h == 0) {
 			ScreenReset();
 			MoveConsole(40, 10);
