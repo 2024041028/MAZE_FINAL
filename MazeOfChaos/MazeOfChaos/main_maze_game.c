@@ -14,42 +14,35 @@ char inform[100][100]; //안내 문구 기록
 int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
+	if (skip > 0) {
+		skip--;
+		SetColor(7);
+		MoveConsole(75, line);
+		strcpy(inform[line], "you skipped minigame with skip ticket");
+		printf("you skipped minigame with skip ticket");
+		line++;
+		return 0;
+	}
 	FillEntireFrameRandomly(random, x, y);
-	switch (random) {
-	case 0:
-		random_number();
-		break;
-	case 1:
+	random = 0;
+	if (random == 0) {
+		int result = random_number();
+		if (result == 1) {
+			user_coin += 2;
+		}
+		else{
+			h--;
+		}
+	}
+	else if (random == 1) {
 		PlayHangman();
-		break;
-	case 2:
-		PlayMemoryGame();
-		break;
-	case 3:
-		PlayGreenFrogRPS();
-		break;
-	case 4:
-		PlayAscendingGame();
-		break;
-	case 5:
-		PlayTriviaQuizGame();
-		break;
-	//case 6:
-	//	
-	//	break;
-	//case 7:
-
-	//	break;
-	//case 8:
-
-	//	break;
 	}
-	/*if (미니게임 성공) {
-		user_coin += 2;
-	}
-	else if (미니게임 실패) {
-		h--;
-	}*/
+	/*PlayMemoryGame();
+	PlayGreenFrogRPS();
+	PlayAscendingGame();
+	PlayTriviaQuizGame();
+	PlayReflexGame();*/
+
 	ScreenReset();
 	SetColor(7);
 	for (int i = 0; i < line; i++) {
@@ -187,52 +180,63 @@ void maze_frame() {
 }
 
 void movement() {
+	int the_number_of_minigame = 7;
 	int random_color = 0;
 	while (1) {
 		int random;
 		SetColor(7);
-		if (GetAsyncKeyState(VK_UP) & 0x8000 && player_y > 0) {
+		if (GetAsyncKeyState(VK_UP) & 0x0001 && player_y > 0) {
 			y = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 6;
+				random_color = rand() % 7;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
-			minigame_prob++;
+			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_DOWN) & 0x8000 && player_y < maze_size - 1) {
+		else if (GetAsyncKeyState(VK_DOWN) & 0x0001 && player_y < maze_size - 1) {
 			y = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 6;
+				random_color = rand() % 7;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
-			minigame_prob++;
+			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && player_x > 0) {
+		else if (GetAsyncKeyState(VK_LEFT) & 0x0001 && player_x > 0) {
 			x = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 6;
+				random_color = rand() % 7;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
-			minigame_prob++;
+			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && player_x < maze_size - 1) {
+		else if (GetAsyncKeyState(VK_RIGHT) & 0x0001 && player_x < maze_size - 1) {
 			x = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 6;
+				random_color = rand() % 7;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
-			minigame_prob++;
+			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_BACK) & 0x8000) return 0;
-
+		else if (GetAsyncKeyState(VK_BACK) & 0x0001) return 0;
+		if (h == 0) {
+			ScreenReset();
+			MoveConsole(40, 10);
+			printf("미로 탈출 실패!");
+			MoveConsole(25, 2);
+			printf("메인 화면으로 돌아가려면 BACKSPACE를 누르시오");
+			while (1) {
+				if (GetAsyncKeyState(VK_BACK) & 0x8000) break;
+				Sleep(10);
+			}
+		}
 		if (now_state[player_x + x][player_y + y] == 0 || now_state[player_x + x][player_y + y] == 10) { //통로
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
 			now_state[player_x][player_y] = 10;
@@ -390,6 +394,7 @@ void maze() {
 }
 
 void maze_game() {
+	h = 3;
 	time_t start = time(NULL);
 	srand(time(NULL));
 	minigame_prob = 0;
