@@ -72,7 +72,7 @@ void GenerateMathProblem(int* a, int* b, char* op, int* answer, int now_level) {
 // 산수 게임 함수
 void PlayMathGame() {
     system("cls");
-    CreateOutFrame(); // 게임 틀 생성
+    CreateOutFrame(now_color_num); // 게임 틀 생성
 
     srand(time(NULL)); // 랜덤 시드 설정
 
@@ -91,7 +91,7 @@ void PlayMathGame() {
 
         // 문제 출력
         system("cls");
-        CreateOutFrame();
+        CreateOutFrame(now_color_num);
         MoveConsole(36, 8);
         SetColor(11); // 파란색
         printf("문제 %d번 %d %c %d = ?", i, a, op, b);
@@ -143,7 +143,7 @@ void PlayMathGame() {
 
     // 게임 결과
     system("cls");
-    CreateOutFrame();
+    CreateOutFrame(now_color_num);
     MoveConsole(34, 10);
 
     if (score >= PASS_SCORE) { // 통과 기준에 따라 판단

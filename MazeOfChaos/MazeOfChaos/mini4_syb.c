@@ -62,7 +62,7 @@ void GetUserInput(char* input, int max_length, int start_x, int start_y) {
 // 기억력 게임 함수
 void PlayMemoryGame() {
     system("cls");
-    CreateOutFrame(); // 게임 틀 생성
+    CreateOutFrame(now_color_num); // 게임 틀 생성
     srand(time(NULL)); // 랜덤 시드 설정
 
     int correct_count = 0; // 정답 횟수
@@ -77,7 +77,7 @@ void PlayMemoryGame() {
 
         // 화면에 문자열 출력
         system("cls");
-        CreateOutFrame();
+        CreateOutFrame(now_color_num);
         MoveConsole(38,9);
         SetColor(14); // 노란색
         printf("Level %d - 문제 %d", now_level, question);
@@ -89,7 +89,7 @@ void PlayMemoryGame() {
 
         // 문자열 숨기기
         system("cls");
-        CreateOutFrame();
+        CreateOutFrame(now_color_num);
         MoveConsole(35, 10);
         SetColor(14); // 노란색
         printf("문자열을 입력하세요: ");
@@ -125,7 +125,7 @@ void PlayMemoryGame() {
 
     // 결과 출력
     system("cls");
-    CreateOutFrame();
+    CreateOutFrame(now_color_num);
     MoveConsole(24, 10);
 
     if (correct_count >= 3) {

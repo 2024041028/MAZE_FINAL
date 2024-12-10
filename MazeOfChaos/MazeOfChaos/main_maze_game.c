@@ -1,6 +1,6 @@
 #include "MOC.h"
 
-
+int now_color_num;
 int maze_size;
 int player_x, player_y; //state에서의 플레이어 위치
 int x, y; //플레이어 이동을 감지
@@ -14,10 +14,15 @@ char inform[100][100]; //안내 문구 기록
 int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
+
+	if (random == 0)
+		random = 9;
+
 	FillEntireFrameRandomly(random, x, y);
-	random = 0;
-	int result;
-	if (random == 0) result = random_number();
+	now_color_num = random;
+	int result = 0;
+	ShowInstructionsAndMenu(random);
+	if (random == 9) random_number();
 	else if (random == 1) PlayHangman();
 	else if (random == 2) PlayMathGame();
 	else if (random == 3) PlayMemoryGame();
@@ -33,7 +38,7 @@ void minigame_pop(int random,int x,int y) {
 	else {
 		h--;
 	}
-	ScreenReset();
+	ScreenReset(14);
 	SetColor(7);
 	for (int i = 0; i < line; i++) {
 		MoveConsole(75, i);

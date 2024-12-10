@@ -74,7 +74,7 @@ void PlayArrowGame(int level) {
 
     srand(time(NULL));
 
-    CreateOutFrame(); // 사각형 틀 생성
+    CreateOutFrame(now_color_num); // 사각형 틀 생성
     DisplayUserInfo(); // 사용자 정보 출력
 
     // 화살표 출력

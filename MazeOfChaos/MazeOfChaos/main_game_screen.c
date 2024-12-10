@@ -47,7 +47,7 @@ void ranking(int level) {
 }
 
 void MenuScreenFrame(int level) {
-	CreateOutFrame();
+	CreateOutFrame(14);
 	SetColor(7);
 	MoveConsole(22, 2);
 	printf("Name : %s", user_name);

@@ -4,16 +4,8 @@
 int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
-	CreateOutFrame();
-<<<<<<< HEAD
-	//PlayTriviaQuizGame(1);
+	CreateOutFrame(14);
 	StartScreen();
 	MenuScreen();
 	FinishGame();
-	
-=======
-	StartScreen();
-	MenuScreen();
-	FinishGame();
->>>>>>> c77b26377df7507c13f0236dabd6c28cfdcaf36f
 }

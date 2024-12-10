@@ -242,8 +242,16 @@ int EnterNickname() {
 
 		SetColor(7);
 		char name[20];
-		MoveConsole(41, 11);
-		fgets(name, size, stdin);
+		
+		while (1) {
+			MoveConsole(41, 11);
+			fgets(name, size, stdin);
+			if (name[0] == '\n') {
+				continue;
+			}
+			else
+				break;
+		}
 		int len = strlen(name);
 		name[len - 1] = '\0';
 

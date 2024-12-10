@@ -1,7 +1,7 @@
 #include "MOC.h"
 
-void CreateOutFrame() {
-	SetColor(14);
+void CreateOutFrame(int x) {
+	SetColor(x);
 	MoveConsole(20, 0);
 	for (int i = 0; i < 25; i++) {
 		if (i == 0)
@@ -26,14 +26,14 @@ void CreateOutFrame() {
 	}
 }
 
-void ScreenReset() {
+void ScreenReset(int x) {
 	system("cls");
-	CreateOutFrame();
+	CreateOutFrame(x);
 }
 
 
 void FinishGame() {
-	ScreenReset();
+	ScreenReset(14);
 	SetColor(7);
 
 	MoveConsole(23, 6);
@@ -156,10 +156,10 @@ void FillEntireFrameRandomly(int x,int xx,int y) {
 	int positions[27 * 25][2];
 	int count = 0;
 
-	for (int y = 0; y < 25; y++) {
+	for (int y = 0; y < 25; y += 2) { // y 좌표는 2씩 증가 (두 줄 간격)
 		for (int x = 0; x < 14; x++) {
-			positions[count][0] = 19 + x * 4;
-			positions[count][1] = y;
+			positions[count][0] = 19 + x * 4; // x 좌표는 동일
+			positions[count][1] = y;         // y 좌표 저장
 			count++;
 		}
 	}
@@ -171,8 +171,14 @@ void FillEntireFrameRandomly(int x,int xx,int y) {
 	while (filled < count) {
 		int index = rand() % count;
 		if (positions[index][0] != -1) {
+			// 첫 번째 줄 출력
 			MoveConsole(positions[index][0], positions[index][1]);
 			printf("▒▒▒▒");
+			// 두 번째 줄 출력
+			MoveConsole(positions[index][0], positions[index][1] + 1);
+			printf("▒▒▒▒");
+
+			// 위치를 사용된 것으로 표시
 			positions[index][0] = -1;
 			filled++;
 			if (filled == 10) {
@@ -185,28 +191,5 @@ void FillEntireFrameRandomly(int x,int xx,int y) {
 		}
 	}
 	Sleep(500);
-	ScreenReset();
-	SetColor(x);
-	MoveConsole(20, 0);
-	for (int i = 0; i < 25; i++) {
-		if (i == 0)
-			printf("┏━");
-		printf("━━");
-		if (i == 24)
-			printf("━┓");
-	}
-	for (int i = 0; i < 24; i++) {
-		MoveConsole(20, i + 1);
-		printf("┃ ");
-		MoveConsole(72, i + 1);
-		printf(" ┃");
-	}
-	MoveConsole(20, 24);
-	for (int i = 0; i < 25; i++) {
-		if (i == 0)
-			printf("┗━");
-		printf("━━");
-		if (i == 24)
-			printf("━┛");
-	}
+	ScreenReset(x);
 }
