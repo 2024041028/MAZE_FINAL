@@ -20,7 +20,7 @@ void ranking(int level) {
 		strcpy(new->name, name); //유저 이름 입력
 		for (i = 0; i < 26; i++) { //유저별 기록 입력
 			fscanf(fp_ranking, "%d", &record);
-			if (i == level) {
+			if (i == level && record != 0) {
 				new->record = record;
 				new->next = NULL;
 				if (first == NULL)first = new;
