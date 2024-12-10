@@ -379,14 +379,14 @@ int EnterNickname() {
 				printf("다시 입력해주세요");
 			}
 		}
-		MoveConsole(45, 15);
-		printf("3");
+		MoveConsole(32, 15);
+		printf("3초후 이전 화면으로 돌아갑니다.");
 		Sleep(1000);
-		MoveConsole(45, 15);
-		printf("2");
+		MoveConsole(32, 15);
+		printf("2초후 이전 화면으로 돌아갑니다.");
 		Sleep(1000);
-		MoveConsole(45, 15);
-		printf("1");
+		MoveConsole(32, 15);
+		printf("1초후 이전 화면으로 돌아갑니다.");
 		Sleep(1000);
 	}
 	return 0;

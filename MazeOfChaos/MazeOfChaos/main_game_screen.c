@@ -78,16 +78,14 @@ void MenuScreenFrame(int level) {
 	SetColor(7);
 	cur = first;
 	int i = 0;
-<<<<<<< HEAD
-	
-=======
+
 	for (i = 0; i < 5; i++) {
 		if (cur == NULL)break;
 		MoveConsole(36, 17 + i);
 		printf("%d. %s %d", i + 1,cur->name, cur->record);
 		cur = cur->next;
 	}
->>>>>>> 0edf20a08fc722cc2a4f200060a1f10ce74c5aa4
+
 	for (int j = i; j < 5; j++) {
 		MoveConsole(36, 17 + j);
 		printf("%d.", j + 1);
