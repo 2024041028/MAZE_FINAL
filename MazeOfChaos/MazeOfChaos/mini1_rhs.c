@@ -87,13 +87,9 @@ void InputWithoutTimeout(char* input, int max_length) {
 }
 
 // 청개구리 가위바위보 게임 (수정된 카운트다운 및 입력 처리)
-<<<<<<< HEAD
-void PlayGreenFrogRPS(int level) {
-   
-=======
+
 int PlayGreenFrogRPS(int level) {
-    ShowInstructionsAndMenu();
->>>>>>> 608e9aeeb11a4d265cec3ea49085d4599c526eb5
+  
     SetupConsoleEncoding2();
 
     const char* options[] = { "가위", "바위", "보" };

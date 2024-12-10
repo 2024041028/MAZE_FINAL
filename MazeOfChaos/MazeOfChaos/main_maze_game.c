@@ -15,27 +15,14 @@ int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
 
-	if (random == 0)
-		random = 9;
+	int what_game = random % 9 + 1;
+	FillEntireFrameRandomly(what_game, x, y);
+	ShowInstructionsAndMenu(what_game);
+	now_color_num = what_game;
 
-	FillEntireFrameRandomly(random, x, y);
-<<<<<<< HEAD
-	now_color_num = random;
-	int result = 0;
-	ShowInstructionsAndMenu(random);
-	if (random == 9) random_number();
-	else if (random == 1) PlayHangman();
-	else if (random == 2) PlayMathGame();
-	else if (random == 3) PlayMemoryGame();
-	else if (random == 4) PlayReflexGame();
-	else if (random == 5) PlayGreenFrogRPS();
-	else if (random == 6) PlayAscendingGame();
-	else if (random == 7) PlayTriviaQuizGame();
-	else if (random == 8) PlayArrowGame();
-=======
-	int what_game = random % 10;
 	int result;
-	if (what_game == 0) result = random_number();
+
+	if (what_game == 9) result = random_number();
 	else if (what_game == 1) result = PlayHangman();
 	else if (what_game == 2) result = PlayMathGame();
 	else if (what_game == 3) result = PlayMemoryGame();
@@ -44,7 +31,6 @@ void minigame_pop(int random,int x,int y) {
 	else if (what_game == 6) result = PlayAscendingGame();
 	else if (what_game == 7) result = PlayTriviaQuizGame();
 	else if (what_game == 8) result = PlayArrowGame();
->>>>>>> 608e9aeeb11a4d265cec3ea49085d4599c526eb5
 	
 	if (result == 1) {
 		user_coin += 2;
