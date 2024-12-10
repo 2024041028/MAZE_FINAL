@@ -60,7 +60,7 @@ void GetUserInput(char* input, int max_length, int start_x, int start_y) {
 }
 
 // 기억력 게임 함수
-void PlayMemoryGame() {
+int PlayMemoryGame() {
     system("cls");
     CreateOutFrame(); // 게임 틀 생성
     srand(time(NULL)); // 랜덤 시드 설정
@@ -131,11 +131,13 @@ void PlayMemoryGame() {
     if (correct_count >= 3) {
         SetColor(10); // 초록색
         printf("축하합니다! Level %d에서 %d개의 문제를 맞췄습니다!", now_level, correct_count);
+        return 1;
     }
     else {
         SetColor(4); // 빨간색
         MoveConsole(32, 10);
         printf("Level %d 실패! 정답 개수: %d / %d", now_level, correct_count, MAX_QUESTIONS);
+        return 0;
     }
 
     MoveConsole(26, 12);

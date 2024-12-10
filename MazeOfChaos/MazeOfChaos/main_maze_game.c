@@ -15,17 +15,17 @@ int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
 	FillEntireFrameRandomly(random, x, y);
-	random = 0;
+	int what_game = random % 10;
 	int result;
-	if (random == 0) result = random_number();
-	else if (random == 1) PlayHangman();
-	else if (random == 2) PlayMathGame();
-	else if (random == 3) PlayMemoryGame();
-	else if (random == 4) PlayReflexGame();
-	else if (random == 5) PlayGreenFrogRPS();
-	else if (random == 6) PlayAscendingGame();
-	else if (random == 7) PlayTriviaQuizGame();
-	else if (random == 8) PlayArrowGame();
+	if (what_game == 0) result = random_number();
+	else if (what_game == 1) result = PlayHangman();
+	else if (what_game == 2) result = PlayMathGame();
+	else if (what_game == 3) result = PlayMemoryGame();
+	else if (what_game == 4) result = PlayReflexGame();
+	else if (what_game == 5) result = PlayGreenFrogRPS();
+	else if (what_game == 6) result = PlayAscendingGame();
+	else if (what_game == 7) result = PlayTriviaQuizGame();
+	else if (what_game == 8) result = PlayArrowGame();
 	
 	if (result == 1) {
 		user_coin += 2;
@@ -170,7 +170,6 @@ void maze_frame() {
 }
 
 void movement() {
-	int the_number_of_minigame = 7;
 	int random_color = 0;
 	while (1) {
 		int random;
@@ -185,7 +184,7 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_DOWN) & 0x0001 && player_y < maze_size - 1) {
+		else if (GetAsyncKeyState(VK_DOWN) & 0x8000 && player_y < maze_size - 1) {
 			y = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -195,7 +194,7 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_LEFT) & 0x0001 && player_x > 0) {
+		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && player_x > 0) {
 			x = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -205,7 +204,7 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_RIGHT) & 0x0001 && player_x < maze_size - 1) {
+		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && player_x < maze_size - 1) {
 			x = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -215,7 +214,7 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		//else if (GetAsyncKeyState(VK_BACK) & 0x0001) return 0;
+		else if (GetAsyncKeyState(VK_BACK) & 0x8000) break;
 		if (h == 0) {
 			ScreenReset();
 			MoveConsole(40, 10);

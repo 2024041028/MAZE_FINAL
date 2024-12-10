@@ -87,7 +87,7 @@ void InputWithoutTimeout(char* input, int max_length) {
 }
 
 // 청개구리 가위바위보 게임 (수정된 카운트다운 및 입력 처리)
-void PlayGreenFrogRPS(int level) {
+int PlayGreenFrogRPS(int level) {
     ShowInstructionsAndMenu();
     SetupConsoleEncoding2();
 
@@ -177,10 +177,12 @@ void PlayGreenFrogRPS(int level) {
         SetColor(14);
         printf("정답! 성공했습니다!");
         SetColor(7);
+        return 1;
     }
     else {
         SetColor(14);
         printf("틀렸습니다. 실패!");
         SetColor(7);
+        return 0;
     }
 }
