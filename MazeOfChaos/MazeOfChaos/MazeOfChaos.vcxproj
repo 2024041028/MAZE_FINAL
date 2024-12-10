@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cursor_function.c" />
+    <ClCompile Include="introduce.c" />
     <ClCompile Include="login.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_game_screen.c" />
@@ -139,6 +140,7 @@
     <ClCompile Include="mini2_syb.c" />
     <ClCompile Include="mini3_rhs.c" />
     <ClCompile Include="mini3_syb.c" />
+    <ClCompile Include="mini4_rhs.c" />
     <ClCompile Include="mini4_syb.c" />
     <ClCompile Include="mini5_syb.c" />
     <ClCompile Include="minigame_syb.c" />

@@ -111,6 +111,12 @@ int InputWithCountdown();
 void PlayTriviaQuizGame();
 // ************************************ //
 
+// ********mini4_rhs.c에 존재*********** //
+void DisplayUserInfo();
+int InputWithcnt3();
+void PlayArrowGame();
+// ************************************ //
+
 // ******* manage_info.c에 존재 ********* //
 void UpdateUserInfo();
 // ************************************ //

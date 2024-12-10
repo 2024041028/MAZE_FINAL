@@ -41,7 +41,8 @@ void minigame_pop(int random,int x,int y) {
 	PlayGreenFrogRPS();
 	PlayAscendingGame();
 	PlayTriviaQuizGame();
-	PlayReflexGame();*/
+	PlayReflexGame();
+	PlayArrowGame();*/
 
 	ScreenReset();
 	SetColor(7);
