@@ -1,10 +1,4 @@
 #include "MOC.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <string.h>
-#include <time.h>
-#include <windows.h>
 
 #define MAX_QUESTIONS 5 // 총 문제 수
 #define TIME_DISPLAY 3  // 문제 표시 시간 (초)
