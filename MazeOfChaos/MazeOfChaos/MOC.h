@@ -126,5 +126,5 @@ void RemoveGarbageChar();
 // ************************************ //
 
 // ********introduce.c¿¡ Á¸Àç*********** //
-void ShowInstructionsAndMenu();
+int ShowInstructionsAndMenu();
 // ************************************ //

@@ -1,7 +1,8 @@
 #include "MOC.h"
 
 // Function to show the game instructions and menu options together
-void ShowInstructionsAndMenu(int gameType) {
+int ShowInstructionsAndMenu(int gameType, int skip) {
+    gameType--;
     int cursorPosition = 0; // 0 for "skip" and 1 for "gamestart"
     char key;
 
@@ -114,13 +115,36 @@ void ShowInstructionsAndMenu(int gameType) {
 
     // Handle the selection
     if (cursorPosition == 0) {
-        MoveConsole(instructionX, instructionY + 11);
-        printf("스킵권 사용하기 선택됨. 게임 종료.");
+        if (skip > 0) {
+            MoveConsole(instructionX, instructionY + 11);
+            printf("스킵권 사용하기 선택됨. 게임 종료.");
+            return 1;
+        }
+        else {
+            MoveConsole(instructionX, instructionY + 11);
+            printf("스킵권이 없습니다. 구매하시겠습니까?");
+            MoveConsole(instructionX, instructionY + 12);
+            printf("가격:코인5개");
+            if (user_coin >= 5) {
+                MoveConsole(instructionX, instructionY + 13);
+                printf("코인을 사용하여 게임을 스킵합니다.");
+                user_coin -= 5;
+                Sleep(2000);
+                return 2;
+            }
+            else {
+                MoveConsole(instructionX, instructionY + 13);
+                printf("코인이 부족합니다. 게임을 실행합니다.");
+                Sleep(2000);
+                return 0;
+            }
+        }
     }
     else {
         MoveConsole(instructionX, instructionY + 11);
         printf("게임 시작하기 선택됨. 게임을 시작합니다.");
         Sleep(2000);
+        return 0;
 
         // Clear only the area used for instructions and menu, keeping the frame intact
         for (int i = instructionY; i <= instructionY + 11; i++) {
