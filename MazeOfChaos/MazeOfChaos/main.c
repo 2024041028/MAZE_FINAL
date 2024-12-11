@@ -6,7 +6,8 @@ int main() {
 	RemoveCursor();
 	CreateOutFrame(14);
 	//PlayGreenFrogRPS();
-	PlayAscendingGame();
+	//PlayAscendingGame();
+	PlayTriviaQuizGame();
 	//PlayMemoryGame();
 	/*StartScreen();
 	MenuScreen();*/

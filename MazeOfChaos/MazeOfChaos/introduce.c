@@ -33,6 +33,15 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 정확한 순서로 입력하면 성공");
     }
+
+    else if (gameType == 2) {  // PlayTriviaQuizGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 주어진 질문에 올바른 정답을 입력");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 제한 시간 내에 정답을 맞추세요!");
+    }
+
+
     // Menu selection loop
     while (1) {
         // Display the menu options inside the box
