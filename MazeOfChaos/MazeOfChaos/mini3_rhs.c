@@ -75,6 +75,8 @@ bool InputWithTimeoutTrivia(char* input, int max_length, int timeout) {
 
 // 상식 퀴즈 게임
 int PlayTriviaQuizGame(int level) {
+
+    ShowInstructionsAndMenu(2);
     SetupConsoleEncoding();
 
     char* questions[] = {
@@ -103,7 +105,6 @@ int PlayTriviaQuizGame(int level) {
     srand(time(NULL));
     int random_index = rand() % num_questions;
 
-    CreateOutFrame(now_color_num);
 
     // 사용자 ID 및 목숨 출력
     MoveConsole(23, 2);
