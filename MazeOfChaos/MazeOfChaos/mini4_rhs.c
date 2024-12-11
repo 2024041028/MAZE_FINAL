@@ -59,6 +59,8 @@ int InputWithcnt3(char* input, int max_length, int timeout) {
 
 // 화살표 게임
 int PlayArrowGame(int level) {
+
+    ShowInstructionsAndMenu(3);
     char* arrows[] = { "↑", "↓", "←", "→" };
     int dx[] = { 0, 0, -1, 1 };
     int dy[] = { 1, -1, 0, 0 };
@@ -74,7 +76,7 @@ int PlayArrowGame(int level) {
 
     srand(time(NULL));
 
-    CreateOutFrame(now_color_num); // 사각형 틀 생성
+   // CreateOutFrame(now_color_num); // 사각형 틀 생성
     DisplayUserInfo(); // 사용자 정보 출력
 
     // 화살표 출력

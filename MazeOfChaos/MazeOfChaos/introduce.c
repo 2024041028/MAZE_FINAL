@@ -40,7 +40,14 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 3);
         printf("● 제한 시간 내에 정답을 맞추세요!");
     }
-
+    else if (gameType == 3) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 화면에 나타나는 화살표를 확인하세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 화살표방향이 가리키는 좌표를 계산하세요");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한시간 내에 최종좌표를 입력하세요!");
+    }
 
     // Menu selection loop
     while (1) {
