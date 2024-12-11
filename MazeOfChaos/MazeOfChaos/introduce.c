@@ -1,37 +1,11 @@
 #include "MOC.h"
 
 // Function to show the game instructions and menu options together
-<<<<<<< HEAD
-void ShowInstructionsAndMenu() {
-    int cursorPosition = 0; // 0 for "skip" and 1 for "gamestart"
-    char key;
-
-    // Define fixed position for instructions
-    int instructionX = 22;
-    int instructionY = 2;
-
-    // Display the game instructions within the box
-    SetColor(14); // Set text color to yellow
-    MoveConsole(instructionX, instructionY);
-    printf("게임 설명");
-
-    SetColor(7); // Reset text color to white
-    MoveConsole(instructionX, instructionY + 2);
-    printf("● 미로 게임 중 일정 확률로 미니게임 시작");
-
-    MoveConsole(instructionX, instructionY + 3);
-    printf("● 가위, 바위, 보 중 하나를 선택");
-
-    MoveConsole(instructionX, instructionY + 4);
-    printf("● 컴퓨터의 가위, 바위, 보 결과 반대로 선택");
-
-    MoveConsole(instructionX, instructionY + 5);
-    printf("● 이기면 '졌다', 지면 '이겼다', 비기면 '개굴' 입력");
-=======
 void ShowInstructionsAndMenu(int x) {
     int cursorPosition = 0; // 0 for "Skip" and 1 for "Start Game"
     char key;
-
+    int instructionX = 22;
+    int instructionY = 2;
     // Display the game instructions
     if (x == 9) {
         MoveConsole(22, 2);
@@ -141,8 +115,6 @@ void ShowInstructionsAndMenu(int x) {
         MoveConsole(22, 10);
         printf("● 이기면 '졌다'를 입력, 지면 '이겼다'를 입력, 비기면 '개굴'을 입력");
     }
-
->>>>>>> 18d2e31e2ea011163038b675ad5232fac856bed6
 
     // Menu selection loop
     while (1) {
