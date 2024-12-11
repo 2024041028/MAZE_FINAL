@@ -56,6 +56,14 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한횟수 안에서 정답을 맞추세요");
     }
+    else if (gameType == 5) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 제시된 단어를 추측하여 알파벳 입력하세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 틀린 횟수가 누적되면 행맨이 완성됩니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한횟수 안에서 정답을 맞추세요");
+    }
 
     // Menu selection loop
     while (1) {
