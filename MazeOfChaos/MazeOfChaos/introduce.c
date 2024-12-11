@@ -48,6 +48,14 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한시간 내에 최종좌표를 입력하세요!");
     }
+    else if (gameType == 4) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 랜덤숫자를 추측하세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 입력 숫자에 따라 업, 다운 힌트를 드립니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한횟수 안에서 정답을 맞추세요");
+    }
 
     // Menu selection loop
     while (1) {

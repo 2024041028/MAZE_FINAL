@@ -14,6 +14,7 @@ void PrintAttempts(int attempts[], char results[][10], int attemptCount) {
 }
 
 int random_number() {
+    ShowInstructionsAndMenu(4);
     now_level = 1;
     int target, guess, attemptCount = 0;
     int attempts[MAX_ATTEMPTS] = { 0 };
