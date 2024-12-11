@@ -5,7 +5,8 @@ int main() {
 	system("title Maze of Chaos");
 	RemoveCursor();
 	CreateOutFrame(14);
-	PlayHangman();
+	//PlayHangman();
+	PlayMathGame();
 	//random_number();
 	//PlayGreenFrogRPS();
 	//PlayAscendingGame();

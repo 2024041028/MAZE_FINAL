@@ -64,6 +64,14 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한횟수 안에서 정답을 맞추세요");
     }
+    else if (gameType == 6) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 화면에 주어진 산수문제를 풀어보세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 정답을 입력하면 다음문제가 나옵니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한시간 내에 최대한 많은 정답을 맞추세요");
+    }
 
     // Menu selection loop
     while (1) {
