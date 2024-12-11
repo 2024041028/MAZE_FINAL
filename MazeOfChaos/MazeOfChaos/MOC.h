@@ -124,3 +124,7 @@ void UpdateUserInfo();
 // // ********manage_newline.c에 존재*********** //
 void RemoveGarbageChar();
 // ************************************ //
+
+// ********introduce.c에 존재*********** //
+void ShowInstructionsAndMenu();
+// ************************************ //
