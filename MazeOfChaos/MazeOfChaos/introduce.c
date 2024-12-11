@@ -80,6 +80,14 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한시간 내에 정답을 맞추세요");
     }
+    else if (gameType == 8) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 랜덤한 숫자가 출력됩니다");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 숫자 사이에 '지금'이 출력되면 p를 누르세요");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 비슷한 오타들이 나오니 주의하세요");
+    }
 
     // Menu selection loop
     while (1) {
