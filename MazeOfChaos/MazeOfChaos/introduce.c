@@ -1,7 +1,7 @@
 #include "MOC.h"
 
 // Function to show the game instructions and menu options together
-void ShowInstructionsAndMenu() {
+void ShowInstructionsAndMenu(int gameType) {
     int cursorPosition = 0; // 0 for "skip" and 1 for "gamestart"
     char key;
 
@@ -16,21 +16,29 @@ void ShowInstructionsAndMenu() {
 
     SetColor(7); // Reset text color to white
 
-    MoveConsole(instructionX, instructionY + 3);
-    printf("● 가위, 바위, 보 중 하나를 선택");
-
-    MoveConsole(instructionX, instructionY + 4);
-    printf("● 컴퓨터의 가위, 바위, 보 결과 반대로 선택");
-
-    MoveConsole(instructionX, instructionY + 5);
-    printf("● 이기면 '졌다',지면 '이겼다',비기면 '개굴'입력");
-
+    // Display game-specific instructions
+    if (gameType == 0) {  // PlayGreenFrogRPS
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 가위, 바위, 보 중 하나를 선택");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 컴퓨터의 가위, 바위, 보 결과 반대로 선택");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 이기면 '졌다', 지면 '이겼다', 비기면 '개굴' 입력");
+    }
+    else if (gameType == 1) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 주어진 숫자를 오름차순으로 정렬");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 제한 시간 내에 숫자를 입력하여 정렬");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 정확한 순서로 입력하면 성공");
+    }
     // Menu selection loop
     while (1) {
         // Display the menu options inside the box
         MoveConsole(instructionX, instructionY + 9);
         SetColor(14); // Set text color to yellow
-        printf("%s skip        %s gamestart",
+        printf("%s skip        %s game start",
             cursorPosition == 0 ? "->" : "  ",
             cursorPosition == 1 ? "->" : "  ");
         SetColor(7); // Reset text color to white
@@ -60,8 +68,19 @@ void ShowInstructionsAndMenu() {
 
         // Clear only the area used for instructions and menu, keeping the frame intact
         for (int i = instructionY; i <= instructionY + 11; i++) {
-            MoveConsole(instructionX - 1, i);
-            printf("                                               ");
+            MoveConsole(instructionX, i);
+            printf("                                           ");
         }
+
+        //// Start the selected mini-game based on gameType
+        //if (gameType == 0) {
+        //    PlayGreenFrogRPS(1);  // Example level set to 1
+        //}
+        //else if (gameType == 1) {
+        //    PlayAscendingGame(1);  // Example level set to 1
+        //}
+        //else if (gameType == 2) {
+        //    PlayTriviaQuizGame(1);  // Example level set to 1
+        //}
     }
 }
