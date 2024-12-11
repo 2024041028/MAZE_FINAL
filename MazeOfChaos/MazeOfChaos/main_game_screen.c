@@ -16,12 +16,11 @@ void ranking(int level) {
 	first = NULL;
 	FILE* fp_ranking = fopen("Record.txt", "r");
 	while (fscanf(fp_ranking, "%s", name) != EOF) {
-		struct rank* new = malloc(sizeof(struct rank));
+		struct rank* new =(struct rank*) malloc(sizeof(struct rank));
 		strcpy(new->name, name); //유저 이름 입력
 		for (i = 0; i < 26; i++) { //유저별 기록 입력
 			fscanf(fp_ranking, "%d", &record);
-			if (record == 0)break;
-			if (i == level) {
+			if (i == level && record != 0) {
 				new->record = record;
 				new->next = NULL;
 				if (first == NULL)first = new;
@@ -47,7 +46,7 @@ void ranking(int level) {
 }
 
 void MenuScreenFrame(int level) {
-	CreateOutFrame();
+	CreateOutFrame(14);
 	SetColor(7);
 	MoveConsole(22, 2);
 	printf("Name : %s", user_name);
@@ -79,12 +78,14 @@ void MenuScreenFrame(int level) {
 	SetColor(7);
 	cur = first;
 	int i = 0;
-	/*for (i = 0; i < 5; i++) {
+
+	for (i = 0; i < 5; i++) {
 		if (cur == NULL)break;
 		MoveConsole(36, 17 + i);
 		printf("%d. %s %d", i + 1,cur->name, cur->record);
 		cur = cur->next;
-	}*/
+	}
+
 	for (int j = i; j < 5; j++) {
 		MoveConsole(36, 17 + j);
 		printf("%d.", j + 1);
@@ -330,24 +331,27 @@ void MenuScreen() {
 			max_level = 5;
 		}
 	}
-	ScreenReset();
+	ScreenReset(14);
 	MenuScreenFrame(flag);
 	Sleep(100);
 	while (1) {
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && flag != 5 && flag < max_level) {
-			ScreenReset();
-			MenuScreenFrame(flag);
+			RemoveGarbageChar();
+			ScreenReset(14);
 			flag++;
+			MenuScreenFrame(flag);
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && flag != 1) {
-			ScreenReset();
-			MenuScreenFrame(flag);
+			RemoveGarbageChar();
+			ScreenReset(14);
 			flag--;
+			MenuScreenFrame(flag);
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(0x50) & 0x8000) {
-			ScreenReset();
+			RemoveGarbageChar();
+			ScreenReset(14);
 			ShopScreen();
 		}
 		else if (GetAsyncKeyState(VK_RETURN) & 0x8000) {

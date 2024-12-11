@@ -1,6 +1,6 @@
 #include "MOC.h"
 
-
+int now_color_num;
 int maze_size;
 int player_x, player_y; //state에서의 플레이어 위치
 int x, y; //플레이어 이동을 감지
@@ -14,18 +14,23 @@ char inform[100][100]; //안내 문구 기록
 int clear = 0; //미로 성공 여부
 
 void minigame_pop(int random,int x,int y) {
-	FillEntireFrameRandomly(random, x, y);
-	random = 0;
+
+	int what_game = random % 9 + 1;
+	FillEntireFrameRandomly(what_game, x, y);
+	ShowInstructionsAndMenu(what_game);
+	now_color_num = what_game;
+
 	int result;
-	if (random == 0) result = random_number();
-	else if (random == 1) PlayHangman();
-	else if (random == 2) PlayMathGame();
-	else if (random == 3) PlayMemoryGame();
-	else if (random == 4) PlayReflexGame();
-	else if (random == 5) PlayGreenFrogRPS();
-	else if (random == 6) PlayAscendingGame();
-	else if (random == 7) PlayTriviaQuizGame();
-	else if (random == 8) PlayArrowGame();
+
+	if (what_game == 9) result = random_number();
+	else if (what_game == 1) result = PlayHangman();
+	else if (what_game == 2) result = PlayMathGame();
+	else if (what_game == 3) result = PlayMemoryGame();
+	else if (what_game == 4) result = PlayReflexGame();
+	else if (what_game == 5) result = PlayGreenFrogRPS();
+	else if (what_game == 6) result = PlayAscendingGame();
+	else if (what_game == 7) result = PlayTriviaQuizGame();
+	else if (what_game == 8) result = PlayArrowGame();
 	
 	if (result == 1) {
 		user_coin += 2;
@@ -33,7 +38,7 @@ void minigame_pop(int random,int x,int y) {
 	else {
 		h--;
 	}
-	ScreenReset();
+	ScreenReset(14);
 	SetColor(7);
 	for (int i = 0; i < line; i++) {
 		MoveConsole(75, i);
@@ -170,12 +175,13 @@ void maze_frame() {
 }
 
 void movement() {
-	int the_number_of_minigame = 7;
 	int random_color = 0;
 	while (1) {
+		int fail = 0;
 		int random;
 		SetColor(7);
 		if (GetAsyncKeyState(VK_UP) & 0x0001 && player_y > 0) {
+			RemoveGarbageChar();
 			y = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -185,7 +191,8 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_DOWN) & 0x0001 && player_y < maze_size - 1) {
+		else if (GetAsyncKeyState(VK_DOWN) & 0x8000 && player_y < maze_size - 1) {
+			RemoveGarbageChar();
 			y = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -195,7 +202,8 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_LEFT) & 0x0001 && player_x > 0) {
+		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && player_x > 0) {
+			RemoveGarbageChar();
 			x = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -205,7 +213,8 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		else if (GetAsyncKeyState(VK_RIGHT) & 0x0001 && player_x < maze_size - 1) {
+		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && player_x < maze_size - 1) {
+			RemoveGarbageChar();
 			x = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
@@ -215,17 +224,21 @@ void movement() {
 			}
 			if (now_state[player_x + x][player_y + y] != 1 && now_state[player_x + x][player_y + y] != 3)minigame_prob++;
 		}
-		//else if (GetAsyncKeyState(VK_BACK) & 0x0001) return 0;
 		if (h == 0) {
-			ScreenReset();
+			ScreenReset(now_color_num);
 			MoveConsole(40, 10);
 			printf("미로 탈출 실패!");
 			MoveConsole(25, 2);
 			printf("메인 화면으로 돌아가려면 BACKSPACE를 누르시오");
 			while (1) {
-				if (GetAsyncKeyState(VK_BACK) & 0x8000) break;
+				if (GetAsyncKeyState(VK_BACK) & 0x8000) {
+					fail = 1;
+					break;
+				}
+				RemoveGarbageChar();
 				Sleep(10);
 			}
+			if (fail == 1)break;
 		}
 		if (now_state[player_x + x][player_y + y] == 0 || now_state[player_x + x][player_y + y] == 10) { //통로
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
@@ -388,7 +401,7 @@ void maze_game() {
 	time_t start = time(NULL);
 	srand(time(NULL));
 	minigame_prob = 0;
-	ScreenReset();
+	ScreenReset(14);
 	MoveConsole(75, 0);
 	SetColor(7);
 	strcpy(inform[line], "inform");
@@ -403,7 +416,7 @@ void maze_game() {
 	maze();
 	time_t end = time(NULL);
 	int record = end - start;
-	ScreenReset();
+	ScreenReset(14);
 	if (clear == 1) {
 		MoveConsole(40, 10);
 		printf("미로 탈출 성공!");
@@ -431,5 +444,5 @@ void maze_game() {
 	line = 0;
 	clear = 0;
 	UpdateUserInfo();
-	ScreenReset();
+	ScreenReset(14);
 }

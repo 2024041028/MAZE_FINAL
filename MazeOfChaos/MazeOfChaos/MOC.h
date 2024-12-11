@@ -30,7 +30,7 @@ void FillEntireFrameRandomly();
 // *************************************** //
 
 // ******* login_screen.c에 존재 ********* //
-
+extern int now_color_num;
 extern int user_record[6]; // 1 2 3 4 5 단계 기록
 extern int user_skin[21]; // 1 2 3... 11 스킨 X ※ ★ ♥ ♣ ♠ ◆ ▲ ♪ ♬ ◈ ▣ ⊙ ? ℡ φ Ψ Ø Ω // 19개      <♬ ℡ ★>
 extern char now_skin[10];
@@ -75,46 +75,46 @@ int random_number();
 // ********mini2_syb.c에 존재*********** //
 void ChooseRandomWord();
 void PrintHearts();
-void PlayHangman();
+int PlayHangman();
 // ************************************ //
 
 // ********mini3_syb.c에 존재*********** //
 int Countdown();
 void GenerateMathProblem();
-void PlayMathGame();
+int PlayMathGame();
 // ************************************ //
 
 // ********mini4_syb.c에 존재*********** //
 int GetAlphabetCount();
 void GenerateRandomAlphabets();
 void GetUserInput();
-void PlayMemoryGame();
+int PlayMemoryGame();
 // ************************************ //
 
 // ********mini5_syb.c에 존재*********** //
 int GetRandomColor();
-void PlayReflexGame();
+int PlayReflexGame();
 // ************************************ //
 // 
 // ********mini1_rhs.c에 존재*********** //
 void InputWithoutTimeout();
-void PlayGreenFrogRPS();
+int PlayGreenFrogRPS();
 // ************************************ //
 
 // ********mini2_rhs.c에 존재*********** //
 int InputWithCount();
-void PlayAscendingGame();
+int PlayAscendingGame();
 // ************************************ //
 
 // ********mini3_rhs.c에 존재*********** //
 int InputWithCountdown();
-void PlayTriviaQuizGame();
+int PlayTriviaQuizGame();
 // ************************************ //
 
 // ********mini4_rhs.c에 존재*********** //
 void DisplayUserInfo();
 int InputWithcnt3();
-void PlayArrowGame();
+int PlayArrowGame();
 // ************************************ //
 
 // ******* manage_info.c에 존재 ********* //
@@ -123,4 +123,8 @@ void UpdateUserInfo();
 
 // // ********manage_newline.c에 존재*********** //
 void RemoveGarbageChar();
+// ************************************ //
+
+// ********introduce.c에 존재*********** //
+void ShowInstructionsAndMenu();
 // ************************************ //

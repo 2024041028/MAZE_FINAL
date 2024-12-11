@@ -74,7 +74,7 @@ bool InputWithTimeoutTrivia(char* input, int max_length, int timeout) {
 }
 
 // 상식 퀴즈 게임
-void PlayTriviaQuizGame(int level) {
+int PlayTriviaQuizGame(int level) {
     SetupConsoleEncoding();
 
     char* questions[] = {
@@ -103,7 +103,7 @@ void PlayTriviaQuizGame(int level) {
     srand(time(NULL));
     int random_index = rand() % num_questions;
 
-    CreateOutFrame();
+    CreateOutFrame(now_color_num);
 
     // 사용자 ID 및 목숨 출력
     MoveConsole(23, 2);
@@ -143,11 +143,13 @@ void PlayTriviaQuizGame(int level) {
         SetColor(14);
         printf("정답! 성공했습니다!");
         SetColor(7);
+        return 1;
     }
     else {
         MoveConsole(23, 16);
         SetColor(14);
         printf("오답! 정답은 '%s'입니다.", answers[random_index]);
         SetColor(7);
+        return 0;
     }
 }

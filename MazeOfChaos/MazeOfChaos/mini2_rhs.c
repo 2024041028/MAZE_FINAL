@@ -43,7 +43,7 @@ int InputWithTimeoutAscending(char* input, int max_length, int timeout) {
 }
 
 // 오름차순 정렬 게임 (수정된 틀 적용)
-void PlayAscendingGame(int level) {
+int PlayAscendingGame(int level) {
 
     int numbers[10], user_input[10];
     char input[50];
@@ -56,7 +56,7 @@ void PlayAscendingGame(int level) {
 
     srand(time(NULL));
 
-    CreateOutFrame();
+
 
     // 사용자 ID 및 목숨 출력
     MoveConsole(23, 2);
@@ -90,7 +90,7 @@ void PlayAscendingGame(int level) {
         SetColor(14);
         printf("시간 초과! 게임 실패!");
         SetColor(7);
-        return;
+        return 0;
     }
 
     // 입력된 숫자 파싱
@@ -113,7 +113,7 @@ void PlayAscendingGame(int level) {
             SetColor(14);
             printf("오답! 실패!");
             SetColor(7);
-            return;
+            return 0;
         }
     }
 
@@ -121,4 +121,5 @@ void PlayAscendingGame(int level) {
     SetColor(14);
     printf("정답! 성공했습니다!");
     SetColor(7);
+    return 1;
 }

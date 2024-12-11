@@ -53,7 +53,7 @@ void PrintHearts(int attemptsLeft) {
 }
 
 // 행맨 게임 함수
-void PlayHangman() {
+int PlayHangman() {
     now_level = 1;
     int wordLength = now_level + 2; // 단어 길이 결정 (3, 4, 5글자)
     char word[MAX_WORD_LENGTH + 1]; // 고정 크기 배열로 단어 저장
@@ -73,7 +73,7 @@ void PlayHangman() {
 
     while (attempts < MAX_ATTEMPTS) {
         system("cls"); // 화면 초기화
-        CreateOutFrame();
+        CreateOutFrame(now_color_num);
 
         // 남은 목숨을 하트로 출력
         PrintHearts(MAX_ATTEMPTS - attempts);
@@ -117,7 +117,7 @@ void PlayHangman() {
         // 단어를 모두 맞춘 경우
         if (strcmp(word, guessed) == 0) {
             system("cls");
-            CreateOutFrame();
+            CreateOutFrame(now_color_num);
             MoveConsole(31, 13);
             SetColor(10); // 초록색
             printf("축하드립니다 단어는 %s입니다!", word);
@@ -125,13 +125,13 @@ void PlayHangman() {
             SetColor(7);
             printf("Press any key to return to the main menu...");
             getchar(); getchar();
-            return; // 게임 성공
+            return 1; // 게임 성공
         }
     }
 
     // 실패 메시지
     system("cls");
-    CreateOutFrame();
+    CreateOutFrame(now_color_num);
     MoveConsole(25, 13);
     SetColor(4); // 빨간색
     printf("시도를 모두 사용하셨습니다 단어는 %s입니다!", word);
@@ -139,4 +139,5 @@ void PlayHangman() {
     SetColor(7);
     printf("Press any key to return to the main menu...");
     getchar(); getchar();
+    return 0;
 }

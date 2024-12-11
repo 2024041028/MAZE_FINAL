@@ -58,7 +58,7 @@ int InputWithcnt3(char* input, int max_length, int timeout) {
 }
 
 // 화살표 게임
-void PlayArrowGame(int level) {
+int PlayArrowGame(int level) {
     char* arrows[] = { "↑", "↓", "←", "→" };
     int dx[] = { 0, 0, -1, 1 };
     int dy[] = { 1, -1, 0, 0 };
@@ -74,7 +74,7 @@ void PlayArrowGame(int level) {
 
     srand(time(NULL));
 
-    CreateOutFrame(); // 사각형 틀 생성
+    CreateOutFrame(now_color_num); // 사각형 틀 생성
     DisplayUserInfo(); // 사용자 정보 출력
 
     // 화살표 출력
@@ -118,11 +118,13 @@ void PlayArrowGame(int level) {
         MoveConsole(23, 15);
         SetColor(14); // 노란색 출력
         printf("정답! 성공했습니다!");
+        return 1;
     }
     else {
         MoveConsole(23, 15);
         SetColor(14); // 노란색 출력
         printf("오답! 정답은 (%d, %d)입니다.", x, y);
+        return 0;
     }
     SetColor(7); // 기본색 복원
 }
