@@ -6,7 +6,8 @@ int main() {
 	RemoveCursor();
 	CreateOutFrame(14);
 	//PlayHangman();
-	PlayMathGame();
+	PlayMemoryGame();
+	//PlayMathGame();
 	//random_number();
 	//PlayGreenFrogRPS();
 	//PlayAscendingGame();

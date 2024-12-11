@@ -72,6 +72,14 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한시간 내에 최대한 많은 정답을 맞추세요");
     }
+    else if (gameType == 7) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 화면에 나타나는 숫자나 글자를 기억하세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 일정시간 후 사라집니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한시간 내에 정답을 맞추세요");
+    }
 
     // Menu selection loop
     while (1) {
