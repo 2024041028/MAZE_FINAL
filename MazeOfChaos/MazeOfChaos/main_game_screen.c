@@ -338,15 +338,15 @@ void MenuScreen() {
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && flag != 5 && flag < max_level) {
 			RemoveGarbageChar();
 			ScreenReset(14);
-			MenuScreenFrame(flag);
 			flag++;
+			MenuScreenFrame(flag);
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(VK_LEFT) & 0x8000 && flag != 1) {
 			RemoveGarbageChar();
 			ScreenReset(14);
-			MenuScreenFrame(flag);
 			flag--;
+			MenuScreenFrame(flag);
 			Sleep(150);
 		}
 		else if (GetAsyncKeyState(0x50) & 0x8000) {

@@ -178,6 +178,7 @@ void maze_frame() {
 void movement() {
 	int random_color = 0;
 	while (1) {
+		int fail = 0;
 		int random;
 		SetColor(7);
 		if (GetAsyncKeyState(VK_UP) & 0x0001 && player_y > 0) {
@@ -231,10 +232,14 @@ void movement() {
 			MoveConsole(25, 2);
 			printf("메인 화면으로 돌아가려면 BACKSPACE를 누르시오");
 			while (1) {
-				if (GetAsyncKeyState(VK_BACK) & 0x8000) break;
+				if (GetAsyncKeyState(VK_BACK) & 0x8000) {
+					fail = 1;
+					break;
+				}
 				RemoveGarbageChar();
 				Sleep(10);
 			}
+			if (fail == 1)break;
 		}
 		if (now_state[player_x + x][player_y + y] == 0 || now_state[player_x + x][player_y + y] == 10) { //통로
 			MoveConsole(x_0 + player_x * 2, y_0 + player_y);
