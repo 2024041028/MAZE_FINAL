@@ -17,11 +17,12 @@ void minigame_pop(int random,int x,int y) {
 
 	int what_game = random % 9 + 1;
 	FillEntireFrameRandomly(what_game, x, y);
-	ShowInstructionsAndMenu(what_game);
+	
+	//ShowInstructionsAndMenu(what_game);
 	now_color_num = what_game;
 
 	int result;
-
+	
 	if (what_game == 9) result = random_number();
 	else if (what_game == 1) result = PlayHangman();
 	else if (what_game == 2) result = PlayMathGame();
