@@ -18,26 +18,30 @@ void minigame_pop(int random,int x,int y) {
 	int what_game = random % 9 + 1;
 	FillEntireFrameRandomly(what_game, x, y);
 	
-	//ShowInstructionsAndMenu(what_game);
+	int use_skip = ShowInstructionsAndMenu(what_game,skip);
 	now_color_num = what_game;
 
 	int result;
-	
-	if (what_game == 9) result = random_number();
-	else if (what_game == 1) result = PlayHangman();
-	else if (what_game == 2) result = PlayMathGame();
-	else if (what_game == 3) result = PlayMemoryGame();
-	else if (what_game == 4) result = PlayReflexGame();
-	else if (what_game == 5) result = PlayGreenFrogRPS();
-	else if (what_game == 6) result = PlayAscendingGame();
-	else if (what_game == 7) result = PlayTriviaQuizGame();
-	else if (what_game == 8) result = PlayArrowGame();
-	
-	if (result == 1) {
-		user_coin += 2;
+	if (use_skip == 0) {
+		if (what_game == 9) result = random_number();
+		else if (what_game == 1) result = PlayHangman();
+		else if (what_game == 2) result = PlayMathGame();
+		else if (what_game == 3) result = PlayMemoryGame();
+		else if (what_game == 4) result = PlayReflexGame();
+		else if (what_game == 5) result = PlayGreenFrogRPS();
+		else if (what_game == 6) result = PlayAscendingGame();
+		else if (what_game == 7) result = PlayTriviaQuizGame();
+		else if (what_game == 8) result = PlayArrowGame();
+
+		if (result == 1) {
+			user_coin += 2;
+		}
+		else {
+			h--;
+		}
 	}
-	else {
-		h--;
+	else if (use_skip == 1) {
+		skip--;
 	}
 	ScreenReset(14);
 	SetColor(7);

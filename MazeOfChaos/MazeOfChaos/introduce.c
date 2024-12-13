@@ -1,7 +1,8 @@
 #include "MOC.h"
 
 // Function to show the game instructions and menu options together
-void ShowInstructionsAndMenu(int gameType) {
+int ShowInstructionsAndMenu(int gameType, int skip) {
+    gameType--;
     int cursorPosition = 0; // 0 for "skip" and 1 for "gamestart"
     char key;
 
@@ -48,6 +49,46 @@ void ShowInstructionsAndMenu(int gameType) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한시간 내에 최종좌표를 입력하세요!");
     }
+    else if (gameType == 4) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 랜덤숫자를 추측하세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 입력 숫자에 따라 업, 다운 힌트를 드립니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한횟수 안에서 정답을 맞추세요");
+    }
+    else if (gameType == 5) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 제시된 단어를 추측하여 알파벳 입력하세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 틀린 횟수가 누적되면 행맨이 완성됩니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한횟수 안에서 정답을 맞추세요");
+    }
+    else if (gameType == 6) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 화면에 주어진 산수문제를 풀어보세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 정답을 입력하면 다음문제가 나옵니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한시간 내에 최대한 많은 정답을 맞추세요");
+    }
+    else if (gameType == 7) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 화면에 나타나는 숫자나 글자를 기억하세요");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 일정시간 후 사라집니다");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 제한시간 내에 정답을 맞추세요");
+    }
+    else if (gameType == 8) {  // PlayAscendingGame
+        MoveConsole(instructionX, instructionY + 2);
+        printf("● 랜덤한 숫자가 출력됩니다");
+        MoveConsole(instructionX, instructionY + 3);
+        printf("● 숫자 사이에 '지금'이 출력되면 p를 누르세요");
+        MoveConsole(instructionX, instructionY + 4);
+        printf("● 비슷한 오타들이 나오니 주의하세요");
+    }
 
     // Menu selection loop
     while (1) {
@@ -74,13 +115,36 @@ void ShowInstructionsAndMenu(int gameType) {
 
     // Handle the selection
     if (cursorPosition == 0) {
-        MoveConsole(instructionX, instructionY + 11);
-        printf("스킵권 사용하기 선택됨. 게임 종료.");
+        if (skip > 0) {
+            MoveConsole(instructionX, instructionY + 11);
+            printf("스킵권 사용하기 선택됨. 게임 종료.");
+            return 1;
+        }
+        else {
+            MoveConsole(instructionX, instructionY + 11);
+            printf("스킵권이 없습니다. 구매하시겠습니까?");
+            MoveConsole(instructionX, instructionY + 12);
+            printf("가격:코인5개");
+            if (user_coin >= 5) {
+                MoveConsole(instructionX, instructionY + 13);
+                printf("코인을 사용하여 게임을 스킵합니다.");
+                user_coin -= 5;
+                Sleep(2000);
+                return 2;
+            }
+            else {
+                MoveConsole(instructionX, instructionY + 13);
+                printf("코인이 부족합니다. 게임을 실행합니다.");
+                Sleep(2000);
+                return 0;
+            }
+        }
     }
     else {
         MoveConsole(instructionX, instructionY + 11);
         printf("게임 시작하기 선택됨. 게임을 시작합니다.");
         Sleep(2000);
+        return 0;
 
         // Clear only the area used for instructions and menu, keeping the frame intact
         for (int i = instructionY; i <= instructionY + 11; i++) {
