@@ -46,7 +46,7 @@ int InputWithTimeoutAscending(char* input, int max_length, int timeout) {
 int PlayAscendingGame(int level)
 
 { 
-    ShowInstructionsAndMenu(1);
+   
 
     int numbers[10], user_input[10];
     char input[50];

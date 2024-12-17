@@ -90,7 +90,6 @@ void InputWithoutTimeout(char* input, int max_length) {
 
 int PlayGreenFrogRPS(int level) {
   
-    ShowInstructionsAndMenu();
     SetupConsoleEncoding2();
 
     const char* options[] = { "가위", "바위", "보" };
