@@ -115,7 +115,7 @@ void maze_frame() {
 	MoveConsole(22, 2);
 	printf("Name : %s", user_name);
 	MoveConsole(59, 2);
-	printf("┃뒤로가기 ☜ ┃");
+	printf("┃  level %d  ┃",now_level);
 	MoveConsole(59, 1);
 	printf("┏━━━━━━━━━━━┓");
 	MoveConsole(59, 3);
