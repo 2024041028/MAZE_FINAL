@@ -22,6 +22,7 @@ void minigame_pop(int random,int x,int y) {
 	ScreenReset(what_game);
 	now_color_num = what_game;
 
+	RemoveGarbageChar();
 	int result;
 	if (use_skip == 0) {
 		if (what_game == 9) result = random_number();
