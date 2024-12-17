@@ -145,12 +145,18 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
                     break;
                 }
             }
-            if (user_coin >= 5) {
+            if (user_coin >= 5 && use_coin == 0) {
                 MoveConsole(instructionX, instructionY + 14);
                 printf("코인을 사용하여 게임을 스킵합니다.");
                 user_coin -= 5;
                 Sleep(2000);
                 return 2;
+            }
+            else if (use_coin == 1) {
+                MoveConsole(instructionX, instructionY + 14);
+                printf("코인을 사용하지 않고 미니게임을 시작합니다.");
+                Sleep(2000);
+                return 0;
             }
             else {
                 MoveConsole(instructionX, instructionY + 14);
