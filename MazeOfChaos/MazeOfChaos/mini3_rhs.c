@@ -76,7 +76,6 @@ bool InputWithTimeoutTrivia(char* input, int max_length, int timeout) {
 // 상식 퀴즈 게임
 int PlayTriviaQuizGame(int level) {
 
-    ShowInstructionsAndMenu(2);
     SetupConsoleEncoding();
 
     char* questions[] = {

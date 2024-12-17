@@ -54,7 +54,7 @@ void PrintHearts(int attemptsLeft) {
 
 // 행맨 게임 함수
 int PlayHangman() {
-    ShowInstructionsAndMenu(5);
+
     now_level = 1;
     int wordLength = now_level + 2; // 단어 길이 결정 (3, 4, 5글자)
     char word[MAX_WORD_LENGTH + 1]; // 고정 크기 배열로 단어 저장
