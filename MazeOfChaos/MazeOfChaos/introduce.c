@@ -18,7 +18,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
     SetColor(7); // Reset text color to white
 
     // Display game-specific instructions
-    if (gameType == 0) {  // PlayGreenFrogRPS
+    if (gameType == 5) {  // PlayGreenFrogRPS
         MoveConsole(instructionX, instructionY + 2);
         printf("● 가위, 바위, 보 중 하나를 선택");
         MoveConsole(instructionX, instructionY + 3);
@@ -26,7 +26,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 이기면 '졌다', 지면 '이겼다', 비기면 '개굴' 입력");
     }
-    else if (gameType == 1) {  // PlayAscendingGame
+    else if (gameType == 6) {  // PlayAscendingGame
         MoveConsole(instructionX, instructionY + 2);
         printf("● 주어진 숫자를 오름차순으로 정렬");
         MoveConsole(instructionX, instructionY + 3);
@@ -35,13 +35,13 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
         printf("● 정확한 순서로 입력하면 성공");
     }
 
-    else if (gameType == 2) {  // PlayTriviaQuizGame
+    else if (gameType == 7) {  // PlayTriviaQuizGame
         MoveConsole(instructionX, instructionY + 2);
         printf("● 주어진 질문에 올바른 정답을 입력");
         MoveConsole(instructionX, instructionY + 3);
         printf("● 제한 시간 내에 정답을 맞추세요!");
     }
-    else if (gameType == 3) {  // PlayAscendingGame
+    else if (gameType == 8) {  // 
         MoveConsole(instructionX, instructionY + 2);
         printf("● 화면에 나타나는 화살표를 확인하세요");
         MoveConsole(instructionX, instructionY + 3);
@@ -49,7 +49,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한시간 내에 최종좌표를 입력하세요!");
     }
-    else if (gameType == 4) {  // PlayAscendingGame
+    else if (gameType == 9) {  // 
         MoveConsole(instructionX, instructionY + 2);
         printf("● 랜덤숫자를 추측하세요");
         MoveConsole(instructionX, instructionY + 3);
@@ -57,7 +57,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한횟수 안에서 정답을 맞추세요");
     }
-    else if (gameType == 5) {  // PlayAscendingGame
+    else if (gameType == 1) {  // 
         MoveConsole(instructionX, instructionY + 2);
         printf("● 제시된 단어를 추측하여 알파벳 입력하세요");
         MoveConsole(instructionX, instructionY + 3);
@@ -65,7 +65,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한횟수 안에서 정답을 맞추세요");
     }
-    else if (gameType == 6) {  // PlayAscendingGame
+    else if (gameType == 2) {  // 
         MoveConsole(instructionX, instructionY + 2);
         printf("● 화면에 주어진 산수문제를 풀어보세요");
         MoveConsole(instructionX, instructionY + 3);
@@ -73,7 +73,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한시간 내에 최대한 많은 정답을 맞추세요");
     }
-    else if (gameType == 7) {  // PlayAscendingGame
+    else if (gameType == 3) {  // 
         MoveConsole(instructionX, instructionY + 2);
         printf("● 화면에 나타나는 숫자나 글자를 기억하세요");
         MoveConsole(instructionX, instructionY + 3);
@@ -81,7 +81,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
         MoveConsole(instructionX, instructionY + 4);
         printf("● 제한시간 내에 정답을 맞추세요");
     }
-    else if (gameType == 8) {  // PlayAscendingGame
+    else if (gameType == 4) {  //
         MoveConsole(instructionX, instructionY + 2);
         printf("● 랜덤한 숫자가 출력됩니다");
         MoveConsole(instructionX, instructionY + 3);
