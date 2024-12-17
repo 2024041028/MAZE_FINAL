@@ -5,6 +5,7 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
  
     int cursorPosition = 0; // 0 for "skip" and 1 for "gamestart"
     char key;
+    int use_coin = 0;
 
     // Define fixed position for instructions
     int instructionX = 23;
@@ -125,15 +126,34 @@ int ShowInstructionsAndMenu(int gameType, int skip) {
             printf("스킵권이 없습니다. 구매하시겠습니까?");
             MoveConsole(instructionX, instructionY + 12);
             printf("가격:코인5개");
-            if (user_coin >= 5) {
+            while (1) {
                 MoveConsole(instructionX, instructionY + 13);
+                SetColor(14);
+                printf("%s use coin        %s play minigame",
+                    use_coin == 0 ? "->" : "  ",
+                    use_coin == 1 ? "->" : "  ");
+                SetColor(7);
+
+                key = _getch();
+                if (key == 75) {
+                    use_coin = (use_coin - 1 + 2) % 2;
+                }
+                else if (key == 77) { 
+                    use_coin = (use_coin + 1) % 2;
+                }
+                else if (key == 13) {
+                    break;
+                }
+            }
+            if (user_coin >= 5) {
+                MoveConsole(instructionX, instructionY + 14);
                 printf("코인을 사용하여 게임을 스킵합니다.");
                 user_coin -= 5;
                 Sleep(2000);
                 return 2;
             }
             else {
-                MoveConsole(instructionX, instructionY + 13);
+                MoveConsole(instructionX, instructionY + 14);
                 printf("코인이 부족합니다. 게임을 실행합니다.");
                 Sleep(2000);
                 return 0;
