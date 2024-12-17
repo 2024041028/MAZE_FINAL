@@ -60,7 +60,6 @@ int InputWithcnt3(char* input, int max_length, int timeout) {
 // 화살표 게임
 int PlayArrowGame(int level) {
 
-    ShowInstructionsAndMenu(3);
     char* arrows[] = { "↑", "↓", "←", "→" };
     int dx[] = { 0, 0, -1, 1 };
     int dy[] = { 1, -1, 0, 0 };

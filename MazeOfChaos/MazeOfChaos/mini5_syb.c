@@ -6,7 +6,7 @@ int GetRandomColor() {
 }
 
 int PlayReflexGame() {
-    ShowInstructionsAndMenu(8);
+
     int now_level = 1; // 초기 레벨
     int is_now_displayed = 0; // '지금' 출력 여부
     char input;

@@ -55,7 +55,7 @@ void GetUserInput(char* input, int max_length, int start_x, int start_y) {
 
 // 기억력 게임 함수
 int PlayMemoryGame() {
-    ShowInstructionsAndMenu(7);
+
     system("cls");
     CreateOutFrame(now_color_num); // 게임 틀 생성
     srand(time(NULL)); // 랜덤 시드 설정

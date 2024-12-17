@@ -71,7 +71,6 @@ void GenerateMathProblem(int* a, int* b, char* op, int* answer, int now_level) {
 
 // 산수 게임 함수
 int PlayMathGame() {
-    ShowInstructionsAndMenu(6);
     system("cls");
     CreateOutFrame(now_color_num); // 게임 틀 생성
 
