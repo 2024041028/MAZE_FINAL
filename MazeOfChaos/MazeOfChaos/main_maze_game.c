@@ -19,6 +19,7 @@ void minigame_pop(int random,int x,int y) {
 	FillEntireFrameRandomly(what_game, x, y);
 	
 	int use_skip = ShowInstructionsAndMenu(what_game,skip);
+	ScreenReset(what_game);
 	now_color_num = what_game;
 
 	int result;
@@ -190,7 +191,7 @@ void movement() {
 			y = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 7;
+				random_color = rand() % 9 + 1;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
@@ -201,7 +202,7 @@ void movement() {
 			y = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 7;
+				random_color = rand() % 9 + 1;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
@@ -212,7 +213,7 @@ void movement() {
 			x = -1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 7;
+				random_color = rand() % 9 + 1;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}
@@ -223,7 +224,7 @@ void movement() {
 			x = 1;
 			random = rand() % 100;
 			if (random <= minigame_prob && random != 0) {
-				random_color = rand() % 7;
+				random_color = rand() % 9 + 1;
 				minigame_pop(random_color, x_0 + player_x * 2, y_0 + player_y);
 				minigame_prob = 0;
 			}

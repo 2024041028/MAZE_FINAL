@@ -2,7 +2,7 @@
 
 // Function to show the game instructions and menu options together
 int ShowInstructionsAndMenu(int gameType, int skip) {
-    gameType--;
+ 
     int cursorPosition = 0; // 0 for "skip" and 1 for "gamestart"
     char key;
 

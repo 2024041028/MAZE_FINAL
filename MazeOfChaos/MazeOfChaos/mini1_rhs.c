@@ -115,12 +115,6 @@ int PlayGreenFrogRPS(int level) {
     for (int i = h; i < 3; i++) printf("♡");
     SetColor(7);
 
-    // 게임 안내 출력
-    MoveConsole(23, 5);
-    printf("청개구리 가위바위보 게임");
-    MoveConsole(23, 6);
-    printf("======================");
-
     // 첫 번째 입력 요청
     MoveConsole(23, 8);
     printf("가위, 바위, 보 중 하나를 입력하세요:");
